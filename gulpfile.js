@@ -40,7 +40,9 @@ gulp.task('scripts', function() {
 //Compile HTML
 gulp.task('html', function() {
     gulp.src(basedir + '/**/*.html')
-        // .pipe(minifyHTML())
+        .pipe(minifyHTML({
+            "empty": true
+        }))
         .pipe(gulp.dest('dist'));
 });
 
