@@ -21,7 +21,7 @@ gulp.task('lint', function() {
 
 // Compile Our Sass
 gulp.task('sass', function() {
-    return gulp.src(basedir + 'scss/*.scss')
+    return gulp.src(basedir + 'scss/**/*.scss')
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(gulp.dest('dist/css'));
