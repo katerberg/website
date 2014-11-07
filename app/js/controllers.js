@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    var minesweeperControllers = angular.module('minesweeperControllers', []);
+    var katerbergControllers = angular.module('katerbergControllers', []);
 
-    minesweeperControllers.controller('HomeCtrl', ['$scope', function($scope) {
+    katerbergControllers.controller('HomeCtrl', ['$scope', function($scope) {
     }]);
 })();

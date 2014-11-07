@@ -3,15 +3,13 @@
 
 /* App Module */
 
-var minesweeperApp = angular.module('minesweeperApp', [
+var katerbergApp = angular.module('katerbergApp', [
   'ngRoute',
 
-  'minesweeperControllers',
-  'minesweeperFilters',
-  'minesweeperServices'
+  'katerbergControllers'
 ]);
 
-minesweeperApp.config(['$routeProvider',
+katerbergApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
       when('/', {
