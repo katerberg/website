@@ -1,3 +1,5 @@
+$footer-height: 50px;
+
 html {
     height: 100%;
     font-size: 62.5%; //Give us about 10 px/rem
@@ -6,15 +8,19 @@ html {
         font-size: 1.4rem;
         
         > .container {
-            min-height: calc(100% - 50px);
-        }
-        
-        > footer {
-            padding-top: 10px;
-            text-align: center;
-            font-size: 1.2rem;
-            height: 50px;
+            height: 100%;
+
+            > .view-frame {
+                display: block;
+                min-height: calc(100% - #{$footer-height} - 20px);
+
+            }
+            > footer {
+                padding-top: 10px;
+                text-align: center;
+                font-size: 1.2rem;
+                height: $footer-height;
+            }
         }
     }
 }
-

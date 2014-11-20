@@ -29,7 +29,7 @@ gulp.task('sass', function() {
 
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
-    return gulp.src(basedir + 'js/*.js')
+    return gulp.src(basedir + 'js/**/*.js')
         .pipe(concat('app.js'))
         .pipe(gulp.dest('dist/js'))
         .pipe(rename('app.min.js'))
@@ -46,13 +46,19 @@ gulp.task('html', function() {
         .pipe(gulp.dest('dist'));
 });
 
+//Move images
+gulp.task('images', function() {
+    gulp.src(basedir + '/images/*')
+        .pipe(gulp.dest('dist/images'));
+});
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch(basedir + 'js/*.js', ['lint', 'scripts']);
-    gulp.watch(basedir + 'scss/*.scss', ['sass']);
+    gulp.watch(basedir + 'js/**/*.js', ['lint', 'scripts']);
+    gulp.watch(basedir + 'scss/**/*.scss', ['sass']);
     gulp.watch(basedir + '**/*.html', ['html']);
+    gulp.watch(basedir + 'images/*', ['images']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'html', 'watch']);
+gulp.task('default', ['lint', 'sass', 'scripts', 'html', 'images', 'watch']);
