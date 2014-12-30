@@ -8,6 +8,7 @@ var jshint = require('gulp-jshint'),
     autoprefixer = require('gulp-autoprefixer'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
+    ngAnnotate = require('gulp-ng-annotate'),
     rename = require('gulp-rename');
 
 var basedir = 'app/';
@@ -30,6 +31,7 @@ gulp.task('sass', function() {
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
     return gulp.src([basedir + 'js/**/*.js', '!' + basedir + 'js/**/*.test.js'])
+        .pipe(ngAnnotate())
         .pipe(concat('app.js'))
         .pipe(gulp.dest('dist/js'))
         .pipe(rename('app.min.js'))

@@ -1,15 +1,11 @@
 (function () {
 'use strict';
 
-/* App Module */
-
 var katerbergApp = angular.module('katerbergApp', [
-  'ngRoute',
-  'k8HomeCtrl'
+  'ngRoute'
 ]);
 
-katerbergApp.config(['$routeProvider',
-  function($routeProvider) {
+katerbergApp.config(function($routeProvider) {
     $routeProvider.
       when('/', {
         templateUrl: 'partials/home.html',
@@ -18,5 +14,5 @@ katerbergApp.config(['$routeProvider',
       otherwise({
         redirectTo: '/'
       });
-  }]);
+  });
 })();

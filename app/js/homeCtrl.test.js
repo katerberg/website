@@ -5,13 +5,14 @@ describe('HomeCtrl', function () {
 
 
     beforeEach(function () {
-        module('k8HomeCtrl');
+        module('katerbergApp');
     });
 
     describe('After start up', function () {
         beforeEach(inject(function($controller, $rootScope) {
             var scope = $rootScope.$new();
-            ctrl = $controller('HomeCtrl', {$scope: scope});
+            ctrl = $controller('HomeCtrl', {$scope: scope,
+            dungeonService: {}});
             scope.$digest();
 
             rootScope = $rootScope;
