@@ -5,8 +5,7 @@
 
 var katerbergApp = angular.module('katerbergApp', [
   'ngRoute',
-
-  'katerbergControllers'
+  'k8HomeCtrl'
 ]);
 
 katerbergApp.config(['$routeProvider',
