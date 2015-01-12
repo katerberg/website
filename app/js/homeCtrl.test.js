@@ -12,7 +12,7 @@ describe('HomeCtrl', function () {
         beforeEach(inject(function($controller, $rootScope) {
             var scope = $rootScope.$new();
             ctrl = $controller('HomeCtrl', {$scope: scope,
-            dungeonService: {}});
+            });
             scope.$digest();
 
             rootScope = $rootScope;
