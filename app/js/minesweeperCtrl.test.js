@@ -44,10 +44,10 @@ describe('MinesweeperCtrl', function () {
                 expect(scope.hasWon).toBeFalsy();
             });
 
-            it('should reset the board', function () {
+            it('should reset the board at a reasonable size', function () {
                 scope.resetGame();
 
-                expect(scope.resetBoard).toHaveBeenCalled();
+                expect(scope.resetBoard).toHaveBeenCalledWith(15);
             });
         });
     });

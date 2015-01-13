@@ -2,8 +2,7 @@
     'use strict';
 
     angular.module('katerbergApp').controller('MinesweeperCtrl', function($scope, minesweeperService) {
-        function resetBoard() {
-            var gridSize = 15;
+        function resetBoard(gridSize) {
             $scope.rows = [];
             $scope.numberOfFlags = 0;
             for (var i = 0; i < gridSize; i++) {
@@ -86,7 +85,7 @@
         function resetGame() {
             $scope.hasWon = false;
             $scope.hasLost = false;
-            $scope.resetBoard();
+            $scope.resetBoard(15);
         }
 
         function selectCell(cell) {
