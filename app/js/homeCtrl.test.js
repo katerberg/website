@@ -1,6 +1,6 @@
 describe('HomeCtrl', function () {
 
-    var ctrl,
+    var scope,
         rootScope;
 
 
@@ -9,17 +9,18 @@ describe('HomeCtrl', function () {
     });
 
     describe('After start up', function () {
+
         beforeEach(inject(function($controller, $rootScope) {
-            var scope = $rootScope.$new();
-            ctrl = $controller('HomeCtrl', {$scope: scope,
-            });
+
+            scope = $rootScope.$new();
+            $controller('HomeCtrl', {$scope: scope});
             scope.$digest();
 
             rootScope = $rootScope;
         }));
 
         it('should be defined', function () {
-            expect(ctrl).toBeDefined();
+            expect(scope).toBeDefined();
         });
     });
 });

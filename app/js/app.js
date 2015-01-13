@@ -11,6 +11,10 @@ katerbergApp.config(function($routeProvider) {
         templateUrl: 'partials/home.html',
         controller: 'HomeCtrl'
       }).
+      when('/minesweeper', {
+        templateUrl: 'partials/minesweeper.html',
+        controller: 'MinesweeperCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });

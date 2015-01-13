@@ -14,16 +14,16 @@
         <script src="js/app.js"></script>
     </head>
     <body>
-        <header class="sidebar">
+        <header class="sidebar" ng-controller="SidebarCtrl">
             <img class="profile" src="images/tennant.JPG" alt="Profile picture" />
             <p>
                 Obsessive Personality centering on:
             </p>
             <div class="list-group">
-                <a class="list-group-item">Magic: the Gathering</a>
-                <a class="list-group-item">Roleplaying Games</a>
-                <a class="list-group-item">Linux</a>
-                <a class="list-group-item">Web Development</a>
+                <a class="list-group-item" ng-click="goHome()">Magic: the Gathering</a>
+                <a class="list-group-item" ng-click="goHome()">Roleplaying Games</a>
+                <a class="list-group-item" ng-click="goHome()">Linux</a>
+                <a class="list-group-item" ng-click="goMinesweeper()">Web Development</a>
             </div>
 
         </header>

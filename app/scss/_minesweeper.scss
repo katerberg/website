@@ -1,0 +1,57 @@
+.top-bar {
+    font-size: 1.5em;
+}
+
+.bottom-bar {
+    padding-top: 1em;
+}
+
+.win-message {
+    color: #8AC007;
+}
+
+.loss-message {
+    color: #E60000;
+}
+
+.minefield {
+    display: flex;
+}
+
+.mine-text {
+    font-size: 2em;
+}
+
+.cell {
+    border-color: #DFDFDF;
+    border-style: solid;
+    border-width: 1px;
+    height: 3em;
+    width: 3em;
+    text-align: center;
+}
+
+.cell-unclear {
+    background-color: #AFAFAF;
+    &:hover {
+        background-color: #CFCFCF;
+    }
+}
+
+.cell-clear {
+    background-color: #8AC007;
+    &:hover {
+        background-color: #AAF027;
+    }
+}
+
+.cell-bomb {
+    background-color: #E60000;
+    &:hover {
+        background-color: #990000;
+    }
+}
+
+h1 {
+    border-bottom: 1px solid gray;
+}
