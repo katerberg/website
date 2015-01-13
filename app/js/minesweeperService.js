@@ -12,10 +12,22 @@
         function checkForLoss(cell) {
             return cell.bomb;
         }
+
+        function checkForWin(board) {
+            return board.every(function (row) {
+                return row.cells.every(function (cell) {
+                    if (!cell.selected && !cell.bomb) {
+                        return false;
+                    }
+                    return true;
+                });
+            });
+        }
         
         return {
             createNewCell: createNewCell,
-            checkForLoss: checkForLoss
+            checkForLoss: checkForLoss,
+            checkForWin: checkForWin
         };
     });
 })();

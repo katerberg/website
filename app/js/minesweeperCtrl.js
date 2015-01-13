@@ -83,21 +83,6 @@
             return bombs;
         }
 
-        function checkForWin(board) {
-            var hasWon = true;
-            board.forEach(function (row) {
-                row.cells.forEach(function (cell) {
-                    if (!cell.selected && !cell.bomb) {
-                        hasWon = false;
-                    }
-                });
-            });
-            if (hasWon) {
-                $scope.hasWon = true;
-                alert('You win!');
-            }
-        }
-
         function resetGame() {
             $scope.hasWon = false;
             $scope.hasLost = false;
@@ -111,7 +96,10 @@
             cell.selected = true;
             cell.bombsNearby = calculateBombsNearby(cell);
             $scope.hasLost = minesweeperService.checkForLoss(cell);
-            checkForWin($scope.rows);
+            $scope.hasWon = minesweeperService.checkForWin($scope.rows);
+            if ($scope.hasWon) {
+                alert('You win!');
+            }
         }
 
         $scope.selectCell = selectCell;
