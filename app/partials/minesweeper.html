@@ -4,8 +4,8 @@
         <p>Bombs: {{numberOfFlags}}
             <span class="pull-right">Uncleared: {{getNumberOfUnclearedCells()}}</span>
         </p>
-        <p class="win-message" ng-show="hasWon">You have won!</p>
-        <p class="loss-message" ng-show="hasLost">You have lost.</p>
+        <p class="win-message" ng-if="hasWon">You have won!</p>
+        <p class="loss-message" ng-if="hasLost">You have lost.</p>
     </section>
     <section class="minefield">
         <div ng-repeat="row in rows">
