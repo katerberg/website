@@ -1,4 +1,9 @@
 #minesweeper {
+
+    h1 {
+        border-bottom: 1px solid gray;
+    }
+
     .top-bar {
         font-size: 1.5em;
     }
@@ -8,52 +13,48 @@
     }
 
     .win-message {
-        color: #8AC007;
+        color: $success;
     }
 
     .loss-message {
-        color: #E60000;
+        color: $failure;
     }
 
     .minefield {
         display: flex;
-    }
+        color: #fff;
 
-    .mine-text {
-        font-size: 2em;
-    }
-
-    .cell {
-        border-color: #DFDFDF;
-        border-style: solid;
-        border-width: 1px;
-        height: 3em;
-        width: 3em;
-        text-align: center;
-    }
-
-    .cell-unclear {
-        background-color: #AFAFAF;
-        &:hover {
-            background-color: #CFCFCF;
+        .mine-text {
+            font-size: 2em;
         }
-    }
+        .cell {
+            border-color: rgba(0, 0, 0, 0.6);
+            border-style: solid;
+            border-width: 1px;
+            height: 3em;
+            width: 3em;
+            text-align: center;
 
-    .cell-clear {
-        background-color: #8AC007;
-        &:hover {
-            background-color: #AAF027;
+            &.cell-unclear {
+                background-color: $primary;
+                &:hover {
+                    background-color: $primary-dark;
+                }
+            }
+
+            &.cell-clear {
+                background-color: $success;
+                &:hover {
+                    background-color: $success-dark;
+                }
+            }
+
+            &.cell-bomb {
+                background-color: $failure;
+                &:hover {
+                    background-color: $failure-dark;
+                }
+            }
         }
-    }
-
-    .cell-bomb {
-        background-color: #E60000;
-        &:hover {
-            background-color: #990000;
-        }
-    }
-
-    h1 {
-        border-bottom: 1px solid gray;
     }
 }
