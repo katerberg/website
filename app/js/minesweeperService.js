@@ -9,8 +9,13 @@
             return newCell;
         }
 
+        function checkForLoss(cell) {
+            return cell.bomb;
+        }
+        
         return {
-            createNewCell: createNewCell
+            createNewCell: createNewCell,
+            checkForLoss: checkForLoss
         };
     });
 })();

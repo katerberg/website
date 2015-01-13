@@ -36,5 +36,19 @@ describe('dungeonService', function () {
                 expect(cell.bomb).toBeFalsy();
             });
         });
+
+        describe('checkForLoss', function () {
+            it('should be falsy if the cell has no bomb', function () {
+                var input = {};
+
+                expect(instance.checkForLoss(input)).toBeFalsy();
+            });
+
+            it('should be truthy if the cell has a bomb', function () {
+                var input = {bomb: true};
+
+                expect(instance.checkForLoss(input)).toBeTruthy();
+            });
+        });
     });
 });

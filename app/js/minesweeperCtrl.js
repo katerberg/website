@@ -83,15 +83,9 @@
             return bombs;
         }
 
-        function checkForLoss(cell) {
-            if (cell.bomb) {
-                $scope.hasLost = true;
-            }
-        }
-        
-        function checkForWin(rows) {
+        function checkForWin(board) {
             var hasWon = true;
-            rows.forEach(function (row) {
+            board.forEach(function (row) {
                 row.cells.forEach(function (cell) {
                     if (!cell.selected && !cell.bomb) {
                         hasWon = false;
@@ -116,7 +110,7 @@
             }
             cell.selected = true;
             cell.bombsNearby = calculateBombsNearby(cell);
-            checkForLoss(cell);
+            $scope.hasLost = minesweeperService.checkForLoss(cell);
             checkForWin($scope.rows);
         }
 
