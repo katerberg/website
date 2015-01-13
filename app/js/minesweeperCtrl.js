@@ -1,23 +1,15 @@
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('MinesweeperCtrl', function($scope) {
-        function createNewCell() {
-            var newCell = {'selected': false, 'bomb': false};
-            if (Math.random() < 0.2){
-                newCell.bomb = true;
-            }
-            return newCell;
-        }
-
-        function createCells() {
+    angular.module('katerbergApp').controller('MinesweeperCtrl', function($scope, minesweeperService) {
+        function resetBoard() {
             var gridSize = 15;
             $scope.rows = [];
             $scope.numberOfFlags = 0;
             for (var i = 0; i < gridSize; i++) {
                 $scope.rows.add({'cells': []});
                 for (var j = 0; j < gridSize; j++) {
-                    var cell = createNewCell();
+                    var cell = minesweeperService.createNewCell();
                     cell.rowNumber = i;
                     cell.columnNumber = j;
                     if (cell.bomb) {
@@ -115,7 +107,7 @@
         function resetGame() {
             $scope.hasWon = false;
             $scope.hasLost = false;
-            createCells();
+            $scope.resetBoard();
         }
 
         function selectCell(cell) {
@@ -131,6 +123,7 @@
         $scope.selectCell = selectCell;
         $scope.resetGame = resetGame;
         $scope.getNumberOfUnclearedCells = getNumberOfUnclearedCells;
+        $scope.resetBoard = resetBoard;
         resetGame();
     });
 })();
