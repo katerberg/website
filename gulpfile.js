@@ -28,6 +28,12 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('dist/css'));
 });
 
+// Move our Dependent CSS
+gulp.task('dependentCss', function() {
+    return gulp.src('static/bootstrap.min.css')
+        .pipe(gulp.dest('dist/css'));
+});
+
 // Concatenate & Minify JS
 gulp.task('scripts', function() {
     return gulp.src([basedir + 'js/**/*.js', '!' + basedir + 'js/**/*.test.js'])
@@ -37,6 +43,16 @@ gulp.task('scripts', function() {
         .pipe(rename('app.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
+});
+
+// Deploy dependency JS
+gulp.task('bower', function() {
+    return gulp.src(['bower_components/angular/angular.min.js',
+        'bower_components/angular-resource/angular-resource.min.js',
+        'bower_components/angular-route/angular-route.min.js',
+        'bower_components/sugarjs/release/sugar-full.min.js'])
+        .pipe(gulp.dest('dist/js'));
+        
 });
 
 //Compile HTML
@@ -63,4 +79,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'scripts', 'html', 'images', 'watch']);
+gulp.task('default', ['lint', 'sass', 'dependentCss', 'bower', 'scripts', 'html', 'images', 'watch']);
