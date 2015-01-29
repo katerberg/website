@@ -1,11 +1,13 @@
 .sidebar {
+    position: relative;
     margin-right: 16px;
     height: 100%;
     width: 300px;
     float: left;
     text-align: center;
-    background-color: #1c1e22;
+    background-color: #222;
     padding-bottom: 16px;
+    color: #fff;
 
     .list-group-item {
         cursor: pointer;
