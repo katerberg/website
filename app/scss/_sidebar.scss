@@ -12,6 +12,13 @@
 
     .list-group-item {
         cursor: pointer;
+        background-color: #222;
+        color: #fff;
+        border-color: #222;
+        &:hover {
+            background-color: #090909;
+        }
+
     }
 
     .profile {
