@@ -15,7 +15,7 @@ var basedir = 'app/';
 
 // Lint Task
 gulp.task('lint', function() {
-    return gulp.src(basedir + 'js/*.js')
+    return gulp.src(basedir + 'js/**/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
  });

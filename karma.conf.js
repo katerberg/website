@@ -15,6 +15,7 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'bower_components/sugarjs/release/sugar-full.min.js',
+      'app/js/app.js',
       'app/js/**/*.js'
     ],
 

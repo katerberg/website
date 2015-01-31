@@ -16,7 +16,9 @@
     <body>
         <img class="background" src="images/dice.JPG" />
         <header class="sidebar" ng-controller="SidebarCtrl">
-            <img class="profile" src="images/tennant.JPG" alt="Profile picture" />
+            <div class="profile" ng-click="goAboutMe()">
+                <a>About Me</a>
+            </div>
             <p>
                 Obsessive Personality centering on:
             </p>

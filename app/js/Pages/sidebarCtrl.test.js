@@ -44,5 +44,14 @@ describe('SidebarCtrl', function () {
                 expect(location.path).toHaveBeenCalledWith('minesweeper');
             });
         });
+
+        describe('goAboutMe', function () {
+            it('should go to about me page', function () {
+
+                scope.goAboutMe();
+
+                expect(location.path).toHaveBeenCalledWith('about-me');
+            });
+        });
     });
 });

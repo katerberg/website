@@ -10,6 +10,11 @@
             $location.path('minesweeper');
         }
 
+        function goAboutMe() {
+            $location.path('about-me');
+        }
+
+        $scope.goAboutMe = goAboutMe;
         $scope.goHome = goHome;
         $scope.goMinesweeper = goMinesweeper;
     });

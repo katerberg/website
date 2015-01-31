@@ -6,6 +6,10 @@ html {
     > body {
         height: 100%;
         font-size: 1.4rem;
+
+        a {
+            cursor: pointer;
+        }
         
         > .background {
             position: fixed;
