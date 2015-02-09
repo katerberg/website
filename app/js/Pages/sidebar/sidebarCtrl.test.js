@@ -36,12 +36,12 @@ describe('SidebarCtrl', function () {
             });
         });
 
-        describe('goMinesweeper', function () {
-            it('should go to minesweeper page', function () {
+        describe('goWebDev', function () {
+            it('should go to webdev page', function () {
 
-                scope.goMinesweeper();
+                scope.goWebDev();
 
-                expect(location.path).toHaveBeenCalledWith('minesweeper');
+                expect(location.path).toHaveBeenCalledWith('web-dev');
             });
         });
 

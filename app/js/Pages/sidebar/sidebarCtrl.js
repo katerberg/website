@@ -6,8 +6,8 @@
             $location.path('home');
         }
 
-        function goMinesweeper() {
-            $location.path('minesweeper');
+        function goWebDev() {
+            $location.path('web-dev');
         }
 
         function goAboutMe() {
@@ -16,6 +16,6 @@
 
         $scope.goAboutMe = goAboutMe;
         $scope.goHome = goHome;
-        $scope.goMinesweeper = goMinesweeper;
+        $scope.goWebDev = goWebDev;
     });
 })();

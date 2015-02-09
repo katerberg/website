@@ -1,26 +1,26 @@
-// describe('AboutMeCtrl', function () {
+describe('AboutMeCtrl', function () {
 
-//     var scope,
-//         rootScope;
+    var scope,
+        rootScope;
 
 
-//     beforeEach(function () {
-//         module('katerbergApp');
-//     });
+    beforeEach(function () {
+        module('katerbergApp');
+    });
 
-//     describe('After start up', function () {
+    describe('After start up', function () {
 
-//         beforeEach(inject(function($controller, $rootScope) {
+        beforeEach(inject(function($controller, $rootScope) {
 
-//             scope = $rootScope.$new();
-//             $controller('AboutMeCtrl', {$scope: scope});
-//             scope.$digest();
+            scope = $rootScope.$new();
+            $controller('AboutMeCtrl', {$scope: scope});
+            scope.$digest();
 
-//             rootScope = $rootScope;
-//         }));
+            rootScope = $rootScope;
+        }));
 
-//         it('should be defined', function () {
-//             expect(scope).toBeDefined();
-//         });
-//     });
-// });
+        it('should be defined', function () {
+            expect(scope).toBeDefined();
+        });
+    });
+});

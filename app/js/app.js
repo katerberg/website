@@ -19,6 +19,10 @@
             templateUrl: 'partials/minesweeper.html',
             controller: 'MinesweeperCtrl'
           }).
+          when('/web-dev', {
+            templateUrl: 'partials/web-dev.html',
+            controller: 'WebDevCtrl'
+          }).
           otherwise({
             redirectTo: '/'
           });

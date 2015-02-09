@@ -19,6 +19,10 @@
             templateUrl: 'partials/minesweeper.html',
             controller: 'MinesweeperCtrl'
           }).
+          when('/web-dev', {
+            templateUrl: 'partials/web-dev.html',
+            controller: 'WebDevCtrl'
+          }).
           otherwise({
             redirectTo: '/'
           });
@@ -192,8 +196,8 @@
             $location.path('home');
         }
 
-        function goMinesweeper() {
-            $location.path('minesweeper');
+        function goWebDev() {
+            $location.path('web-dev');
         }
 
         function goAboutMe() {
@@ -202,6 +206,18 @@
 
         $scope.goAboutMe = goAboutMe;
         $scope.goHome = goHome;
+        $scope.goWebDev = goWebDev;
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('WebDevCtrl', ["$scope", "$location", function($scope, $location) {
+        function goMinesweeper() {
+            $location.path('minesweeper');
+        }
+
         $scope.goMinesweeper = goMinesweeper;
     }]);
 })();
