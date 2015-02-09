@@ -54,8 +54,7 @@ html {
   .sidebar .profile {
     background-image: url('../images/tennant2.JPG');
     background-size: 150px 150px;
-    -webkit-transition: all 0.2s ease;
-            transition: all 0.2s ease;
+    transition: all 0.2s ease;
     margin: 16px 0px 8px;
     height: 150px;
     width: 150px;
@@ -85,7 +84,6 @@ html {
     height: auto;
     margin-bottom: 16px; }
     .sidebar .list-group {
-      display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
@@ -112,7 +110,6 @@ html {
 #minesweeper .loss-message {
   color: #ee5f5b; }
 #minesweeper .minefield {
-  display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;

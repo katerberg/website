@@ -39,13 +39,6 @@
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
-    }]);
-})();
-
-(function () {
-    'use strict';
-
     angular.module('katerbergApp').controller('MinesweeperCtrl', ["$scope", "minesweeperService", function($scope, minesweeperService) {
         function resetBoard(gridSize) {
             $scope.rows = [];
@@ -191,6 +184,25 @@
 (function () {
     'use strict';
 
+    angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('WebDevCtrl', ["$scope", "$location", function($scope, $location) {
+        function goMinesweeper() {
+            $location.path('minesweeper');
+        }
+
+        $scope.goMinesweeper = goMinesweeper;
+    }]);
+})();
+
+(function () {
+    'use strict';
+
     angular.module('katerbergApp').controller('SidebarCtrl', ["$scope", "$location", function($scope, $location) {
         function goHome() {
             $location.path('home');
@@ -207,17 +219,5 @@
         $scope.goAboutMe = goAboutMe;
         $scope.goHome = goHome;
         $scope.goWebDev = goWebDev;
-    }]);
-})();
-
-(function () {
-    'use strict';
-
-    angular.module('katerbergApp').controller('WebDevCtrl', ["$scope", "$location", function($scope, $location) {
-        function goMinesweeper() {
-            $location.path('minesweeper');
-        }
-
-        $scope.goMinesweeper = goMinesweeper;
     }]);
 })();
