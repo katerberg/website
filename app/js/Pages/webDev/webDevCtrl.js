@@ -6,6 +6,12 @@
             $location.path('minesweeper');
         }
 
+        function goSpellbook() {
+            $location.path('pathfinder-spellbook');
+        }
+
+
         $scope.goMinesweeper = goMinesweeper;
+        $scope.goSpellbook = goSpellbook;
     });
 })();

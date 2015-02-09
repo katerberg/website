@@ -19,6 +19,10 @@
             templateUrl: 'partials/minesweeper.html',
             controller: 'MinesweeperCtrl'
           }).
+          when('/pathfinder-spellbook', {
+            templateUrl: 'partials/pathfinder-spellbook.html',
+            controller: 'PathfinderSpellbookCtrl'
+          }).
           when('/web-dev', {
             templateUrl: 'partials/web-dev.html',
             controller: 'WebDevCtrl'
@@ -191,12 +195,7 @@
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('WebDevCtrl', ["$scope", "$location", function($scope, $location) {
-        function goMinesweeper() {
-            $location.path('minesweeper');
-        }
-
-        $scope.goMinesweeper = goMinesweeper;
+    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', ["$scope", function($scope) {
     }]);
 })();
 
@@ -219,5 +218,23 @@
         $scope.goAboutMe = goAboutMe;
         $scope.goHome = goHome;
         $scope.goWebDev = goWebDev;
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('WebDevCtrl', ["$scope", "$location", function($scope, $location) {
+        function goMinesweeper() {
+            $location.path('minesweeper');
+        }
+
+        function goSpellbook() {
+            $location.path('pathfinder-spellbook');
+        }
+
+
+        $scope.goMinesweeper = goMinesweeper;
+        $scope.goSpellbook = goSpellbook;
     }]);
 })();

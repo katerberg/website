@@ -19,6 +19,10 @@
             templateUrl: 'partials/minesweeper.html',
             controller: 'MinesweeperCtrl'
           }).
+          when('/pathfinder-spellbook', {
+            templateUrl: 'partials/pathfinder-spellbook.html',
+            controller: 'PathfinderSpellbookCtrl'
+          }).
           when('/web-dev', {
             templateUrl: 'partials/web-dev.html',
             controller: 'WebDevCtrl'

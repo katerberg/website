@@ -1,4 +1,4 @@
-describe('AboutMeCtrl', function () {
+describe('WebDevCtrl', function () {
 
     var scope,
         rootScope,
@@ -32,6 +32,14 @@ describe('AboutMeCtrl', function () {
                 scope.goMinesweeper();
 
                 expect($location.path).toHaveBeenCalledWith('minesweeper');
+            });
+        });
+
+        describe('goSpellbook', function() {
+            it('should go to the spellbook page', function() {
+                scope.goSpellbook();
+
+                expect($location.path).toHaveBeenCalledWith('pathfinder-spellbook');
             });
         });
     });
