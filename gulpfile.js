@@ -30,7 +30,7 @@ gulp.task('sass', function() {
 
 // Move our Dependent CSS
 gulp.task('dependentCss', function() {
-    return gulp.src('static/bootstrap.min.css')
+    return gulp.src('scss/bootstrap.min.css')
         .pipe(gulp.dest('dist/css'));
 });
 
@@ -70,13 +70,23 @@ gulp.task('images', function() {
         .pipe(gulp.dest('dist/images'));
 });
 
+//Move static files
+gulp.task('static', function() {
+    gulp.src(basedir + '/static/*')
+        .pipe(gulp.dest('dist/static'));
+});
+
 // Watch Files For Changes
 gulp.task('watch', function() {
     gulp.watch(basedir + 'js/**/*.js', ['lint', 'scripts']);
     gulp.watch(basedir + 'scss/**/*.scss', ['sass']);
     gulp.watch(basedir + '**/*.html', ['html']);
     gulp.watch(basedir + 'images/*', ['images']);
+    gulp.watch(basedir + 'static/*', ['static']);
 });
 
+// Build task
+gulp.task('build', ['lint', 'sass', 'dependentCss', 'bower', 'scripts', 'html', 'images', 'static']);
+
 // Default Task
-gulp.task('default', ['lint', 'sass', 'dependentCss', 'bower', 'scripts', 'html', 'images', 'watch']);
+gulp.task('default', ['build', 'watch']);
