@@ -1,5 +1,10 @@
 $footer-height: 70px;
 
+
+h1 {
+    border-bottom: 1px solid gray;
+}
+
 html {
     height: 100%;
     font-size: 62.5%; //Give us about 10 px/rem
