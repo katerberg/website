@@ -1,6 +1,6 @@
 {
   "name": "katerberg-markie",
-  "root": "./app",
+  "root": "./dist",
   "clean_urls": true,
   "cache_control": {},
   "routes": {
