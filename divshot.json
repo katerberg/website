@@ -1,0 +1,9 @@
+{
+  "name": "katerberg-markie",
+  "root": "./app",
+  "clean_urls": true,
+  "cache_control": {},
+  "routes": {
+    "**": "index.html"
+  }
+}
