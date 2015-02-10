@@ -40,6 +40,23 @@ describe('pathfinderService', function () {
 
                 expect(executed).toBeTruthy();
             });
+
+            it('should strip any html', function() {
+                var executed = false,
+                    dirty0 = {'a': '<a foo="bar">val</a>'},
+                    expected0 = {'a': 'val'},
+                    dataFromHttp = [{'fields': dirty0}];
+                $httpBackend.expect('GET', 'static/spells.json').respond(dataFromHttp);
+
+                instance.getSpellbook().then(function(data) {
+                    executed = true;
+                    expect(data[0]).toEqual(expected0);
+                });
+                $httpBackend.flush();
+                rootScope.$apply();
+
+                expect(executed).toBeTruthy();
+            });
         });
     });
 });

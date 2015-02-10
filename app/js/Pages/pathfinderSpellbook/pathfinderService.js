@@ -5,8 +5,12 @@
 
             $http.get('static/spells.json').success(function(data) {
                 var spells = [];
-                data.forEach(function(item) {
-                    spells.push(item.fields);
+                data.forEach(function(dirtySpell) {
+                    var cleanFields={};
+                    Object.keys(dirtySpell.fields, function(key, value) {
+                        dirtySpell.fields[key] = value.replace(/<[^>]*>/gm, '');
+                    });
+                    spells.push(dirtySpell.fields);
                 });
                 deferred.resolve(spells);
             });
