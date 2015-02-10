@@ -154,7 +154,14 @@ html {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap; }
-#pathfinder-spellbook section article {
-  width: 300px; }
-  #pathfinder-spellbook section article h3 {
-    padding-bottom: 0.5rem; }
+  #pathfinder-spellbook section .spells > article {
+    width: 300px;
+    background-color: white;
+    border: 1px solid #dfdfdf;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+    margin: 1rem;
+    border-radius: 1rem; }
+    #pathfinder-spellbook section .spells > article > h3 {
+      padding-bottom: 0.5rem; }

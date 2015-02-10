@@ -22,13 +22,20 @@
         .spells {
             display: flex;
             flex-wrap: wrap;
-        }
 
-        article {
-            width: 300px;
+            > article {
+                width: 300px;
+                background-color: white;
+                border: 1px solid #dfdfdf;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-bottom: 1rem;
+                margin: 1rem;
+                border-radius: 1rem;
 
-            h3 {
-                padding-bottom: 0.5rem;
+                > h3 {
+                    padding-bottom: 0.5rem;
+                }
             }
         }
     }
