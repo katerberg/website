@@ -2,10 +2,10 @@
     <h1>Pathfinder Spellbook</h1>
     <section>
         <h2>
-            <input class="search form-control" type="text" />
+            <input class="search form-control" type="text" ng-model="search.name"/>
         </h2>
         <div class="spells">
-            <article ng-repeat="spell in spellbook">
+            <article ng-repeat="spell in spellbook | filter: search">
                 <h3>{{spell.name}}</h3>
                 <div>{{spell.level}}</div>
                 <!-- <div>{{spell.descriptor}}</div> -->
