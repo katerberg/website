@@ -9,8 +9,11 @@ describe('PathfinderSpellbookCtrl', function () {
     });
 
     describe('After start up', function () {
+        var pathfinderService;
 
-        beforeEach(inject(function($controller, $rootScope) {
+        beforeEach(inject(function($controller, $rootScope, _pathfinderService_) {
+            pathfinderService = _pathfinderService_;
+            spyOn(pathfinderService, 'getSpellbook').and.returnValue({then: function(){}});
 
             scope = $rootScope.$new();
             $controller('PathfinderSpellbookCtrl', {$scope: scope});

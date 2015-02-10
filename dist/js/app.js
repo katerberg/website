@@ -5,7 +5,9 @@
         'ngRoute'
     ]);
 
-    katerbergApp.config(["$routeProvider", function($routeProvider) {
+    katerbergApp.config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider) {
+        $httpProvider.defaults.cache = true;
+
         $routeProvider.
           when('/', {
             templateUrl: 'partials/home.html',
@@ -37,6 +39,13 @@
     'use strict';
 
     angular.module('katerbergApp').controller('AboutMeCtrl', ["$scope", function($scope) {
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
     }]);
 })();
 
@@ -186,16 +195,36 @@
 })();
 
 (function () {
-    'use strict';
+    angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", function($http, $q) {
+        function getSpellbook() {
+            var deferred = $q.defer();
 
-    angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
+            $http.get('static/spells.json').success(function(data) {
+                var spells = [];
+                data.forEach(function(item) {
+                    spells.push(item.fields);
+                });
+                deferred.resolve(spells);
+            });
+
+            return deferred.promise;
+        }
+
+        return {
+            getSpellbook: getSpellbook
+        };
     }]);
 })();
+
 
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', ["$scope", function($scope) {
+    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', ["$scope", "pathfinderService", function($scope, pathfinderService) {
+        pathfinderService.getSpellbook().then(function(data) {
+            $scope.spellbook = data;
+        });
+
     }]);
 })();
 

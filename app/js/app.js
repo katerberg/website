@@ -5,7 +5,9 @@
         'ngRoute'
     ]);
 
-    katerbergApp.config(function($routeProvider) {
+    katerbergApp.config(function($routeProvider, $httpProvider) {
+        $httpProvider.defaults.cache = true;
+
         $routeProvider.
           when('/', {
             templateUrl: 'partials/home.html',
