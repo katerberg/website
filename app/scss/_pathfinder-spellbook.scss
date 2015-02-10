@@ -1,0 +1,35 @@
+#pathfinder-spellbook {
+    section {
+
+        h2 {
+            overflow:hidden;
+
+            input.search {
+                width: 40rem;
+                float: right;
+                transition: width 0.5s ease;
+                &:focus {
+                    width: 100%;
+                }
+            }
+            @media screen and (max-width:768px) {
+                input.search {
+                    width: 100%;
+                }
+            }
+        }
+
+        .spells {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        article {
+            width: 300px;
+
+            h3 {
+                padding-bottom: 0.5rem;
+            }
+        }
+    }
+}

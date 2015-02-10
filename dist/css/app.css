@@ -135,3 +135,26 @@ html {
       background-color: #ee5f5b; }
       #minesweeper .minefield .cell.cell-bomb:hover {
         background-color: #e9322d; }
+
+#pathfinder-spellbook section h2 {
+  overflow: hidden; }
+  #pathfinder-spellbook section h2 input.search {
+    width: 40rem;
+    float: right;
+    transition: width 0.5s ease; }
+    #pathfinder-spellbook section h2 input.search:focus {
+      width: 100%; }
+  @media screen and (max-width: 768px) {
+    #pathfinder-spellbook section h2 input.search {
+      width: 100%; } }
+#pathfinder-spellbook section .spells {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap; }
+#pathfinder-spellbook section article {
+  width: 300px; }
+  #pathfinder-spellbook section article h3 {
+    padding-bottom: 0.5rem; }
