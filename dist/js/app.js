@@ -42,14 +42,7 @@
     }]);
 })();
 
-(function () {
-    'use strict';
-
-    angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
-    }]);
-})();
-
-(function () {
+(function() {
     'use strict';
 
     angular.module('katerbergApp').controller('MinesweeperCtrl', ["$scope", "minesweeperService", function($scope, minesweeperService) {
@@ -57,7 +50,9 @@
             $scope.rows = [];
             $scope.numberOfFlags = 0;
             for (var i = 0; i < gridSize; i++) {
-                $scope.rows.add({'cells': []});
+                $scope.rows.add({
+                    'cells': []
+                });
                 for (var j = 0; j < gridSize; j++) {
                     var cell = minesweeperService.createNewCell();
                     cell.rowNumber = i;
@@ -65,7 +60,7 @@
                     if (cell.bomb) {
                         $scope.numberOfFlags++;
                     }
-                    
+
                     $scope.rows[i].cells.add(cell);
                 }
             }
@@ -73,8 +68,8 @@
 
         function getNumberOfUnclearedCells() {
             var unclearedCells = 0;
-            $scope.rows.forEach(function (row) {
-                row.cells.forEach(function (cell) {
+            $scope.rows.forEach(function(row) {
+                row.cells.forEach(function(cell) {
                     if (!cell.selected) {
                         unclearedCells++;
                     }
@@ -82,7 +77,7 @@
             });
             return unclearedCells;
         }
-        
+
         function calculateBombsNearby(cell) {
             var bombs = 0;
             var isLeft = cell.columnNumber === 0;
@@ -160,12 +155,14 @@
     }]);
 })();
 
-(function () {
+(function() {
     angular.module('katerbergApp').factory('minesweeperService', function() {
 
         function createNewCell() {
-            var newCell = {'selected': false};
-            if (Math.random() < 0.2){
+            var newCell = {
+                'selected': false
+            };
+            if (Math.random() < 0.2) {
                 newCell.bomb = true;
             }
             return newCell;
@@ -176,8 +173,8 @@
         }
 
         function checkForWin(board) {
-            return board.every(function (row) {
-                return row.cells.every(function (cell) {
+            return board.every(function(row) {
+                return row.cells.every(function(cell) {
                     if (!cell.selected && !cell.bomb) {
                         return false;
                     }
@@ -185,13 +182,20 @@
                 });
             });
         }
-        
+
         return {
             createNewCell: createNewCell,
             checkForLoss: checkForLoss,
             checkForWin: checkForWin
         };
     });
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
+    }]);
 })();
 
 (function () {

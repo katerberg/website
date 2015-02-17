@@ -1,34 +1,36 @@
-describe('MinesweeperCtrl', function () {
+describe('MinesweeperCtrl', function() {
 
     var scope,
         rootScope;
 
 
-    beforeEach(function () {
+    beforeEach(function() {
         module('katerbergApp');
     });
 
-    describe('After start up', function () {
+    describe('After start up', function() {
 
         beforeEach(inject(function($controller, $rootScope) {
 
             scope = $rootScope.$new();
-            $controller('MinesweeperCtrl', {$scope: scope});
+            $controller('MinesweeperCtrl', {
+                $scope: scope
+            });
             scope.$digest();
 
             rootScope = $rootScope;
         }));
 
-        it('should be defined', function () {
+        it('should be defined', function() {
             expect(scope).toBeDefined();
         });
 
-        describe('resetGame', function () {
-            beforeEach(function () {
+        describe('resetGame', function() {
+            beforeEach(function() {
                 spyOn(scope, 'resetBoard');
             });
 
-            it('should reset loss', function () {
+            it('should reset loss', function() {
                 scope.hasLost = true;
 
                 scope.resetGame();
@@ -36,7 +38,7 @@ describe('MinesweeperCtrl', function () {
                 expect(scope.hasLost).toBeFalsy();
             });
 
-            it('should reset win', function () {
+            it('should reset win', function() {
                 scope.hasWon = true;
 
                 scope.resetGame();
@@ -44,7 +46,7 @@ describe('MinesweeperCtrl', function () {
                 expect(scope.hasWon).toBeFalsy();
             });
 
-            it('should reset the board at a reasonable size', function () {
+            it('should reset the board at a reasonable size', function() {
                 scope.resetGame();
 
                 expect(scope.resetBoard).toHaveBeenCalledWith(15);
@@ -52,4 +54,3 @@ describe('MinesweeperCtrl', function () {
         });
     });
 });
-

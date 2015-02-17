@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('katerbergApp').controller('MinesweeperCtrl', function($scope, minesweeperService) {
@@ -6,7 +6,9 @@
             $scope.rows = [];
             $scope.numberOfFlags = 0;
             for (var i = 0; i < gridSize; i++) {
-                $scope.rows.add({'cells': []});
+                $scope.rows.add({
+                    'cells': []
+                });
                 for (var j = 0; j < gridSize; j++) {
                     var cell = minesweeperService.createNewCell();
                     cell.rowNumber = i;
@@ -14,7 +16,7 @@
                     if (cell.bomb) {
                         $scope.numberOfFlags++;
                     }
-                    
+
                     $scope.rows[i].cells.add(cell);
                 }
             }
@@ -22,8 +24,8 @@
 
         function getNumberOfUnclearedCells() {
             var unclearedCells = 0;
-            $scope.rows.forEach(function (row) {
-                row.cells.forEach(function (cell) {
+            $scope.rows.forEach(function(row) {
+                row.cells.forEach(function(cell) {
                     if (!cell.selected) {
                         unclearedCells++;
                     }
@@ -31,7 +33,7 @@
             });
             return unclearedCells;
         }
-        
+
         function calculateBombsNearby(cell) {
             var bombs = 0;
             var isLeft = cell.columnNumber === 0;

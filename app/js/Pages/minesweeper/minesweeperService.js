@@ -1,9 +1,11 @@
-(function () {
+(function() {
     angular.module('katerbergApp').factory('minesweeperService', function() {
 
         function createNewCell() {
-            var newCell = {'selected': false};
-            if (Math.random() < 0.2){
+            var newCell = {
+                'selected': false
+            };
+            if (Math.random() < 0.2) {
                 newCell.bomb = true;
             }
             return newCell;
@@ -14,8 +16,8 @@
         }
 
         function checkForWin(board) {
-            return board.every(function (row) {
-                return row.cells.every(function (cell) {
+            return board.every(function(row) {
+                return row.cells.every(function(cell) {
                     if (!cell.selected && !cell.bomb) {
                         return false;
                     }
@@ -23,7 +25,7 @@
                 });
             });
         }
-        
+
         return {
             createNewCell: createNewCell,
             checkForLoss: checkForLoss,
