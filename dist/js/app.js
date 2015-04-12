@@ -42,14 +42,14 @@
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('AboutMeCtrl', ["$scope", function($scope) {
+    angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
     }]);
 })();
 
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
+    angular.module('katerbergApp').controller('AboutMeCtrl', ["$scope", function($scope) {
     }]);
 })();
 
