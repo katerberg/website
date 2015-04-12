@@ -33,6 +33,10 @@
             templateUrl: 'partials/mtg.html',
             controller: 'MtgCtrl'
           }).
+          when('/board-games', {
+            templateUrl: 'partials/board-games.html',
+            controller: 'BoardGamesCtrl'
+          }).
           otherwise({
             redirectTo: '/'
           });
