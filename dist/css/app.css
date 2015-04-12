@@ -175,3 +175,13 @@ html {
 @media only screen and (max-width: 768px) {
   .overview-image {
     width: 100% !important; } }
+
+#linux img {
+  width: calc(100% - 301px); }
+#linux p {
+  max-width: 1000px;
+  font-size: 1.5em; }
+
+@media only screen and (max-width: 768px) {
+  #linux img {
+    width: 100% !important; } }
