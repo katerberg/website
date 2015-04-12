@@ -44,7 +44,6 @@ html {
   text-align: center;
   background-color: #f8f8f8;
   padding-bottom: 16px;
-  color: #fff;
   z-index: 3;
   box-shadow: 5px 0px 5px #e7e7e7; }
   .sidebar .list-group-item {
@@ -76,6 +75,7 @@ html {
       border-width: 3px;
       border-style: solid; }
       .sidebar .profile:hover > a {
+        color: #fff;
         opacity: 1; }
 
 @media only screen and (max-width: 768px) {
@@ -165,3 +165,4 @@ html {
     border-radius: 1rem; }
     #pathfinder-spellbook section .spells > article > h3 {
       padding-bottom: 0.5rem; }
+
