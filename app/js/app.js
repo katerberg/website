@@ -10,12 +10,10 @@
 
         $routeProvider.
           when('/', {
-            templateUrl: 'partials/home.html',
-            controller: 'HomeCtrl'
+            templateUrl: 'partials/home.html'
           }).
           when('/about-me', {
-            templateUrl: 'partials/about-me.html',
-            controller: 'AboutMeCtrl'
+            templateUrl: 'partials/about-me.html'
           }).
           when('/minesweeper', {
             templateUrl: 'partials/minesweeper.html',
@@ -30,12 +28,13 @@
             controller: 'WebDevCtrl'
           }).
           when('/mtg', {
-            templateUrl: 'partials/mtg.html',
-            controller: 'MtgCtrl'
+            templateUrl: 'partials/mtg.html'
           }).
           when('/board-games', {
-            templateUrl: 'partials/board-games.html',
-            controller: 'BoardGamesCtrl'
+            templateUrl: 'partials/board-games.html'
+          }).
+          when('/linux', {
+            templateUrl: 'partials/linux.html'
           }).
           otherwise({
             redirectTo: '/'
