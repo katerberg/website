@@ -27,38 +27,13 @@ describe('SidebarCtrl', function () {
             expect(scope).toBeDefined();
         });
 
-        describe('goHome', function () {
-            it('should go to home page', function () {
+        describe('go', function () {
+            it('should go to expected path', function () {
+                var input = 'a-thing';
 
-                scope.goHome();
+                scope.go(input);
 
-                expect(location.path).toHaveBeenCalledWith('home');
-            });
-        });
-
-        describe('goWebDev', function () {
-            it('should go to webdev page', function () {
-
-                scope.goWebDev();
-
-                expect(location.path).toHaveBeenCalledWith('web-dev');
-            });
-        });
-
-        describe('goAboutMe', function () {
-            it('should go to about me page', function () {
-
-                scope.goAboutMe();
-
-                expect(location.path).toHaveBeenCalledWith('about-me');
-            });
-        });
-        describe('goMtg', function () {
-            it('should go to mtg page', function () {
-
-                scope.goMtg();
-
-                expect(location.path).toHaveBeenCalledWith('mtg');
+                expect(location.path).toHaveBeenCalledWith(input);
             });
         });
     });
