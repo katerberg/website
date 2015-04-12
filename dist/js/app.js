@@ -46,22 +46,51 @@
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('AboutMeCtrl', ["$scope", function($scope) {
-    }]);
-})();
-
-(function () {
-    'use strict';
-
-    angular.module('katerbergApp').controller('BoardGamesCtrl', ["$scope", function($scope) {
-    }]);
-})();
-
-
-(function () {
-    'use strict';
-
     angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('SidebarCtrl', ["$scope", "$location", function($scope, $location) {
+        function go(path) {
+            $location.path(path);
+        }
+        $scope.go = go;
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    var app = angular.module('katerbergApp');
+
+    app.controller('MtgCtrl', ["$scope", function($scope) {
+    }]);
+
+    app.controller('BoardGamesCtrl', ["$scope", function($scope) {
+    }]);
+
+    app.controller('AboutMeCtrl', ["$scope", function($scope) {
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('WebDevCtrl', ["$scope", "$location", function($scope, $location) {
+        function goMinesweeper() {
+            $location.path('minesweeper');
+        }
+
+        function goSpellbook() {
+            $location.path('pathfinder-spellbook');
+        }
+
+
+        $scope.goMinesweeper = goMinesweeper;
+        $scope.goSpellbook = goSpellbook;
     }]);
 })();
 
@@ -215,14 +244,6 @@
 })();
 
 (function () {
-    'use strict';
-
-    angular.module('katerbergApp').controller('MtgCtrl', ["$scope", function($scope) {
-    }]);
-})();
-
-
-(function () {
     angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", function($http, $q) {
         function getSpellbook() {
             var deferred = $q.defer();
@@ -257,34 +278,5 @@
             $scope.spellbook = data;
         });
 
-    }]);
-})();
-
-(function () {
-    'use strict';
-
-    angular.module('katerbergApp').controller('SidebarCtrl', ["$scope", "$location", function($scope, $location) {
-        function go(path) {
-            $location.path(path);
-        }
-        $scope.go = go;
-    }]);
-})();
-
-(function () {
-    'use strict';
-
-    angular.module('katerbergApp').controller('WebDevCtrl', ["$scope", "$location", function($scope, $location) {
-        function goMinesweeper() {
-            $location.path('minesweeper');
-        }
-
-        function goSpellbook() {
-            $location.path('pathfinder-spellbook');
-        }
-
-
-        $scope.goMinesweeper = goMinesweeper;
-        $scope.goSpellbook = goSpellbook;
     }]);
 })();
