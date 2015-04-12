@@ -29,6 +29,10 @@
             templateUrl: 'partials/web-dev.html',
             controller: 'WebDevCtrl'
           }).
+          when('/mtg', {
+            templateUrl: 'partials/mtg.html',
+            controller: 'MtgCtrl'
+          }).
           otherwise({
             redirectTo: '/'
           });
@@ -46,44 +50,6 @@
     'use strict';
 
     angular.module('katerbergApp').controller('HomeCtrl', ["$scope", function($scope) {
-    }]);
-})();
-
-(function () {
-    angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", function($http, $q) {
-        function getSpellbook() {
-            var deferred = $q.defer();
-
-            $http.get('static/spells.json').success(function(data) {
-                var spells = [];
-                data.forEach(function(dirtySpell) {
-                    var cleanFields={};
-                    Object.keys(dirtySpell.fields, function(key, value) {
-                        dirtySpell.fields[key] = value.replace(/<[^>]*>/gm, '');
-                    });
-                    spells.push(dirtySpell.fields);
-                });
-                deferred.resolve(spells);
-            });
-
-            return deferred.promise;
-        }
-
-        return {
-            getSpellbook: getSpellbook
-        };
-    }]);
-})();
-
-
-(function () {
-    'use strict';
-
-    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', ["$scope", "pathfinderService", function($scope, pathfinderService) {
-        pathfinderService.getSpellbook().then(function(data) {
-            $scope.spellbook = data;
-        });
-
     }]);
 })();
 
@@ -239,6 +205,52 @@
 (function () {
     'use strict';
 
+    angular.module('katerbergApp').controller('MtgCtrl', ["$scope", function($scope) {
+    }]);
+})();
+
+
+(function () {
+    angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", function($http, $q) {
+        function getSpellbook() {
+            var deferred = $q.defer();
+
+            $http.get('static/spells.json').success(function(data) {
+                var spells = [];
+                data.forEach(function(dirtySpell) {
+                    var cleanFields={};
+                    Object.keys(dirtySpell.fields, function(key, value) {
+                        dirtySpell.fields[key] = value.replace(/<[^>]*>/gm, '');
+                    });
+                    spells.push(dirtySpell.fields);
+                });
+                deferred.resolve(spells);
+            });
+
+            return deferred.promise;
+        }
+
+        return {
+            getSpellbook: getSpellbook
+        };
+    }]);
+})();
+
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', ["$scope", "pathfinderService", function($scope, pathfinderService) {
+        pathfinderService.getSpellbook().then(function(data) {
+            $scope.spellbook = data;
+        });
+
+    }]);
+})();
+
+(function () {
+    'use strict';
+
     angular.module('katerbergApp').controller('SidebarCtrl', ["$scope", "$location", function($scope, $location) {
         function goHome() {
             $location.path('home');
@@ -248,12 +260,17 @@
             $location.path('web-dev');
         }
 
+        function goMtg() {
+            $location.path('mtg');
+        }
+
         function goAboutMe() {
             $location.path('about-me');
         }
 
         $scope.goAboutMe = goAboutMe;
         $scope.goHome = goHome;
+        $scope.goMtg = goMtg;
         $scope.goWebDev = goWebDev;
     }]);
 })();

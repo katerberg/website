@@ -10,12 +10,17 @@
             $location.path('web-dev');
         }
 
+        function goMtg() {
+            $location.path('mtg');
+        }
+
         function goAboutMe() {
             $location.path('about-me');
         }
 
         $scope.goAboutMe = goAboutMe;
         $scope.goHome = goHome;
+        $scope.goMtg = goMtg;
         $scope.goWebDev = goWebDev;
     });
 })();

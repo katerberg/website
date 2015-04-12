@@ -53,5 +53,13 @@ describe('SidebarCtrl', function () {
                 expect(location.path).toHaveBeenCalledWith('about-me');
             });
         });
+        describe('goMtg', function () {
+            it('should go to mtg page', function () {
+
+                scope.goMtg();
+
+                expect(location.path).toHaveBeenCalledWith('mtg');
+            });
+        });
     });
 });

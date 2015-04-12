@@ -29,6 +29,10 @@
             templateUrl: 'partials/web-dev.html',
             controller: 'WebDevCtrl'
           }).
+          when('/mtg', {
+            templateUrl: 'partials/mtg.html',
+            controller: 'MtgCtrl'
+          }).
           otherwise({
             redirectTo: '/'
           });

@@ -4,6 +4,9 @@ html > body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: Helvetica, Arial, sans-serif; }
 
+ul li {
+  list-style: none; }
+
 h1 {
   border-bottom: 1px solid gray; }
 
@@ -166,5 +169,3 @@ html {
     #pathfinder-spellbook section .spells > article > h3 {
       padding-bottom: 0.5rem; }
 
-#web-development ul.project-list li {
-  list-style: none; }
