@@ -6,5 +6,6 @@
             $scope.spellbook = data;
         });
 
+
     });
 })();

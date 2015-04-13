@@ -255,5 +255,6 @@
             $scope.spellbook = data;
         });
 
+
     }]);
 })();
