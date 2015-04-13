@@ -26,21 +26,30 @@ html {
             z-index: -1;
         }
 
-        > .container-fluid {
-            height: 100%;
-            position: relative;
+        #wrapper {
+            padding-left: 300px;
+            > .container-fluid {
+                height: 100%;
+                position: relative;
 
-            > .view-frame {
-                display: block;
-                min-height: calc(100% - #{$footer-height} - 20px);
+                > .view-frame {
+                    display: block;
+                    min-height: calc(100% - #{$footer-height} - 20px);
 
-            }
-            > footer {
-                padding-top: 10px;
-                text-align: center;
-                font-size: 1.2rem;
-                height: $footer-height;
+                }
+                > footer {
+                    padding-top: 10px;
+                    text-align: center;
+                    font-size: 1.2rem;
+                    height: $footer-height;
+                }
             }
         }
+    }
+}
+
+@media only screen and (max-width:768px) {
+    #wrapper {
+        padding-left: 0px!important;
     }
 }

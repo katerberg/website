@@ -26,34 +26,39 @@ html {
       height: auto;
       width: 100%;
       z-index: -1; }
-    html > body > .container-fluid {
-      height: 100%;
-      position: relative; }
-      html > body > .container-fluid > .view-frame {
-        display: block;
-        min-height: calc(100% - 70px - 20px); }
-      html > body > .container-fluid > footer {
-        padding-top: 10px;
-        text-align: center;
-        font-size: 1.2rem;
-        height: 70px; }
+    html > body #wrapper {
+      padding-left: 300px; }
+      html > body #wrapper > .container-fluid {
+        height: 100%;
+        position: relative; }
+        html > body #wrapper > .container-fluid > .view-frame {
+          display: block;
+          min-height: calc(100% - 70px - 20px); }
+        html > body #wrapper > .container-fluid > footer {
+          padding-top: 10px;
+          text-align: center;
+          font-size: 1.2rem;
+          height: 70px; }
 
-.sidebar {
-  position: relative;
-  margin-right: 16px;
-  height: 100%;
+@media only screen and (max-width: 768px) {
+  #wrapper {
+    padding-left: 0px !important; } }
+
+header#sidebar {
+  position: fixed;
   width: 300px;
-  float: left;
+  left: 300px;
+  margin-left: -300px;
+  height: 100%;
   text-align: center;
   background-color: #f8f8f8;
-  padding-bottom: 16px;
   z-index: 3;
   box-shadow: 5px 0px 5px #e7e7e7; }
-  .sidebar .list-group-item {
+  header#sidebar .list-group-item {
     cursor: pointer; }
-    .sidebar .list-group-item:hover {
+    header#sidebar .list-group-item:hover {
       color: #158cba; }
-  .sidebar .profile {
+  header#sidebar .profile {
     background-image: url('../images/tennant2.JPG');
     background-size: 150px 150px;
     transition: all 0.2s ease;
@@ -63,7 +68,7 @@ html {
     border-radius: calc(150px / 2);
     display: inline-block;
     cursor: pointer; }
-    .sidebar .profile > a {
+    header#sidebar .profile > a {
       font-size: 3em;
       opacity: 0;
       display: inline-block;
@@ -72,35 +77,36 @@ html {
       text-decoration: none;
       height: 100%;
       top: 10%; }
-    .sidebar .profile:hover {
+    header#sidebar .profile:hover {
       opacity: 0.5;
       border-color: #158cba;
       border-width: 3px;
       border-style: solid; }
-      .sidebar .profile:hover > a {
+      header#sidebar .profile:hover > a {
         color: #fff;
         opacity: 1; }
 
 @media only screen and (max-width: 768px) {
-  .sidebar {
+  header#sidebar {
     width: 100%;
     height: auto;
-    margin-bottom: 16px; }
-    .sidebar .list-group {
+    margin-bottom: 16px;
+    position: relative; }
+    header#sidebar .list-group {
       display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
       -webkit-flex-flow: row nowrap;
           -ms-flex-flow: row nowrap;
               flex-flow: row nowrap; }
-      .sidebar .list-group > .list-group-item {
+      header#sidebar .list-group > .list-group-item {
         border-radius: 0px;
         display: inline-block;
         width: 33%; }
-        .sidebar .list-group > .list-group-item:first-child {
+        header#sidebar .list-group > .list-group-item:first-child {
           border-top-left-radius: 4px;
           border-bottom-left-radius: 4px; }
-        .sidebar .list-group > .list-group-item:last-child {
+        header#sidebar .list-group > .list-group-item:last-child {
           border-top-right-radius: 4px;
           border-bottom-right-radius: 4px; } }
 

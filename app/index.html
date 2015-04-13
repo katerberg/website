@@ -16,17 +16,19 @@
     </head>
     <body>
         <img class="background" src="images/dice.JPG" />
-        <ng-include src="'partials/sidebar.html'"></ng-include>
-        <div class="container-fluid">
-            <div ng-view class="view-frame"></div>
-            <footer>
-                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-                    <img alt="Creative Commons License" style="border-width:0" src="images/cc.png" />
-                </a>
-                <p>
-                    This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-                </p>
-            </footer>
+        <div id="wrapper">
+            <ng-include src="'partials/sidebar.html'"></ng-include>
+            <div class="container-fluid">
+                <div ng-view class="view-frame"></div>
+                <footer>
+                    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                        <img alt="Creative Commons License" style="border-width:0" src="images/cc.png" />
+                    </a>
+                    <p>
+                        This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+                    </p>
+                </footer>
+            </div>
         </div>
     </body>
 </html>
