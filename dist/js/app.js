@@ -223,7 +223,6 @@
 (function () {
     angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", function($http, $q) {
         function getSpellbook() {
-
             return $http.get('static/spells.json').then(function(res) {
                 return res.data.map(function(dirtySpell) {
                     Object.keys(dirtySpell.fields, function(key, value) {
@@ -234,9 +233,16 @@
             });
 
         }
+        var casterTypes = ['Bard',
+            'Cleric',
+            'Druid',
+            'Paladin',
+            'Ranger',
+            'Sorcerer/Wizard'];
 
         return {
-            getSpellbook: getSpellbook
+            getSpellbook: getSpellbook,
+            casterTypes: casterTypes
         };
     }]);
 })();
@@ -250,6 +256,11 @@
             $scope.spellbook = data;
         });
 
-
+        $scope.casterTypes = pathfinderService.casterTypes;
+        $scope.$watch('search.level', function(item) {
+            if (item === null) {
+                $scope.search.level = undefined;
+            }
+        });
     }]);
 })();

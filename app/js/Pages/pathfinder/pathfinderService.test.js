@@ -58,6 +58,13 @@ describe('pathfinderService', function () {
                 expect(executed).toBeTruthy();
             });
         });
+
+        describe('casterTypes', function () {
+            it('should be an array of strings', function () {
+                expect(instance.casterTypes.length).not.toEqual(0);
+                expect(typeof instance.casterTypes[0]).toEqual('string');
+            });
+        });
     });
 });
 

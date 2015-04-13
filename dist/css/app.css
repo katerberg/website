@@ -148,6 +148,10 @@ header#sidebar {
 
 #pathfinder-spellbook section h2 {
   overflow: hidden; }
+  #pathfinder-spellbook section h2 select {
+    margin: 0 1rem;
+    float: right;
+    width: 20rem; }
   #pathfinder-spellbook section h2 input.search {
     width: 40rem;
     float: right;

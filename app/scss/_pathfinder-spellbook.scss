@@ -4,6 +4,12 @@
         h2 {
             overflow:hidden;
 
+            select {
+                margin: 0 1rem;
+                float: right;
+                width: 20rem;
+            }
+
             input.search {
                 width: 40rem;
                 float: right;
