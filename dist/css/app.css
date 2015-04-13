@@ -27,6 +27,7 @@ html {
       width: 100%;
       z-index: -1; }
     html > body #wrapper {
+      height: 100%;
       padding-left: 300px; }
       html > body #wrapper > .container-fluid {
         height: 100%;
