@@ -223,21 +223,16 @@
 (function () {
     angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", function($http, $q) {
         function getSpellbook() {
-            var deferred = $q.defer();
 
-            $http.get('static/spells.json').success(function(data) {
-                var spells = [];
-                data.forEach(function(dirtySpell) {
-                    var cleanFields={};
+            return $http.get('static/spells.json').then(function(res) {
+                return res.data.map(function(dirtySpell) {
                     Object.keys(dirtySpell.fields, function(key, value) {
                         dirtySpell.fields[key] = value.replace(/<[^>]*>/gm, '');
                     });
-                    spells.push(dirtySpell.fields);
+                    return dirtySpell.fields;
                 });
-                deferred.resolve(spells);
             });
 
-            return deferred.promise;
         }
 
         return {
