@@ -187,7 +187,11 @@ header#sidebar {
     padding-right: 1rem;
     padding-bottom: 1rem;
     margin: 1rem;
-    border-radius: 1rem; }
+    border-radius: 1rem;
+    transition: box-shadow 0.2s ease;
+    cursor: pointer; }
+    #pathfinder-spellbook section .spells > article:hover {
+      box-shadow: 0px 0px 8px #158cba; }
     #pathfinder-spellbook section .spells > article > h3 {
       padding-bottom: 0.5rem; }
 
