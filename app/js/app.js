@@ -2,7 +2,8 @@
 'use strict';
 
     var katerbergApp = angular.module('katerbergApp', [
-        'ngRoute'
+        'ngRoute',
+        'ui.bootstrap'
     ]);
 
     katerbergApp.config(function($routeProvider, $httpProvider) {

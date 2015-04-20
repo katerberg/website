@@ -49,6 +49,8 @@ gulp.task('scripts', function() {
 gulp.task('bower', function() {
     return gulp.src(['bower_components/angular/angular.min.js',
         'bower_components/angular-resource/angular-resource.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+        'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'bower_components/angular-route/angular-route.min.js',
         'bower_components/sugarjs/release/sugar-full.min.js'])
         .pipe(gulp.dest('dist/js'));

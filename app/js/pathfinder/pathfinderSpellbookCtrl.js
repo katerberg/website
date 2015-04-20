@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', function($scope, pathfinderService) {
+    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', function($scope, pathfinderService, modalService) {
         pathfinderService.getSpellbook().then(function(data) {
             $scope.spellbook = data;
         });
@@ -12,5 +12,17 @@
                 $scope.search.level = undefined;
             }
         });
+
+        function drillIntoSpell(spell) {
+            modalService.open({
+                templateUrl: modalService.spell.url,
+                controller: modalService.spell.controller,
+                resolve: {spell: function() {
+                    return spell;
+                }}
+            });
+        }
+
+        $scope.drillIntoSpell = drillIntoSpell;
     });
 })();

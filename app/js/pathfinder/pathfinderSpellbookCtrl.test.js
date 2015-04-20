@@ -37,9 +37,11 @@ describe('PathfinderSpellbookCtrl', function () {
     });
 
     describe('After start up', function () {
+        var modalService;
 
-        beforeEach(inject(function($controller, $rootScope, _pathfinderService_) {
+        beforeEach(inject(function($controller, $rootScope, _pathfinderService_, _modalService_) {
             pathfinderService = _pathfinderService_;
+            modalService = _modalService_;
             spyOn(pathfinderService, 'getSpellbook').and.returnValue({then: function(){}});
 
             scope = $rootScope.$new();
@@ -74,6 +76,24 @@ describe('PathfinderSpellbookCtrl', function () {
                 scope.$apply();
 
                 expect(scope.search.level).toBe(expected);
+            });
+        });
+
+        describe('#drillIntoSpell', function() {
+            beforeEach(function() {
+                spyOn(modalService, 'open');
+            });
+
+            it('should open modal', function() {
+                var input = {a: 'thing'};
+
+                scope.drillIntoSpell(input);
+
+                expect(modalService.open).toHaveBeenCalled();
+                var openObject = modalService.open.calls.mostRecent().args[0];
+                expect(openObject.templateUrl).toBe(modalService.spell.url);
+                expect(openObject.controller).toBe(modalService.spell.controller);
+                expect(openObject.resolve.spell()).toBe(input);
             });
         });
     });

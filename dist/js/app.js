@@ -44,6 +44,20 @@
 })();
 
 (function () {
+    angular.module('katerbergApp').factory('modalService', ["$modal", function($modal) {
+        return {
+            open: $modal.open,
+            spell: {
+                url: 'partials/modals/spellbook-detail.html',
+                controller: 'SpellModalCtrl'
+            }
+        };
+    }]);
+})();
+
+
+
+(function () {
     'use strict';
 
     angular.module('katerbergApp').controller('SidebarCtrl', ["$scope", "$location", function($scope, $location) {
@@ -252,7 +266,7 @@
 (function () {
     'use strict';
 
-    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', ["$scope", "pathfinderService", function($scope, pathfinderService) {
+    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', ["$scope", "pathfinderService", "modalService", function($scope, pathfinderService, modalService) {
         pathfinderService.getSpellbook().then(function(data) {
             $scope.spellbook = data;
         });
@@ -263,5 +277,30 @@
                 $scope.search.level = undefined;
             }
         });
+
+        function drillIntoSpell(spell) {
+            modalService.open({
+                templateUrl: modalService.spell.url,
+                controller: modalService.spell.controller,
+                resolve: {spell: function() {
+                    return spell;
+                }}
+            });
+        }
+
+        $scope.drillIntoSpell = drillIntoSpell;
+    }]);
+})();
+
+(function () {
+    'use strict';
+
+    angular.module('katerbergApp').controller('SpellModalCtrl', ["$scope", "$modalInstance", "spell", function($scope, $modalInstance, spell) {
+        function close() {
+            $modalInstance.close();
+        }
+
+        $scope.close = close;
+        $scope.spell = spell;
     }]);
 })();
