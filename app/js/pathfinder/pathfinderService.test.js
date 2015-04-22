@@ -2,13 +2,15 @@ describe('pathfinderService', function () {
 
     var instance,
         $http,
+        spellService,
         rootScope;
 
     beforeEach(module('katerbergApp'));
 
-    beforeEach(inject(function(pathfinderService, $rootScope, _$httpBackend_) {
+    beforeEach(inject(function(pathfinderService, $rootScope, _$httpBackend_, _spellService_) {
         rootScope = $rootScope;
         $httpBackend = _$httpBackend_;
+        spellService = _spellService_;
         instance = pathfinderService;
     }));
 
@@ -21,36 +23,35 @@ describe('pathfinderService', function () {
     describe('After start up', function () {
 
         describe('getSpellbook', function () {
+            beforeEach(function() {
+                spyOn(spellService, 'spellify');
+            });
 
             it('should fetch from http', function() {
                 var executed = false,
-                    expected0 = {'a': 'val'},
-                    expected1 = {'another': 'val'},
-                    dataFromHttp = [{'fields': expected0}, {'fields': expected1}];
+                    input0 = 'a',
+                    input1 = 'another',
+                    expected0 = {'actual': 'val'},
+                    expected1 = {'final': 'val'},
+                    dataFromHttp = [input0, input1];
+                spellService.spellify.and.callFake(function(thingToSpellify) {
+                    switch (thingToSpellify) {
+                        case input0:
+                            return expected0;
+                        case input1:
+                            return expected1;
+                        default:
+                            return null;
+                    }
+                });
                 $httpBackend.expect('GET', 'static/spells.json').respond(dataFromHttp);
+
 
                 instance.getSpellbook().then(function(data) {
                     executed = true;
                     expect(data.length).toEqual(2);
                     expect(data[0]).toEqual(expected0);
                     expect(data[1]).toEqual(expected1);
-                });
-                $httpBackend.flush();
-                rootScope.$apply();
-
-                expect(executed).toBeTruthy();
-            });
-
-            it('should strip any html', function() {
-                var executed = false,
-                    dirty0 = {'a': '<a foo="bar">val</a>'},
-                    expected0 = {'a': 'val'},
-                    dataFromHttp = [{'fields': dirty0}];
-                $httpBackend.expect('GET', 'static/spells.json').respond(dataFromHttp);
-
-                instance.getSpellbook().then(function(data) {
-                    executed = true;
-                    expect(data[0]).toEqual(expected0);
                 });
                 $httpBackend.flush();
                 rootScope.$apply();

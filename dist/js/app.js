@@ -236,14 +236,11 @@
 })();
 
 (function () {
-    angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", function($http, $q) {
+    angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", "spellService", function($http, $q, spellService) {
         function getSpellbook() {
             return $http.get('static/spells.json').then(function(res) {
                 return res.data.map(function(dirtySpell) {
-                    Object.keys(dirtySpell.fields, function(key, value) {
-                        dirtySpell.fields[key] = value.replace(/<[^>]*>/gm, '');
-                    });
-                    return dirtySpell.fields;
+                    return spellService.spellify(dirtySpell);
                 });
             });
 
@@ -303,4 +300,19 @@
         $scope.close = close;
         $scope.spell = spell;
     }]);
+})();
+
+(function () {
+    angular.module('katerbergApp').factory('spellService', function() {
+        function spellify(dirtySpell) {
+            Object.keys(dirtySpell.fields, function(key, value) {
+                dirtySpell.fields[key] = value.replace(/<[^>]*>/gm, '');
+            });
+            return dirtySpell.fields;
+        }
+
+        return {
+            spellify: spellify
+        };
+    });
 })();
