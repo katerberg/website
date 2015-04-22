@@ -1,24 +1,32 @@
 describe('spellService', function () {
 
-    var instance;
+    var instance,
+        Spell;
 
     beforeEach(module('katerbergApp'));
 
-    beforeEach(inject(function(spellService) {
+    beforeEach(inject(function(spellService, _Spell_) {
         instance = spellService;
+        Spell = _Spell_;
     }));
 
 
     describe('After start up', function () {
         describe('spellify', function() {
-            it('should strip any html', function() {
-                var dirty = {'a': '<a foo="bar">val</a>', another: 'value'},
-                    expected = {'a': 'val', another: 'value'},
+            it('creates a spell', function() {
+                var input = {fields: {'description': 'val', level: 'value'}};
+
+                expect(instance.spellify(input) instanceof Spell).toBe(true);
+            });
+
+            it('strips any html', function() {
+                var dirty = {'description': '<a foo="bar">val</a>', level: 'value'},
                     input = {'fields': dirty};
 
                 var result = instance.spellify(input);
 
-                expect(result).toEqual(expected);
+                expect(result.description).toEqual('val');
+                expect(result.level).toEqual('value');
             });
         });
     });
