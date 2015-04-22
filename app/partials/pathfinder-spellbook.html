@@ -11,19 +11,7 @@
             <article ng-click="drillIntoSpell(spell)" ng-repeat="spell in spellbook | filter: search">
                 <h3>{{spell.name}}</h3>
                 <div>{{spell.level}}</div>
-                <!-- <div>{{spell.descriptor}}</div> -->
-                <!-- <div>{{spell.casting_time}}</div> -->
-                <!-- <div>{{spell.area}}</div> -->
-                <!-- <div>{{spell.range}}</div> -->
-                <div>{{spell.short_description}}</div>
-                <!-- <div>{{spell.target}}</div> -->
-                <!-- <div>{{spell.school}}</div> -->
-                <!-- <div>{{spell.subschool}}</div> -->
-                <!-- <div>{{spell.saving_throw}}</div> -->
-                <!-- <div>{{spell.components}}</div> -->
-                <!-- <div>{{spell.spell_resistance}}</div> -->
-                <!-- <div>{{spell.reference}}</div> -->
-                <!-- <div>{{spell.effect}}</div> -->
+                <div>{{spell.shortDescription}}</div>
             </article>
         </div>
     </section>
