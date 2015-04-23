@@ -1,4 +1,4 @@
-describe('pathfinderService', function () {
+describe('pathfinderService', function() {
 
     var instance,
         $http,
@@ -14,15 +14,14 @@ describe('pathfinderService', function () {
         instance = pathfinderService;
     }));
 
-
     afterEach(function() {
         $httpBackend.verifyNoOutstandingExpectation();
         $httpBackend.verifyNoOutstandingRequest();
     });
 
-    describe('After start up', function () {
+    describe('After start up', function() {
 
-        describe('getSpellbook', function () {
+        describe('getSpellbook', function() {
             beforeEach(function() {
                 spyOn(spellService, 'spellify');
             });
@@ -46,7 +45,6 @@ describe('pathfinderService', function () {
                 });
                 $httpBackend.expect('GET', 'static/spells.json').respond(dataFromHttp);
 
-
                 instance.getSpellbook().then(function(data) {
                     executed = true;
                     expect(data.length).toEqual(2);
@@ -60,8 +58,8 @@ describe('pathfinderService', function () {
             });
         });
 
-        describe('casterTypes', function () {
-            it('should be an array of strings', function () {
+        describe('casterTypes', function() {
+            it('should be an array of strings', function() {
                 expect(instance.casterTypes.length).not.toEqual(0);
                 expect(typeof instance.casterTypes[0]).toEqual('string');
             });

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     angular.module('katerbergApp').factory('modalService', function($modal) {
         return {
             open: $modal.open,
@@ -9,5 +9,3 @@
         };
     });
 })();
-
-

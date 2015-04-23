@@ -1,17 +1,16 @@
-describe('PathfinderSpellbookCtrl', function () {
+describe('PathfinderSpellbookCtrl', function() {
 
     var scope,
         pathfinderService;
 
-
-    beforeEach(function () {
+    beforeEach(function() {
         module('katerbergApp');
     });
 
-    describe('Start up', function () {
+    describe('Start up', function() {
         var controller,
             $q;
-        
+
         beforeEach(inject(function($controller, $rootScope, _$q_, _pathfinderService_) {
             pathfinderService = _pathfinderService_;
             controller = $controller;
@@ -19,7 +18,7 @@ describe('PathfinderSpellbookCtrl', function () {
             scope = $rootScope.$new();
         }));
 
-        it('should populate spells', function () {
+        it('should populate spells', function() {
             var expected = 'a thing';
             deferredSpells = $q.defer();
             spyOn(pathfinderService, 'getSpellbook').and.returnValue(deferredSpells.promise);
@@ -36,13 +35,13 @@ describe('PathfinderSpellbookCtrl', function () {
         });
     });
 
-    describe('After start up', function () {
+    describe('After start up', function() {
         var modalService;
 
         beforeEach(inject(function($controller, $rootScope, _pathfinderService_, _modalService_) {
             pathfinderService = _pathfinderService_;
             modalService = _modalService_;
-            spyOn(pathfinderService, 'getSpellbook').and.returnValue({then: function(){}});
+            spyOn(pathfinderService, 'getSpellbook').and.returnValue({then: function() {}});
 
             scope = $rootScope.$new();
             $controller('PathfinderSpellbookCtrl', {$scope: scope});
@@ -50,11 +49,11 @@ describe('PathfinderSpellbookCtrl', function () {
 
         }));
 
-        it('should be defined', function () {
+        it('should be defined', function() {
             expect(scope).toBeDefined();
         });
 
-        it('should expose casterTypes', function () {
+        it('should expose casterTypes', function() {
             expect(scope.casterTypes).toBe(pathfinderService.casterTypes);
         });
 

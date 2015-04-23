@@ -3,7 +3,6 @@ describe('MinesweeperCtrl', function() {
     var scope,
         rootScope;
 
-
     beforeEach(function() {
         module('katerbergApp');
     });

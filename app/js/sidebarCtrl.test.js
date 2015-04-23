@@ -1,15 +1,14 @@
-describe('SidebarCtrl', function () {
+describe('SidebarCtrl', function() {
 
     var scope,
         location,
         rootScope;
 
-
-    beforeEach(function () {
+    beforeEach(function() {
         module('katerbergApp');
     });
 
-    describe('After start up', function () {
+    describe('After start up', function() {
         var location;
 
         beforeEach(inject(function($controller, $rootScope, $location) {
@@ -23,12 +22,12 @@ describe('SidebarCtrl', function () {
             rootScope = $rootScope;
         }));
 
-        it('should be defined', function () {
+        it('should be defined', function() {
             expect(scope).toBeDefined();
         });
 
-        describe('go', function () {
-            it('should go to expected path', function () {
+        describe('go', function() {
+            it('should go to expected path', function() {
                 var input = 'a-thing';
 
                 scope.go(input);

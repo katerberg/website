@@ -1,4 +1,4 @@
-(function () {
+(function() {
     angular.module('katerbergApp').factory('spellService', function(Spell) {
         function spellify(dirtySpell) {
             Object.keys(dirtySpell.fields, function(key, value) {

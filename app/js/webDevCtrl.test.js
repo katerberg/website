@@ -1,15 +1,14 @@
-describe('WebDevCtrl', function () {
+describe('WebDevCtrl', function() {
 
     var scope,
         rootScope,
         $location;
 
-
-    beforeEach(function () {
+    beforeEach(function() {
         module('katerbergApp');
     });
 
-    describe('After start up', function () {
+    describe('After start up', function() {
 
         beforeEach(inject(function($controller, $rootScope, _$location_) {
             $location = _$location_;
@@ -23,7 +22,7 @@ describe('WebDevCtrl', function () {
             spyOn($location, 'path');
         }));
 
-        it('should be defined', function () {
+        it('should be defined', function() {
             expect(scope).toBeDefined();
         });
 

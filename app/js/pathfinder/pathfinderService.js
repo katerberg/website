@@ -1,4 +1,4 @@
-(function () {
+(function() {
     angular.module('katerbergApp').factory('pathfinderService', function($http, $q, spellService) {
         function getSpellbook() {
             return $http.get('static/spells.json').then(function(res) {

@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular.module('katerbergApp').controller('SpellModalCtrl', function($scope, $modalInstance, spell) {

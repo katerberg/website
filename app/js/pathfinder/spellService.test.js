@@ -1,4 +1,4 @@
-describe('spellService', function () {
+describe('spellService', function() {
 
     var instance,
         Spell;
@@ -10,8 +10,7 @@ describe('spellService', function () {
         Spell = _Spell_;
     }));
 
-
-    describe('After start up', function () {
+    describe('After start up', function() {
         describe('spellify', function() {
             it('creates a spell', function() {
                 var input = {fields: {'description': 'val', level: 'value'}};
@@ -31,5 +30,3 @@ describe('spellService', function () {
         });
     });
 });
-
-

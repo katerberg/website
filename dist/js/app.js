@@ -1,49 +1,49 @@
-(function () {
+(function() {
 'use strict';
 
-    var katerbergApp = angular.module('katerbergApp', [
-        'ngRoute',
-        'ui.bootstrap'
-    ]);
+var katerbergApp = angular.module('katerbergApp', [
+    'ngRoute',
+    'ui.bootstrap'
+]);
 
-    katerbergApp.config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider) {
-        $httpProvider.defaults.cache = true;
+katerbergApp.config(["$routeProvider", "$httpProvider", function($routeProvider, $httpProvider) {
+    $httpProvider.defaults.cache = true;
 
-        $routeProvider.
-          when('/', {
-            templateUrl: 'partials/home.html'
-          }).
-          when('/about-me', {
-            templateUrl: 'partials/about-me.html'
-          }).
-          when('/minesweeper', {
-            templateUrl: 'partials/minesweeper.html',
-            controller: 'MinesweeperCtrl'
-          }).
-          when('/pathfinder-spellbook', {
-            templateUrl: 'partials/pathfinder-spellbook.html',
-            controller: 'PathfinderSpellbookCtrl'
-          }).
-          when('/web-dev', {
-            templateUrl: 'partials/web-dev.html',
-            controller: 'WebDevCtrl'
-          }).
-          when('/mtg', {
-            templateUrl: 'partials/mtg.html'
-          }).
-          when('/board-games', {
-            templateUrl: 'partials/board-games.html'
-          }).
-          when('/linux', {
-            templateUrl: 'partials/linux.html'
-          }).
-          otherwise({
-            redirectTo: '/'
-          });
-      }]);
+    $routeProvider.
+    when('/', {
+        templateUrl: 'partials/home.html'
+    }).
+    when('/about-me', {
+        templateUrl: 'partials/about-me.html'
+    }).
+    when('/minesweeper', {
+        templateUrl: 'partials/minesweeper.html',
+        controller: 'MinesweeperCtrl'
+    }).
+    when('/pathfinder-spellbook', {
+        templateUrl: 'partials/pathfinder-spellbook.html',
+        controller: 'PathfinderSpellbookCtrl'
+    }).
+    when('/web-dev', {
+        templateUrl: 'partials/web-dev.html',
+        controller: 'WebDevCtrl'
+    }).
+    when('/mtg', {
+        templateUrl: 'partials/mtg.html'
+    }).
+    when('/board-games', {
+        templateUrl: 'partials/board-games.html'
+    }).
+    when('/linux', {
+        templateUrl: 'partials/linux.html'
+    }).
+    otherwise({
+        redirectTo: '/'
+    });
+}]);
 })();
 
-(function () {
+(function() {
     angular.module('katerbergApp').factory('modalService', ["$modal", function($modal) {
         return {
             open: $modal.open,
@@ -55,9 +55,7 @@
     }]);
 })();
 
-
-
-(function () {
+(function() {
     'use strict';
 
     angular.module('katerbergApp').controller('SidebarCtrl', ["$scope", "$location", function($scope, $location) {
@@ -68,7 +66,7 @@
     }]);
 })();
 
-(function () {
+(function() {
     'use strict';
 
     angular.module('katerbergApp').controller('WebDevCtrl', ["$scope", "$location", function($scope, $location) {
@@ -79,7 +77,6 @@
         function goSpellbook() {
             $location.path('pathfinder-spellbook');
         }
-
 
         $scope.goMinesweeper = goMinesweeper;
         $scope.goSpellbook = goSpellbook;
@@ -235,7 +232,7 @@
     });
 })();
 
-(function () {
+(function() {
     angular.module('katerbergApp').factory('pathfinderService', ["$http", "$q", "spellService", function($http, $q, spellService) {
         function getSpellbook() {
             return $http.get('static/spells.json').then(function(res) {
@@ -260,10 +257,11 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
-    angular.module('katerbergApp').controller('PathfinderSpellbookCtrl', ["$scope", "pathfinderService", "modalService", function($scope, pathfinderService, modalService) {
+    angular.module('katerbergApp')
+    .controller('PathfinderSpellbookCtrl', ["$scope", "pathfinderService", "modalService", function($scope, pathfinderService, modalService) {
         pathfinderService.getSpellbook().then(function(data) {
             $scope.spellbook = data;
         });
@@ -289,7 +287,7 @@
     }]);
 })();
 
-(function () {
+(function() {
     angular.module('katerbergApp').factory('Spell', function() {
         var Spell;
 
@@ -301,20 +299,22 @@
                 }
                 this.description = args.description;
                 this.school = args.school;
-                this.savingThrow = args.saving_throw;
                 this.name = args.name;
                 this.level = args.level;
-                this.spellResistance = args.spell_resistance;
                 this.area = args.area;
-                this.castingTime = args.casting_time;
                 this.effect = args.effect;
                 this.descriptor = args.descriptor;
                 this.range = args.range;
-                this.shortDescription = args.short_description;
                 this.components = args.components;
                 this.duration = args.duration;
                 this.subSchool = args.subschool;
                 this.target = args.target;
+                // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+                this.savingThrow = args.saving_throw;
+                this.spellResistance = args.spell_resistance;
+                this.shortDescription = args.short_description;
+                this.castingTime = args.casting_time;
+                // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
             }
 
             return Spell;
@@ -325,7 +325,7 @@
 })();
 
 
-(function () {
+(function() {
     'use strict';
 
     angular.module('katerbergApp').controller('SpellModalCtrl', ["$scope", "$modalInstance", "spell", function($scope, $modalInstance, spell) {
@@ -338,7 +338,7 @@
     }]);
 })();
 
-(function () {
+(function() {
     angular.module('katerbergApp').factory('spellService', ["Spell", function(Spell) {
         function spellify(dirtySpell) {
             Object.keys(dirtySpell.fields, function(key, value) {

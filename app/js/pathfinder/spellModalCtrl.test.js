@@ -1,22 +1,22 @@
 (function() {
-describe('SpellModalCtrl', function () {
+describe('SpellModalCtrl', function() {
 
     var scope;
 
-    beforeEach(function () {
+    beforeEach(function() {
         module('katerbergApp');
         module('ui.bootstrap');
     });
 
-    describe('start up', function () {
+    describe('start up', function() {
         var controller;
-        
+
         beforeEach(inject(function($controller, $rootScope) {
             controller = $controller;
             scope = $rootScope.$new();
         }));
 
-        it('should populate spell', function () {
+        it('should populate spell', function() {
             var expected = 'a thing';
 
             controller('SpellModalCtrl', {$scope: scope, $modalInstance: {}, spell: expected});
@@ -26,14 +26,14 @@ describe('SpellModalCtrl', function () {
         });
     });
 
-    describe('after start up', function () {
+    describe('after start up', function() {
         var spell,
             $modalInstance;
         beforeEach(inject(function($controller, $rootScope) {
             $modalInstance = {close: jasmine.createSpy('modalInstanceClose')};
             scope = $rootScope.$new();
             spell = {};
-            
+
             $controller('SpellModalCtrl', {$scope: scope, $modalInstance: $modalInstance, spell: spell});
             scope.$digest();
         }));

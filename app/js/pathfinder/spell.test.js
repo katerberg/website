@@ -1,4 +1,4 @@
-describe('Spell', function () {
+describe('Spell', function() {
 
     var Spell;
 
@@ -14,5 +14,8 @@ describe('Spell', function () {
 
     it('instantiates with parameters', function() {
         expect(new Spell({description: 'something'}) instanceof Spell).toBe(true);
+    });
+
+    describe('level', function() {
     });
 });

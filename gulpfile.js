@@ -3,6 +3,7 @@ var gulp = require('gulp');
 
 // Include Our Plugins
 var jshint = require('gulp-jshint'),
+    jscs = require('gulp-jscs'),
     minifyHTML = require('gulp-minify-html'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -16,6 +17,7 @@ var basedir = 'app/';
 // Lint Task
 gulp.task('lint', function() {
     return gulp.src(basedir + 'js/**/*.js')
+        .pipe(jscs())
         .pipe(jshint())
         .pipe(jshint.reporter('default'));
  });
