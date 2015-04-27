@@ -13,19 +13,19 @@ describe('spellService', function() {
     describe('After start up', function() {
         describe('spellify', function() {
             it('creates a spell', function() {
-                var input = {fields: {'description': 'val', level: 'value'}};
+                var input = {fields: {'fo': 'val', ba: 'value'}};
 
                 expect(instance.spellify(input) instanceof Spell).toBe(true);
             });
 
             it('strips any html', function() {
-                var dirty = {'description': '<a foo="bar">val</a>', level: 'value'},
+                var dirty = {'description': '<a foo="bar">val</a>', 'short_description': 'value'},
                     input = {'fields': dirty};
 
                 var result = instance.spellify(input);
 
                 expect(result.description).toEqual('val');
-                expect(result.level).toEqual('value');
+                expect(result.shortDescription).toEqual('value');
             });
         });
     });

@@ -17,6 +17,7 @@ module.exports = function(config) {
       'bower_components/sugarjs/release/sugar-full.min.js',
       'bower_components/angular-bootstrap/ui-bootstrap.min.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      'bower_components/angular-capitalize-filter/capitalize.min.js',
       'app/js/app.js',
       'app/js/**/*.js'
     ],

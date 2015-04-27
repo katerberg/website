@@ -3,6 +3,19 @@
         var Spell;
 
         Spell = (function() {
+            function buildClasses(input) {
+                if (!input) {
+                    return input;
+                }
+                return input.split(', ').map(function(levelInput) {
+                    var classAndLevel = levelInput.split(' ');
+                    classAndLevel[0] = classAndLevel[0].charAt(0).toUpperCase() + classAndLevel[0].substr(1);
+                    classAndLevel[0] = classAndLevel[0].replace(/\/(.)/, function(charToReplace) {
+                        return charToReplace.toUpperCase();
+                    });
+                    return {name: classAndLevel[0], level: parseInt(classAndLevel[1])};
+                });
+            }
 
             function Spell(args) {
                 if (!args) {
@@ -11,7 +24,7 @@
                 this.description = args.description;
                 this.school = args.school;
                 this.name = args.name;
-                this.level = args.level;
+                this.classes = buildClasses(args.level);
                 this.area = args.area;
                 this.effect = args.effect;
                 this.descriptor = args.descriptor;

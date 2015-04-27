@@ -10,7 +10,9 @@
         <div class="spells">
             <article ng-click="drillIntoSpell(spell)" ng-repeat="spell in spellbook | filter: search">
                 <h3>{{spell.name}}</h3>
-                <div>{{spell.level}}</div>
+                <div ng-repeat="class in spell.classes">
+                    <i class="fa fa-user"></i> {{class.name}} {{class.level}}
+                </div>
                 <div>{{spell.shortDescription}}</div>
             </article>
         </div>

@@ -1,11 +1,11 @@
 <div id="spell-modal">
     <h1 class="modal-header">{{spell.name}}</h1>
     <div class="modal-body">
-        <section>
-            <i class="fa fa-user"></i>{{spell.level}}
+        <section ng-repeat="class in spell.classes" >
+            <i class="fa fa-user"></i> {{class.name}} {{class.level}}
         </section>
         <section>
-            <i class="fa fa-building-o"></i>{{spell.school}}
+            <i class="fa fa-building-o"></i> {{spell.school | capitalize}}
         </section>
         <p>{{spell.description}}</p>
     </div>
