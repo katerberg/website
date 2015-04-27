@@ -7,6 +7,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 ul li {
   list-style: none; }
 
+.modal-backdrop {
+  position: fixed !important; }
+
 h1 {
   border-bottom: 1px solid gray; }
 
