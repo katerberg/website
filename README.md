@@ -15,6 +15,12 @@ gulp
 To actually serve the files to view them in the browser, run the following:
 
 ```
+npm serve
+```
+
+To combine the two previous commands concurrently (to watch and serve the files), run the following:
+
+```
 npm start
 ```
 
