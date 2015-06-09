@@ -12,7 +12,7 @@ katerbergApp.config(function($routeProvider, $httpProvider) {
 
     $routeProvider.
     when('/', {
-        templateUrl: 'partials/home.html'
+        templateUrl: 'partials/about-me.html'
     }).
     when('/about-me', {
         templateUrl: 'partials/about-me.html'
