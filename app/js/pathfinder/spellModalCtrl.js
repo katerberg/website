@@ -6,7 +6,12 @@
             $modalInstance.close();
         }
 
+        function showDetails(spell) {
+            spell.showDetails = true;
+        }
+
         $scope.close = close;
         $scope.spell = spell;
+        $scope.showDetails = showDetails;
     });
 })();
