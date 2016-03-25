@@ -1,8 +1,8 @@
 html > body {
-  font-family: Helvetica, Arial, sans-serif; }
+  font-family: Helvetica,Arial,sans-serif; }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: Helvetica, Arial, sans-serif; }
+  font-family: Helvetica,Arial,sans-serif; }
 
 ul li {
   list-style: none; }
@@ -88,7 +88,7 @@ header#sidebar {
       border-style: solid; }
       header#sidebar .profile:hover > a {
         color: #fff;
-        opacity: 1; }
+        opacity: 1.0; }
 
 @media only screen and (max-width: 768px) {
   header#sidebar {
