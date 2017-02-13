@@ -63,7 +63,7 @@ header#sidebar {
     header#sidebar .list-group-item:hover {
       color: #158cba; }
   header#sidebar .profile {
-    background-image: url('../images/tennant2.JPG');
+    background-image: url("../images/tennant2.JPG");
     background-size: 150px 150px;
     transition: all 0.2s ease;
     margin: 16px 0px 8px;
@@ -97,12 +97,10 @@ header#sidebar {
     margin-bottom: 16px;
     position: relative; }
     header#sidebar .list-group {
-      display: -webkit-flex;
       display: -ms-flexbox;
       display: flex;
-      -webkit-flex-flow: row nowrap;
-          -ms-flex-flow: row nowrap;
-              flex-flow: row nowrap; }
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap; }
       header#sidebar .list-group > .list-group-item {
         border-radius: 0px;
         display: inline-block;
@@ -122,19 +120,23 @@ header#sidebar {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 2rem; }
+
 #spell-modal .modal-footer button {
   float: right; }
 
 #minesweeper .top-bar {
   font-size: 1.5em; }
+
 #minesweeper .bottom-bar {
   padding-top: 1em; }
+
 #minesweeper .win-message {
   color: #62c462; }
+
 #minesweeper .loss-message {
   color: #ee5f5b; }
+
 #minesweeper .minefield {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   color: #fff; }
@@ -175,13 +177,12 @@ header#sidebar {
   @media screen and (max-width: 768px) {
     #pathfinder-spellbook section h2 input.search {
       width: 100%; } }
+
 #pathfinder-spellbook section .spells {
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap; }
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
   #pathfinder-spellbook section .spells > article {
     width: 300px;
     background-color: white;
@@ -207,6 +208,7 @@ header#sidebar {
 
 #linux img {
   width: calc(100% - 301px); }
+
 #linux p {
   max-width: 1000px;
   font-size: 1.5em; }
