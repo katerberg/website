@@ -63,7 +63,7 @@ header#sidebar {
     header#sidebar .list-group-item:hover {
       color: #158cba; }
   header#sidebar .profile {
-    background-image: url("../images/tennant2.JPG");
+    background-image: url("../images/tennant2-small.JPG");
     background-size: 150px 150px;
     transition: all 0.2s ease;
     margin: 16px 0px 8px;
