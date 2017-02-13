@@ -26,14 +26,6 @@ describe('WebDevCtrl', function() {
             expect(scope).toBeDefined();
         });
 
-        describe('goMinesweeper', function() {
-            it('should go to the minesweeper page', function() {
-                scope.goMinesweeper();
-
-                expect($location.path).toHaveBeenCalledWith('minesweeper');
-            });
-        });
-
         describe('goSpellbook', function() {
             it('should go to the spellbook page', function() {
                 scope.goSpellbook();
