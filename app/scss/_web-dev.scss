@@ -2,12 +2,19 @@
     article {
         margin-top: 16px;
         position: relative;
+        height: 200px;
 
         img {
             cursor: pointer;
             display: inline-block;
             max-height: 200px;
             vertical-align: top;
+        }
+
+        > a {
+            text-align: center;
+            display: inline-block;
+            min-width: 375px;
         }
 
         main {
