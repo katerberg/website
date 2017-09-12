@@ -1,2 +1,40 @@
 #web-development {
+    article {
+        margin-top: 16px;
+        position: relative;
+
+        img {
+            cursor: pointer;
+            display: inline-block;
+            max-height: 200px;
+            vertical-align: top;
+        }
+
+        main {
+            display: inline-block;
+            margin-left: 16px;
+            padding: 16px;
+            background: white;
+            border-radius: 8px;
+            h2 {
+                margin: 0;
+            }
+            h3 {
+                margin-top: 0;
+                margin-left: 12px;
+                font-size: 0.8em;
+            }
+            a.application {
+                display: block;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:1000px) {
+    #web-development {
+        main {
+            position: absolute;
+        }
+    }
 }

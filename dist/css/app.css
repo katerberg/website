@@ -200,6 +200,33 @@ header#sidebar {
     #pathfinder-spellbook section .spells > article > h3 {
       padding-bottom: 0.5rem; }
 
+#web-development article {
+  margin-top: 16px;
+  position: relative; }
+  #web-development article img {
+    cursor: pointer;
+    display: inline-block;
+    max-height: 200px;
+    vertical-align: top; }
+  #web-development article main {
+    display: inline-block;
+    margin-left: 16px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px; }
+    #web-development article main h2 {
+      margin: 0; }
+    #web-development article main h3 {
+      margin-top: 0;
+      margin-left: 12px;
+      font-size: 0.8em; }
+    #web-development article main a.application {
+      display: block; }
+
+@media only screen and (min-width: 1000px) {
+  #web-development main {
+    position: absolute; } }
+
 #board-games .overview-image {
   width: calc(100% - 301px); }
 
