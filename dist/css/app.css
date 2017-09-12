@@ -18,6 +18,7 @@ html {
   font-size: 62.5%; }
   html > body {
     height: 100%;
+    font-family: Sans-Serif;
     font-size: 1.4rem; }
     html > body a {
       cursor: pointer; }
