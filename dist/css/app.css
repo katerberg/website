@@ -232,13 +232,6 @@ header#sidebar {
   #web-development main {
     position: absolute; } }
 
-#board-games .overview-image {
-  width: calc(100% - 301px); }
-
-@media only screen and (max-width: 768px) {
-  .overview-image {
-    width: 100% !important; } }
-
 #linux img {
   width: calc(100% - 301px); }
 
