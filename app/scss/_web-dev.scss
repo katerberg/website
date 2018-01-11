@@ -2,7 +2,7 @@
     article {
         margin-top: 16px;
         position: relative;
-        height: 200px;
+        height: auto;
 
         img {
             cursor: pointer;
@@ -15,6 +15,7 @@
             text-align: center;
             display: inline-block;
             min-width: 375px;
+            margin-bottom: 20px;
         }
 
         main {
@@ -40,8 +41,12 @@
 
 @media only screen and (min-width:1000px) {
     #web-development {
-        main {
-            position: absolute;
+        article {
+            height: 200px;
+
+            main {
+                position: absolute;
+            }
         }
     }
 }
