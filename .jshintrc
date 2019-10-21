@@ -1,7 +1,0 @@
-{
-    "quotmark": "single",
-    "devel": false,
-
-    // Custom Globals
-    "globals" : {} // additional predefined global variables
-}
