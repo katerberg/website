@@ -1,11 +1,12 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 import './sidebar.scss';
 
 function Sidebar() {
   return (
     <header className="sidebar">
       <div class="profile">
-        <a href="./about-me">About Me</a>
+        <Link to="/about-me">About Me</Link>
       </div>
       <p>
         Obsessive Personality centering on:
