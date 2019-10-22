@@ -22,8 +22,8 @@ function App() {
               rel="license"
             >
               <img alt="Creative Commons License"
-                src="images/cc.png"
-                style={{'border-width': 0}}
+                src="./cc.png"
+                style={{borderWidth: 0}}
               />
             </a>
             <p>{'This work is licensed under a '}<a href="http://creativecommons.org/licenses/by-sa/4.0/"

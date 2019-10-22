@@ -15,12 +15,9 @@ function Sidebar() {
         <Link className="list-group-item"
           to="/mtg"
         >{'Magic: the Gathering'}</Link>
-        <a className="list-group-item"
-          href="./linux"
-        >{'Linux'}</a>
-        <a className="list-group-item"
-          href="./web-dev"
-        >{'Web Development'}</a>
+        <Link className="list-group-item"
+          to="/web-dev"
+        >{'Web Development'}</Link>
       </div>
     </header>
   );

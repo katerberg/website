@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Mtg from './mtg';
+import WebDev from './web-dev';
 import AboutMe from './about-me';
 
 function Routes() {
@@ -19,6 +20,9 @@ function Routes() {
         </Route>
         <Route path="/mtg">
           <Mtg />
+        </Route>
+        <Route path="/web-dev">
+          <WebDev />
         </Route>
       </Switch>
   );
