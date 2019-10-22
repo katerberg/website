@@ -1,20 +1,26 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import './sidebar.scss';
 
 function Sidebar() {
   return (
     <header className="sidebar">
-      <div class="profile">
-        <Link to="/about-me">About Me</Link>
+      <div className="profile">
+        <Link to="/about-me">{'About Me'}</Link>
       </div>
       <p>
-        Obsessive Personality centering on:
+    {'Obsessive Personality centering on:'}
       </p>
-      <div class="list-group">
-        <a class="list-group-item" href="./mtg">Magic: the Gathering</a>
-        <a class="list-group-item" href="./linux">Linux</a>
-        <a class="list-group-item" href="./web-dev">Web Development</a>
+      <div className="list-group">
+        <Link className="list-group-item"
+          to="/mtg"
+        >{'Magic: the Gathering'}</Link>
+        <a className="list-group-item"
+          href="./linux"
+        >{'Linux'}</a>
+        <a className="list-group-item"
+          href="./web-dev"
+        >{'Web Development'}</a>
       </div>
     </header>
   );
