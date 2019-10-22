@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Sidebar from './sidebar';
 import Mtg from './mtg';
+import AboutMe from './about-me';
 import './App.scss';
 
 function App() {
@@ -21,10 +22,10 @@ function App() {
               <Route exact
                 path="/"
               >
-    {'Home'}
+                {'Home'}
               </Route>
               <Route path="/about-me">
-                <h1>{'About Me'}</h1>
+                <AboutMe />
               </Route>
               <Route path="/mtg">
                 <Mtg />
