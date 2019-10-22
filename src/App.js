@@ -1,12 +1,9 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
 } from 'react-router-dom';
+import Routes from './routes';
 import Sidebar from './sidebar';
-import Mtg from './mtg';
-import AboutMe from './about-me';
 import './App.scss';
 
 function App() {
@@ -18,19 +15,7 @@ function App() {
         <Sidebar />
         <div className="container-fluid">
           <div className="view-frame">
-            <Switch>
-              <Route exact
-                path="/"
-              >
-                {'Home'}
-              </Route>
-              <Route path="/about-me">
-                <AboutMe />
-              </Route>
-              <Route path="/mtg">
-                <Mtg />
-              </Route>
-            </Switch>
+            <Routes />
           </div>
           <footer>
             <a href="http://creativecommons.org/licenses/by-sa/4.0/"
