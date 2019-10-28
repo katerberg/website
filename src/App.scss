@@ -1,5 +1,5 @@
 html {
-  >body {
+  > body {
     font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
   }
 }
@@ -29,5 +29,7 @@ ul {
 }
 
 a {
+  cursor: pointer;
+  text-decoration: none;
   color: #158cba
 }
