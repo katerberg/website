@@ -39,11 +39,16 @@
     background-size: $profile-size $profile-size;
     transition: all 0.2s ease;
     margin: 16px 0px 8px;
-    height: $profile-size;
-    width: $profile-size;
+    height: $profile-size - 6;
+    width: $profile-size - 6;
     border-radius: calc(#{$profile-size} / 2);
     display: inline-block;
     cursor: pointer;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 3px;
+    background-position-x: -3px;
+    background-position-y: -3px;
 
     >a {
       font-size: 3em;
@@ -59,8 +64,6 @@
     &:hover {
       opacity: 0.5;
       border-color: #158cba;
-      border-width: 3px;
-      border-style: solid;
       >a {
         color: #fff;
         opacity: 1.0;
