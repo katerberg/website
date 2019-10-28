@@ -39,10 +39,10 @@ html {
     > .background {
       position: fixed;
       top: 0;
-      left: 0;
+      left: 300px;
       min-height: 100%;
       height: auto;
-      width: 100%;
+      width: calc(100% - 300px);
       z-index: -1;
     }
 
@@ -78,6 +78,11 @@ html {
 @media only screen and (max-width:768px) {
   html {
     > body {
+      > .background {
+        width: 100%;
+        left: 0;
+      }
+
       #wrapper {
         padding-left: 0px!important;
       }
