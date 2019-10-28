@@ -11,18 +11,19 @@ function Routes() {
   return (
       <Switch>
         <Route exact
-          path="/"
+          path="/mtg"
         >
-          {'Home'}
-        </Route>
-        <Route path="/about-me">
-          <AboutMe />
-        </Route>
-        <Route path="/mtg">
           <Mtg />
         </Route>
-        <Route path="/web-dev">
+        <Route exact
+          path="/web-dev"
+        >
           <WebDev />
+        </Route>
+        <Route
+          path="/"
+        >
+          <AboutMe />
         </Route>
       </Switch>
   );
