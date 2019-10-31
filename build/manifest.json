@@ -1,0 +1,8 @@
+{
+  "short_name": "Mark Katerberg",
+  "name": "Home Page for Mark Katerberg",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

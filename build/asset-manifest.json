@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a052112f.chunk.css",
+    "main.js": "/static/js/main.781f5e47.chunk.js",
+    "main.js.map": "/static/js/main.781f5e47.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.286be5de.js",
+    "runtime-main.js.map": "/static/js/runtime-main.286be5de.js.map",
+    "static/js/2.ed80df8e.chunk.js": "/static/js/2.ed80df8e.chunk.js",
+    "static/js/2.ed80df8e.chunk.js.map": "/static/js/2.ed80df8e.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.2e5f71afbcb2963c53e0dda134ef3438.js": "/precache-manifest.2e5f71afbcb2963c53e0dda134ef3438.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.a052112f.chunk.css.map": "/static/css/main.a052112f.chunk.css.map",
+    "static/media/sidebar.scss": "/static/media/tennant2-small.b41e1de5.JPG"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.286be5de.js",
+    "static/js/2.ed80df8e.chunk.js",
+    "static/css/main.a052112f.chunk.css",
+    "static/js/main.781f5e47.chunk.js"
+  ]
+}
