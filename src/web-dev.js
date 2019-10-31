@@ -98,7 +98,7 @@ function WebDev() {
                     <h3>{'June 2014'}</h3>
                     <p>{'Clone of Windows 3.1 Minesweeper to practice TDD in AngularJS.'}</p>
                     <a className="application"
-                      href="http://katerberg.github.io/minesweeper-angular-demo/app"
+                      href="https://katerberg.github.io/minesweeper-angular-demo"
                     >{'Link to Application'}</a>
                     <a className="application"
                       href="https://github.com/katerberg/minesweeper-angular-demo"
