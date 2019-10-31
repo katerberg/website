@@ -82,10 +82,10 @@ function WebDev() {
                     <h3>{'June 2015'}</h3>
                     <p>{'Spellbook of '}<a href="https://en.wikipedia.org/wiki/Pathfinder_Roleplaying_Game">{'Pathfinder'}</a>{' spells from the core book to test out some CSS tricks.'}</p>
                     <a className="application"
-                      ng-click="goSpellbook()"
+                      href="https://katerberg.github.io/pathfinder-spellbook"
                     >{'Link to Application'}</a>
                     <a className="application"
-                      href="https://github.com/katerberg/website"
+                      href="https://github.com/katerberg/pathfinder-spellbook"
                     >{'Link to Code'}</a>
                 </main>
             </article>
