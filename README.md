@@ -3,7 +3,7 @@
 A static personal site to show off some of my work and to keep from forgetting too much
 
 # Requirements
-You will need `npm` and `bower` installed.
+You will need `yarn` installed.
 
 # Starting
 
