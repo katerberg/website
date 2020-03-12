@@ -8,15 +8,31 @@ function WebDev() {
         <p>{'I constantly am working on random personal projects but very few of them come to fruition. Here are a few that seemed to have some promise:'}</p>
         <section>
             <article>
-                <a href="https://twitch.tv/stlvrd"><img alt="Chat room with bot responding"
-                  src="./stlvrd.png"
-                                                   /></a>
+                <a href="https://katerberg.github.io/7drl/dist/index.html"><img alt="Start of the game"
+                  src="./rogue.png"
+                                                                           /></a>
+                <main>
+                    <h2>{'7 Day Roguelike'}</h2>
+                    <h3>{'March 2020'}</h3>
+                    <p>{'A '}<a href="https://en.wikipedia.org/wiki/Roguelike">{'roguelike'}</a>{' that was built in only 7 days as a part of the '}<a href="https://itch.io/jam/7drl-challenge-2020">{'7DRL challenge'}</a>{'.'}</p>
+                    <a className="application"
+                      href="https://katerberg.github.io/7drl/dist/index.html"
+                    >{'Link to Application'}</a>
+                    <a className="application"
+                      href="https://github.com/katerberg/7drl"
+                    >{'Link to Code'}</a>
+                </main>
+            </article>
+            <article>
+                <a href="https://twitch.tv/stlotusmtg"><img alt="Chat room with bot responding"
+                  src="./stlotusmtg.png"
+                                                       /></a>
                 <main>
                     <h2>{'9th Seed'}</h2>
                     <h3>{'May 2019'}</h3>
-                    <p>{'A '}<a href="https://twitch.tv">{'Twitch'}</a>{' chat bot to help with the '}<a href="https://twitter.com/stlvrd">{'St Louis Vintage Rotisserie Draft'}</a>{'.'}</p>
+                    <p>{'A '}<a href="https://twitch.tv">{'Twitch'}</a>{' chat bot to help with the '}<a href="https://twitter.com/stlotusmtg">{'St Louis Vintage Rotisserie Draft'}</a>{'.'}</p>
                     <a className="application"
-                      href="https://twitch.tv/stlvrd"
+                      href="https://twitch.tv/stlotusmtg"
                     >{'Link to Application'}</a>
                     <a className="application"
                       href="https://github.com/katerberg/9th-seed"
