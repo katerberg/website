@@ -24,6 +24,7 @@ function Mtg() {
       <ul>
         <li><a href="http://tappedout.net/mtg-decks/land-edh-5-color/">{'5 Color Lands'}</a></li>
         <li><a href="http://tappedout.net/mtg-decks/phelddagrif-true-group-hug-edh/">{'Phelddagrif Group Hug'}</a></li>
+        <li><a href="https://tappedout.net/mtg-decks/15-03-20-arixmethes/">{'Arixmethes 10 Ticket EDH'}</a></li>
       </ul>
     </div>
   );
