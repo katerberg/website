@@ -8,6 +8,22 @@ function WebDev() {
         <p>{'I constantly am working on random personal projects but very few of them come to fruition. Here are a few that seemed to have some promise:'}</p>
         <section>
             <article>
+                <a href="https://stlotus.org"><img alt="St Lotus Logo"
+                  src="https://stlotus.org/build/favicon-152.png"
+                                              /></a>
+                <main>
+                    <h2>{'St Lotus'}</h2>
+                    <h3>{'June 2021'}</h3>
+                    <p>{'The website for '}<a href="https://twitter.com/stlotusmtg">{'St Lotus'}</a>{', the St Louis Vintage Rotisserie Draft.'}</p>
+                    <a className="application"
+                      href="https://stlotus.org"
+                    >{'Link to Application'}</a>
+                    <a className="application"
+                      href="https://github.com/katerberg/st-lotus"
+                    >{'Link to Code'}</a>
+                </main>
+            </article>
+            <article>
                 <a href="https://katerberg.github.io/7drl/dist/index.html"><img alt="Start of the game"
                   src="./rogue.png"
                                                                            /></a>

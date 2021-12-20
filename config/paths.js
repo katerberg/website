@@ -1,4 +1,4 @@
-'use strict';
+
 
 const path = require('path');
 const fs = require('fs');
@@ -17,9 +17,9 @@ function ensureSlash(inputPath, needsSlash) {
     return inputPath.substr(0, inputPath.length - 1);
   } else if (!hasSlash && needsSlash) {
     return `${inputPath}/`;
-  } else {
-    return inputPath;
   }
+  return inputPath;
+
 }
 
 const getPublicUrl = appPackageJson =>
@@ -28,9 +28,9 @@ const getPublicUrl = appPackageJson =>
 // We use `PUBLIC_URL` environment variable or "homepage" field to infer
 // "public path" at which the app is served.
 // Webpack needs to know it to put the right <script> hrefs into HTML even in
-// single-page apps that may serve index.html for nested URLs like /todos/42.
+// Single-page apps that may serve index.html for nested URLs like /todos/42.
 // We can't use a relative path in HTML because we don't want to load something
-// like /todos/42/static/js/bundle.7289d.js. We have to know the root.
+// Like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 function getServedPath(appPackageJson) {
   const publicUrl = getPublicUrl(appPackageJson);
   const servedUrl =
@@ -65,7 +65,7 @@ const resolveModule = (resolveFn, filePath) => {
   return resolveFn(`${filePath}.js`);
 };
 
-// config after eject: we're in ./config/
+// Config after eject: we're in ./config/
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
@@ -84,7 +84,6 @@ module.exports = {
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
 };
-
 
 
 module.exports.moduleFileExtensions = moduleFileExtensions;
