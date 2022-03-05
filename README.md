@@ -7,7 +7,7 @@ You will need `yarn` installed.
 
 # Starting
 
-Run the following to build the files in `./src`. This will watch the development files and automatically rebuild when needed.
+Run the following to build the files in `./src`.
 ```
 yarn start
 ```
