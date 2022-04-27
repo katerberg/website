@@ -8,6 +8,22 @@ function WebDev() {
         <p>{'I constantly am working on random personal projects but very few of them come to fruition. Here are a few that seemed to have some promise:'}</p>
         <section>
             <article>
+                <a href="https://katerberg.github.io/superdark-7drl"><img alt="Super Dark starting screen"
+                  src="./superdark.png"
+                                                                     /></a>
+                <main>
+                    <h2>{'Super Dark'}</h2>
+                    <h3>{'March 2022'}</h3>
+                    <p>{'A '}<a href="https://en.wikipedia.org/wiki/Roguelike">{'roguelike'}</a>{' that was built in only 7 days as a part of the '}<a href="https://itch.io/jam/7drl-challenge-2022">{'7DRL challenge'}</a>{' in a joint effort with '}<a href="https://www.linkedin.com/in/rob-rumble-5367488/">{'Rob Rumble'}</a>{'.'}</p>
+                    <a className="application"
+                      href="https://katerberg.github.io/superdark-7drl"
+                    >{'Link to Application'}</a>
+                    <a className="application"
+                      href="https://github.com/katerberg/superdark-7drl"
+                    >{'Link to Code'}</a>
+                </main>
+            </article>
+            <article>
                 <a href="https://stlotus.org"><img alt="St Lotus Logo"
                   src="https://stlotus.org/build/favicon-152.png"
                                               /></a>
