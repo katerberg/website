@@ -9,8 +9,9 @@
     width: 150px;
     margin: 20px;
     background-color: rgba(40, 40, 40, 0.1);
-    justify-content: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
     transition: all 0.2s ease;
 
     &:hover {

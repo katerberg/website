@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Head from 'next/head';
 import Sidebar from '../components/Sidebar';
+import creativeCommonsImage from '../images/cc.png';
+import Image from 'next/image';
 
 type LayoutProperties = {
   children: React.ReactNode;
@@ -26,9 +28,9 @@ export default function Layout({ children }: LayoutProperties) {
               href="http://creativecommons.org/licenses/by-sa/4.0/"
               rel="license"
             >
-              <img
+              <Image
                 alt="Creative Commons License"
-                src="./cc.png"
+                src={creativeCommonsImage}
                 style={{ borderWidth: 0 }}
               />
             </a>

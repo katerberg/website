@@ -1,7 +1,16 @@
+import Image from 'next/image';
 import React from 'react';
 import styles from '../styles/WebDev.module.scss';
+import superdark from '../images/applications/superdark.png';
+import rogue from '../images/applications/rogue.png';
+import stlotusmtg from '../images/applications/stlotusmtg.png';
+import confirm from '../images/applications/confirm.gif';
+import numble from '../images/applications/numble.png';
+import katerwedding from '../images/applications/katerwedding.png';
+import pathfinder from '../images/applications/pathfinder.png';
+import minesweeper from '../images/applications/minesweeper.png';
 
-function WebDev() {
+function WebDevelopment() {
   return (
     <>
       <h1>{'Web Development'}</h1>
@@ -13,9 +22,10 @@ function WebDev() {
       <section>
         <article className={styles.application}>
           <a href="https://katerberg.github.io/superdark-7drl">
-            <img
+            <Image
               alt="Super Dark starting screen"
-              src="./applications/superdark.png"
+              height={200}
+              src={superdark}
             />
           </a>
           <main>
@@ -52,8 +62,10 @@ function WebDev() {
         </article>
         <article className={styles.application}>
           <a href="https://stlotus.org">
-            <img
+            <Image
               alt="St Lotus Logo"
+              height={152}
+              width={152}
               src="https://stlotus.org/build/favicon-152.png"
             />
           </a>
@@ -78,7 +90,7 @@ function WebDev() {
         </article>
         <article className={styles.application}>
           <a href="https://katerberg.github.io/7drl/dist/index.html">
-            <img alt="Start of the game" src="./applications/rogue.png" />
+            <Image alt="Start of the game" height={200} src={rogue} />
           </a>
           <main>
             <h2>{'7 Day Roguelike'}</h2>
@@ -110,9 +122,10 @@ function WebDev() {
         </article>
         <article className={styles.application}>
           <a href="https://twitch.tv/stlotusmtg">
-            <img
+            <Image
               alt="Chat room with bot responding"
-              src="./applications/stlotusmtg.png"
+              height={200}
+              src={stlotusmtg}
             />
           </a>
           <main>
@@ -143,9 +156,10 @@ function WebDev() {
         </article>
         <article className={styles.application}>
           <a href="https://www.npmjs.com/package/material-ui-confirm-button">
-            <img
+            <Image
               alt="A button toggling between trash and confirm"
-              src="./applications/confirm.gif"
+              height={66}
+              src={confirm}
             />
           </a>
           <main>
@@ -168,9 +182,10 @@ function WebDev() {
         </article>
         <article className={styles.application}>
           <a href="http://numblegame.com">
-            <img
+            <Image
               alt="A grid of numbers with a score"
-              src="./applications/numble.png"
+              height={200}
+              src={numble}
             />
           </a>
           <main>
@@ -194,9 +209,10 @@ function WebDev() {
         </article>
         <article className={styles.application}>
           <a href="http://neemandmarcus.com">
-            <img
+            <Image
               alt="Two pixelated people looking lovingly at each other"
-              src="./applications/katerwedding.png"
+              height={200}
+              src={katerwedding}
             />
           </a>
           <main>
@@ -223,10 +239,10 @@ function WebDev() {
           </main>
         </article>
         <article className={styles.application}>
-          <img
+          <Image
             alt="A layout of spells with a modal over it with details"
-            ng-click="goSpellbook()"
-            src="./applications/pathfinder.png"
+            src={pathfinder}
+            height={200}
           />
           <main>
             <h2>{'Pathfinder Spellbook'}</h2>
@@ -254,9 +270,10 @@ function WebDev() {
         </article>
         <article className={styles.application}>
           <a href="http://katerberg.github.io/minesweeper-angular-demo/app">
-            <img
+            <Image
               alt="Traditional Minesweeper layout with a losing record"
-              src="./applications/minesweeper.png"
+              height={200}
+              src={minesweeper}
             />
           </a>
           <main>
@@ -284,4 +301,4 @@ function WebDev() {
   );
 }
 
-export default WebDev;
+export default WebDevelopment;

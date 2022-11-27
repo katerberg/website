@@ -1,7 +1,9 @@
 import React from 'react';
+import Image from 'next/image';
+import { ImageProps } from 'next/image';
 
 type FollowIconProperties = {
-  src: string;
+  src: ImageProps['src'];
   link: string;
   alt: string;
 };
@@ -9,7 +11,7 @@ type FollowIconProperties = {
 function FollowIcon({ src, link, alt }: FollowIconProperties) {
   return (
     <a href={link}>
-      <img alt={alt} src={src} />
+      <Image width={100} height={100} alt={alt} src={src} />
     </a>
   );
 }

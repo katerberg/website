@@ -1,5 +1,9 @@
 import FollowIcon from '../components/FollowIcon';
 import styles from '../styles/AboutMe.module.scss';
+import redditLogo from '../images/logos/reddit-logo.svg';
+import githubLogo from '../images/logos/github-logo.svg';
+import mastodonLogo from '../images/logos/mastodon-logo.svg';
+import twitterLogo from '../images/logos/twitter-logo.svg';
 
 const Home = () => {
   return (
@@ -14,22 +18,22 @@ const Home = () => {
         <FollowIcon
           alt="Reddit Logo"
           link="https://www.reddit.com/user/diablomarcus"
-          src="./reddit-logo.svg"
+          src={redditLogo}
         />
         <FollowIcon
           alt="Github Logo"
           link="https://github.com/katerberg"
-          src="./github-logo.svg"
+          src={githubLogo}
         />
         <FollowIcon
           alt="Mastodon Logo"
           link="https://mastodonapp.uk/@katerberg"
-          src="./mastodon-logo.svg"
+          src={mastodonLogo}
         />
         <FollowIcon
           alt="Twitter Logo"
           link="https://twitter.com/MisterNeem"
-          src="./twitter-logo.svg"
+          src={twitterLogo}
         />
       </div>
       <p>
