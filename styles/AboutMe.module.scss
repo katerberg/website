@@ -1,0 +1,31 @@
+.followIcons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  > a {
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+    background-color: rgba(40, 40, 40, 0.1);
+    justify-content: center;
+    display: flex;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #0060df;
+      background-color: rgba(21, 140, 186, 0.4);
+    }
+
+    > img {
+      width: 100px;
+    }
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .followIcons {
+    justify-content: flex-start;
+  }
+}

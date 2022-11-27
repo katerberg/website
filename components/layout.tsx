@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
+import Sidebar from '../components/Sidebar';
 
 type LayoutProperties = {
   children: React.ReactNode;
@@ -16,7 +17,36 @@ export default function Layout({ children }: LayoutProperties) {
         <link rel="me" href="https://mastodonapp.uk/@katerberg" />
         <title>Mark Katerberg</title>
       </Head>
-      <main>{children}</main>
+      <div className="app">
+        <Sidebar />
+        <main>
+          <div className="view-frame">{children}</div>
+          <footer>
+            <a
+              href="http://creativecommons.org/licenses/by-sa/4.0/"
+              rel="license"
+            >
+              <img
+                alt="Creative Commons License"
+                src="./cc.png"
+                style={{ borderWidth: 0 }}
+              />
+            </a>
+            <p>
+              {'This work is licensed under a '}
+              <a
+                href="http://creativecommons.org/licenses/by-sa/4.0/"
+                rel="license"
+              >
+                {
+                  'Creative Commons Attribution-ShareAlike 4.0 International License'
+                }
+              </a>
+              {'.'}
+            </p>
+          </footer>
+        </main>
+      </div>
     </>
   );
 }
