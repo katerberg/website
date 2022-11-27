@@ -1,0 +1,31 @@
+h2.sectionHeader {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  transition: filter ease 0.2s;
+  transition: -webkit-filter ease 0.2s;
+}
+
+.lastUpdated {
+  font-style: italic;
+}
+
+section.section {
+  &:hover {
+    > h2.sectionHeader {
+      -webkit-filter: none;
+      filter: none;
+    }
+  }
+}
+
+ul.sectionContent {
+  background: white;
+  border-radius: 8px;
+  display: inline-block;
+  list-style: circle;
+  padding: 20px;
+
+  > li.sectionContentItem {
+    list-style: circle;
+  }
+}
