@@ -3,7 +3,7 @@ import styles from '../styles/Now.module.scss';
 
 function Now() {
   return (
-    <div id="now">
+    <>
       <h1>{'What I am up to now'}</h1>
       <p className={styles.lastUpdated}>{'Updated 2022-11-21'}</p>
       <section className={styles.section}>
@@ -147,7 +147,7 @@ function Now() {
           {'This is a ”now page“, and you should make one too.'}
         </a>
       </p>
-    </div>
+    </>
   );
 }
 
