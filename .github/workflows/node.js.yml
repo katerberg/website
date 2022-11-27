@@ -29,6 +29,9 @@ jobs:
       - name: Build my App
         run: npm run build && touch ./out/.nojekyll
 
+      - name: Move CNAME
+        run: cp CNAME ./out/CNAME
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
