@@ -32,7 +32,7 @@ const Home = () => {
         />
         <FollowIcon
           alt="Twitter Logo"
-          link="https://twitter.com/MisterNeem"
+          link="https://katerberg.github.io/tweetback/"
           src={twitterLogo}
         />
       </div>
