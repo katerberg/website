@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import styles from '../styles/WebDev.module.scss';
+import goblinMode from '../images/applications/goblinMode.png';
 import superdark from '../images/applications/superdark.png';
 import rogue from '../images/applications/rogue.png';
 import stlotusmtg from '../images/applications/stlotusmtg.png';
@@ -20,6 +21,32 @@ function WebDevelopment() {
         }
       </p>
       <section>
+        <article className={styles.application}>
+          <a href="https://katerberg.github.io/goblin-mode">
+            <Image alt="Goblin Mode game play" height={200} src={goblinMode} />
+          </a>
+          <main>
+            <h2>{'Goblin Mode'}</h2>
+            <h3>{'January 2023'}</h3>
+            <p>
+              {
+                'A game where you try to manage your goblin horde as they try to escape a demon accidentally released from the depths of their home. Far from polished, this was done as an experiment to de-risk some work for the 2023 7-Day Roguelike challenge.'
+              }
+            </p>
+            <a
+              className={styles.applicationLink}
+              href="https://katerberg.github.io/goblin-mode"
+            >
+              {'Link to Application'}
+            </a>
+            <a
+              className={styles.applicationLink}
+              href="https://github.com/katerberg/goblin-mode"
+            >
+              {'Link to Code'}
+            </a>
+          </main>
+        </article>
         <article className={styles.application}>
           <a href="https://katerberg.github.io/superdark-7drl">
             <Image
