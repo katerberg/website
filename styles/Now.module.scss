@@ -1,6 +1,7 @@
-h2.sectionHeader {
+h3.sectionHeader {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+  font-size: 30px;
   transition: filter ease 0.2s;
   transition: -webkit-filter ease 0.2s;
 }
@@ -11,7 +12,7 @@ h2.sectionHeader {
 
 section.section {
   &:hover {
-    > h2.sectionHeader {
+    > h3.sectionHeader {
       -webkit-filter: none;
       filter: none;
     }

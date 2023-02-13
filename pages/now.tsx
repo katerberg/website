@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styles from '../styles/Now.module.scss';
 
@@ -5,9 +6,150 @@ function Now() {
   return (
     <>
       <h1>{'What I am up to now'}</h1>
+      <p className={styles.lastUpdated}>{'Updated 2023-02-13'}</p>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}>
+            {
+              'Neem is at Stitch Fix and survived the recent lay-offs. Everyone has been sick a lot, so she has been spending time as the comfort parent more than we would like.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {
+              'Rory is getting huge. It is wild to see her grown and develop a personality. She can sit up and play, and is resisting our encouragement to crawl.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {
+              'Logan is almost 4 and is pumped for his Lego birthday party. He loves Forsyth School and constantly asks for play dates.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {
+              'Neem is going to Cancun twice in a month, once on a girls’ trip and once with the family. We’re going on a trip together to DC in a few weeks too.'
+            }
+          </li>
+        </ul>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}>
+            {
+              'I got hit by the lay-offs at Stitch Fix so I’m spending time taking care of kids while figuring out longer term plans.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {
+              'Interviewing is exhausting, and doubly so because I am mostly just responding to people reaching out to me rather than looking for a company I really want so far.'
+            }
+          </li>
+        </ul>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}>
+            {
+              'The Last Of Us has been amazing. I really think it is better than the game so far, which is surprising since that one is the best narrative game I have played.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {'Movie Night on Thursdays have been really rewarding. '}
+            <a href="https://www.imdb.com/title/tt7653254/">
+              {'Marriage Story'}
+            </a>
+            {
+              ' was one of the best films I have seen and it was so painful to watch that I never want to think of it again.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {'My '}
+            <a href="https://www.goodreads.com/user/show/55606019-mark-katerberg">
+              {'GoodReads'}
+            </a>
+            {
+              ' shows that I am 7 books ahead of my goal of 30 books for the year. Audiobooks have been amazing to let me read things I would not normally find the time for but value.'
+            }
+          </li>
+        </ul>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}>
+            <a href="https://stlotus.org">
+              {'Vintage Rotisserie Draft at St Lotus'}
+            </a>
+            {
+              ' came back and went really well. We have a “Friends and Family” one in a week that will be lower stakes but more fun since I get to play in it.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {'I got to play '}
+            <a href="https://boardgamegeek.com/boardgame/90137/blood-bowl-team-manager-card-game">
+              {'Blood Bowl Team Manager'}
+            </a>
+            {
+              ' at the Super Bowl and it was a fun quick deck builder. I want to dig more into that genre since it feels like it is less awkward than drafting while still having variance I enjoy.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {
+              'The PS5 is still for Fortnite, but at least I am replaying The Last Of Us.'
+            }
+          </li>
+        </ul>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🖌 Creation'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}>
+            {
+              '7 Day RogueLike is coming up fast. We are ditching the social media game since it was too hard to make a Roguelike and we are just going to try a mobile multiplayer Rogue instead.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {
+              'I have been doing a few little games that are mostly to try out things I don’t know well such as mobile interfaces, but '
+            }
+            <Link href="/web-dev">{'Sigils'}</Link>
+            {' has been fun to build so far.'}
+          </li>
+          <li className={styles.sectionContentItem}>
+            {
+              'Logan and I wrote a tiny book from stapled paper this weekend. It is fun to watch him create and be a part of that process with him, even if it is for little stuff that won’t last other than in memories.'
+            }
+          </li>
+        </ul>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}>
+            {
+              'What work success means to me still. Money is feeling like a constraint to my career right now, since most of the interesting companies pay worse than the amount that I set as my lower-bound. I am worried that I am boxing myself out of work happiness.'
+            }
+          </li>
+          <li className={styles.sectionContentItem}>
+            {
+              'How to do more than survive with kids. When they are sick or in crisis, it is easy to constantly tell myself that “I just need to get through this” but I realize that I am sleepwalking through life with that defense.'
+            }
+          </li>
+        </ul>
+      </section>
+      <p>
+        <a href="https://nownownow.com/about">
+          {'This is a ”now page“, and you should make one too.'}
+        </a>
+      </p>
+
+      <hr />
+      <h2>{'History'}</h2>
       <p className={styles.lastUpdated}>{'Updated 2022-11-21'}</p>
       <section className={styles.section}>
-        <h2 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h2>
+        <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
             {
@@ -32,7 +174,7 @@ function Now() {
         </ul>
       </section>
       <section className={styles.section}>
-        <h2 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h2>
+        <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
             {'I am doing front-end platform work at Stitch Fix.'}
@@ -48,7 +190,7 @@ function Now() {
         </ul>
       </section>
       <section className={styles.section}>
-        <h2 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h2>
+        <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
             {
@@ -75,7 +217,7 @@ function Now() {
         </ul>
       </section>
       <section className={styles.section}>
-        <h2 className={styles.sectionHeader}>{'🎲 Games'}</h2>
+        <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
             <a href="https://stlotus.org">
@@ -108,7 +250,7 @@ function Now() {
         </ul>
       </section>
       <section className={styles.section}>
-        <h2 className={styles.sectionHeader}>{'🖌 Creation'}</h2>
+        <h3 className={styles.sectionHeader}>{'🖌 Creation'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
             {
@@ -128,7 +270,7 @@ function Now() {
         </ul>
       </section>
       <section className={styles.section}>
-        <h2 className={styles.sectionHeader}>{'🧠 Thinking About'}</h2>
+        <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
             {
@@ -142,11 +284,6 @@ function Now() {
           </li>
         </ul>
       </section>
-      <p>
-        <a href="https://nownownow.com/about">
-          {'This is a ”now page“, and you should make one too.'}
-        </a>
-      </p>
     </>
   );
 }
