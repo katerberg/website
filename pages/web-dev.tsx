@@ -3,6 +3,7 @@ import React from 'react';
 import styles from '../styles/WebDev.module.scss';
 import goblinMode from '../images/applications/goblinMode.png';
 import superdark from '../images/applications/superdark.png';
+import swordsWithFriends from '../images/applications/swordswithfriends.png';
 import rogue from '../images/applications/rogue.png';
 import stlotusmtg from '../images/applications/stlotusmtg.png';
 import confirm from '../images/applications/confirm.gif';
@@ -22,26 +23,38 @@ function WebDevelopment() {
       </p>
       <section>
         <article className={styles.application}>
-          <a href="https://katerberg.github.io/goblin-mode">
-            <Image alt="Goblin Mode game play" height={200} src={goblinMode} />
+          <a href="https://swordswithfriends.org">
+            <Image
+              alt="Swords With Friends game play"
+              height={200}
+              src={swordsWithFriends}
+            />
           </a>
           <main>
-            <h2>{'Goblin Mode'}</h2>
-            <h3>{'January 2023'}</h3>
+            <h2>{'Swords With Friends'}</h2>
+            <h3>{'March 2023'}</h3>
             <p>
+              {'A multiplayer, mobile '}
+              <a href="https://en.wikipedia.org/wiki/Roguelike">
+                {'roguelike'}
+              </a>
+              {' that was built in only 7 days as a part of the '}
+              <a href="https://itch.io/jam/7drl-challenge-2023">
+                {'7DRL challenge'}
+              </a>
               {
-                'A game where you try to manage your goblin horde as they try to escape a demon accidentally released from the depths of their home. Far from polished, this was done as an experiment to de-risk some work for the 2023 7-Day Roguelike challenge.'
+                '. It aims to be a couch co-op game where you can sit on your phone with friends while playing a game together.'
               }
             </p>
             <a
               className={styles.applicationLink}
-              href="https://katerberg.github.io/goblin-mode"
+              href="https://swordswithfriends.org"
             >
               {'Link to Application'}
             </a>
             <a
               className={styles.applicationLink}
-              href="https://github.com/katerberg/goblin-mode"
+              href="https://github.com/katerberg/swords-with-friends"
             >
               {'Link to Code'}
             </a>
@@ -182,32 +195,6 @@ function WebDevelopment() {
           </main>
         </article>
         <article className={styles.application}>
-          <a href="https://www.npmjs.com/package/material-ui-confirm-button">
-            <Image
-              alt="A button toggling between trash and confirm"
-              height={66}
-              src={confirm}
-            />
-          </a>
-          <main>
-            <h2>{'Material UI Confirm Button'}</h2>
-            <h3>{'August 2017'}</h3>
-            <p>{'An inline confirm button in Material UI.'}</p>
-            <a
-              className={styles.applicationLink}
-              href="https://www.npmjs.com/package/material-ui-confirm-button"
-            >
-              {'Link to Application'}
-            </a>
-            <a
-              className={styles.applicationLink}
-              href="https://github.com/katerberg/material-ui-confirm-button"
-            >
-              {'Link to Code'}
-            </a>
-          </main>
-        </article>
-        <article className={styles.application}>
           <a href="http://numblegame.com">
             <Image
               alt="A grid of numbers with a score"
@@ -318,6 +305,66 @@ function WebDevelopment() {
             <a
               className={styles.applicationLink}
               href="https://github.com/katerberg/minesweeper-angular-demo"
+            >
+              {'Link to Code'}
+            </a>
+          </main>
+        </article>
+      </section>
+      <h2>{'Historical'}</h2>
+      <p>
+        {
+          'There are some projects that showed some promise at the time and are “Done” but are not really worth showing off. I have them listed here for historical reference, but they aren’t something I’m excited about anymore.'
+        }
+      </p>
+      <section>
+        <article className={styles.application}>
+          <a href="https://katerberg.github.io/goblin-mode">
+            <Image alt="Goblin Mode game play" height={200} src={goblinMode} />
+          </a>
+          <main>
+            <h2>{'Goblin Mode'}</h2>
+            <h3>{'January 2023'}</h3>
+            <p>
+              {
+                'A game where you try to manage your goblin horde as they try to escape a demon accidentally released from the depths of their home. Far from polished, this was done as an experiment to de-risk some work for the 2023 7-Day Roguelike challenge.'
+              }
+            </p>
+            <a
+              className={styles.applicationLink}
+              href="https://katerberg.github.io/goblin-mode"
+            >
+              {'Link to Application'}
+            </a>
+            <a
+              className={styles.applicationLink}
+              href="https://github.com/katerberg/goblin-mode"
+            >
+              {'Link to Code'}
+            </a>
+          </main>
+        </article>
+        <article className={styles.application}>
+          <a href="https://www.npmjs.com/package/material-ui-confirm-button">
+            <Image
+              alt="A button toggling between trash and confirm"
+              height={66}
+              src={confirm}
+            />
+          </a>
+          <main>
+            <h2>{'Material UI Confirm Button'}</h2>
+            <h3>{'August 2017'}</h3>
+            <p>{'An inline confirm button in Material UI.'}</p>
+            <a
+              className={styles.applicationLink}
+              href="https://www.npmjs.com/package/material-ui-confirm-button"
+            >
+              {'Link to Application'}
+            </a>
+            <a
+              className={styles.applicationLink}
+              href="https://github.com/katerberg/material-ui-confirm-button"
             >
               {'Link to Code'}
             </a>
