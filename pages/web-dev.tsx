@@ -220,7 +220,7 @@ function WebDevelopment() {
             <h3>{'August 2016'}</h3>
             <p>
               {
-                'A addictive arithmatic-based game that was written to try out Firebase.'
+                'A addictive arithmetic-based game that was written to try out Firebase.'
               }
             </p>
             <a className={styles.applicationLink} href="http://numblegame.com">
