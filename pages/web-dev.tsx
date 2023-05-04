@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import styles from '../styles/WebDev.module.scss';
+import ormos from '../images/applications/ormos.png';
 import goblinMode from '../images/applications/goblinMode.png';
 import superdark from '../images/applications/superdark.png';
 import swordsWithFriends from '../images/applications/swordswithfriends.png';
@@ -22,6 +23,36 @@ function WebDevelopment() {
         }
       </p>
       <section>
+        <article className={styles.application}>
+          <a href="https://katerberg.github.io/Ormos">
+            <Image
+              alt="Ormos with some data typed in to demonstrate look up"
+              height={200}
+              src={ormos}
+            />
+          </a>
+          <main>
+            <h2>{'Ormos'}</h2>
+            <h3>{'April 2023'}</h3>
+            <p>
+              {
+                'An application designed to help Magic: the Gathering store-owners look up cards to identify in which binders the cards might be stored.'
+              }
+            </p>
+            <a
+              className={styles.applicationLink}
+              href="https://katerberg.github.io/Ormos"
+            >
+              {'Link to Application'}
+            </a>
+            <a
+              className={styles.applicationLink}
+              href="https://github.com/katerberg/ormos"
+            >
+              {'Link to Code'}
+            </a>
+          </main>
+        </article>
         <article className={styles.application}>
           <a href="https://swordswithfriends.org">
             <Image
