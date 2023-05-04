@@ -6,13 +6,30 @@ h3.sectionHeader {
   transition: -webkit-filter ease 0.2s;
 }
 
+.history {
+  margin-left: 24px;
+  background-color: #efefef;
+  padding: 16px;
+}
+
 .lastUpdated {
   font-style: italic;
 }
 
+.familyImages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 80%;
+
+  >* {
+    margin-top: 16px;
+  }
+}
+
 section.section {
   &:hover {
-    > h3.sectionHeader {
+    >h3.sectionHeader {
       -webkit-filter: none;
       filter: none;
     }
@@ -20,13 +37,12 @@ section.section {
 }
 
 ul.sectionContent {
-  background: white;
   border-radius: 8px;
   display: inline-block;
   list-style: circle;
   padding: 20px;
 
-  > li.sectionContentItem {
+  >li.sectionContentItem {
     list-style: circle;
   }
 }
