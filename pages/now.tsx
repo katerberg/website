@@ -19,9 +19,8 @@ function Now() {
             }
           </li>
           <li className={styles.sectionContentItem}>
-            {
-              'Rory is pulling herself up on furniture and is eating up a storm. She loves calling Logan “bra-bra” and getting tossed in the air.'
-            }
+            Rory is pulling herself up on furniture and is eating up a storm.
+            She loves calling Logan “bra-bra” and getting tossed in the air.
           </li>
           <li className={styles.sectionContentItem}>
             {
