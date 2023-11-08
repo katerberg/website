@@ -2,6 +2,8 @@ import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 import styles from '../styles/Now.module.scss';
+import halloween from '../images/now/2023-11-halloween.png';
+import biking from '../images/now/2023-11-biking.png';
 import rory from '../images/now/2023-05-rory.png';
 import neemLogan from '../images/now/2023-05-neem-logan.png';
 import kittyWave from '../images/now/2023-08-kitty-wave.png';
@@ -15,30 +17,31 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            Rory is getting bigger by the day. She loves eating more than any
-            kid I’ve seen, and she just took her first steps at 13 months.
+            Our family has had a lot of sickness, but nothing critical. As I
+            write this, I am on antibiotics ands steroids for some kind of
+            tonsil infection, Logan is on antibiotics for strep, and Rory is on
+            antibiotics for an ear infection. Neem is healthy as a change of
+            pace.
           </li>
           <li className={styles.sectionContentItem}>
-            Logan is so full of love and excitement. He is really proud of
-            biking on his balance bike and he loves giving advice on how to best
-            play{' '}
-            <a href="https://store.steampowered.com/app/646570/Slay_the_Spire/">
-              Slay the Spire
+            Rory loves exploring and has been insistent on having books read to
+            her, which is adorable. Her favorite is{' '}
+            <a href="https://www.goodreads.com/book/show/18812587-the-itsy-bitsy-pumpkin">
+              The Itsy Bitsy Pumpkin
             </a>
             .
-          </li>
-          <li className={styles.sectionContentItem}>
-            Neem is still loving her job and is doing her best to live in the
-            moment. It has been amazing for us to take trips, some together and
-            some separate which have helped us remember that work isn’t
-            everything.
           </li>
         </ul>
         <div className={styles.familyImages}>
           <Image
-            alt="Neem and the kids smiling while Logan waves with his stuffed animal and Rory stands."
+            alt="Mark and Logan on a tandem bike"
+            height={300}
+            src={biking}
+          />
+          <Image
+            alt="The whole family in our pokemon-themed halloween costumes"
             height={400}
-            src={kittyWave}
+            src={halloween}
           />
         </div>
       </section>
@@ -47,27 +50,14 @@ function Now() {
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
             I am still working at{' '}
-            <a href="https://opslevel.com">{'OpsLevel'}</a>, which has a great
-            balance of passion for delivering features quickly (driven by
-            actually being in a competitive market, which is something new to me
-            compared to previous companies) and ensuring that the company has
-            enough stability in people and product to be able to exist in five
-            years.
+            <a href="https://opslevel.com">{'OpsLevel'}</a>. It’s been a good
+            experience and although start-ups are chaotic, I feel like I’m
+            finding a solid balance that lets me leave work after work.
           </li>
           <li className={styles.sectionContentItem}>
-            After getting my feet under me by doing some basic feature work, I
-            have largely been hopping in to help speed big time-sensitive
-            feature lifts across the line, or upgrading long-neglected libraries
-            that have been slowing the team down for years.
-          </li>
-          <li className={styles.sectionContentItem}>
-            There was a fun journey about{' '}
-            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">
-              Content Security Policies
-            </a>{' '}
-            that I should probably write a blog post about. It started with a
-            simple request to pass a security audit and ended up yak-shaving
-            into a month long debacle where I learned a ton.
+            The struggle to upgrade old libraries is still ongoing, but I have
+            merged over 60 upgrades so far, and there are only a few more big
+            ones left before we are fully caught up.
           </li>
         </ul>
       </section>
@@ -75,24 +65,21 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            I was saddened to finish{' '}
-            <a href="https://www.imdb.com/title/tt5788792/">
-              The Marvelous Mrs. Maisel
-            </a>
-            , which was such an immersive visual time capsule. I don’t think it
-            was the greatest show of all time, but it is such a fun watch for
-            people into comedy or who enjoyed the aesthetics of{' '}
-            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">
-              Mad Men
-            </a>
-            .
+            We are struggling to keep up with all of the Marvel and Star Wars
+            shows and movies, but so far have managed to do so. None of them
+            have stood out enough to mention, but all are still enjoyable
+            enough.
           </li>
           <li className={styles.sectionContentItem}>
-            I went to Barbenheimer, which was like Peanut Butter and Chocolate,
-            two great tastes that get better due to fantastic advertising.
-            Because it’s likely the last big blockbuster due to the
-            WGA/SAG-AFTRA strike (which is a well-warranted strike), I wanted to
-            see these in theaters and it was well worth it.
+            The weekly movie night has been helpful in expanding tastes and I
+            have found a few that I really enjoyed, including{' '}
+            <a href="https://www.imdb.com/title/tt0027125/">Top Hat</a>, which
+            has moments that are on-par with the Marx Brothers, as well as more
+            serious films like{' '}
+            <a href="https://www.imdb.com/title/tt11813216">
+              The Banshees of Inisherin
+            </a>
+            .
           </li>
         </ul>
       </section>
@@ -100,26 +87,43 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            With the pending release of{' '}
             <a href="https://en.wikipedia.org/wiki/Spider-Man_2_(2023_video_game)">
               Spider-Man 2
-            </a>
-            , I went back and finished getting 100% of the trophies for the
-            previous two games. They are such immersive wonderful games that I
-            hope the new one can live up to.
+            </a>{' '}
+            came out! It was exactly what I wanted from the game, which added
+            enough interesting pieces from the first two without losing the core
+            fun of the game. I finished it in about 16 hours and then hit 100%
+            achievements by 26 hours. It was a little shorter than I hoped for,
+            but I expect DLCs to add more soon.
           </li>
           <li className={styles.sectionContentItem}>
-            Magic: the Gathering Arena and Marvel Snap still have a little bit
-            of time on my mobile game rotation, but there hasn’t been anything
-            that has really bitten me recently so I’m hoping that I can find an
-            RPG to fall into. Gaming with children requires such short attention
-            spans that anything complex seems impossible right now.
+            Marvel Snap has ramped up a little, but it’s more of a time-filler
+            now that I removed TikTok from my phone. That has been a really nice
+            trade-off and I feel like I am spending more of my time
+            fully-conscious.
           </li>
           <li className={styles.sectionContentItem}>
-            Slightly different than my normal games, but a group of us have been
-            meeting up to play outdoor Racquetball every week and it has been a
-            wonderful reminder than physical activity can actually be fun and
-            competitive without being emotionally exhausting.
+            <a href="https://stlotus.org">St Lotus</a> has our yearly city
+            championship against Chicago, and we managed to pull out a 10-6
+            victory to claim the title. This was a fun experience for a few
+            reasons:
+            <ul>
+              <li className={styles.sectionContentItem}>
+                We got to travel to Chicago to play on their turf.
+              </li>
+              <li className={styles.sectionContentItem}>
+                I actually got to play because I was not just focused on
+                hosting.
+              </li>
+              <li className={styles.sectionContentItem}>
+                We played a team-draft, which is a format that has largely been
+                unexplored in the rotisserie sphere.
+              </li>
+              <li className={styles.sectionContentItem}>
+                We put in a lot of preparation time to get ready for the
+                tournament, and it payed off with a win!
+              </li>
+            </ul>
           </li>
         </ul>
       </section>
@@ -127,19 +131,18 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            Neem got me a gift of a solo hotel for Father’s Day (after I did the
-            same for Mother’s Day (it’s probably a new tradition)), and in the
-            hotel, I built a{' '}
-            <a href="https://files.mastodonapp.uk/media_attachments/files/110/640/029/438/880/795/original/8d1fa48889cdc3b5.jpeg">
-              large Voyager set
-            </a>{' '}
-            that is trying to find a permanent home on our shelves at home.
+            I spent a lot of time building tooling for St Lotus, including
+            migrating the website to <a href="https://nextjs.org/">Next JS</a>{' '}
+            and adding a few sections for top cards and bulk deck builder.
           </li>
           <li className={styles.sectionContentItem}>
-            There’s a game-like concept I’m toying around with around
-            Tessellations, but most of my off-work development time has been
-            beefing up a lot of things for{' '}
-            <a href="https://stlotus.org">St Lotus</a> recently.
+            My brain is already spinning on what to build for the next 7-Day
+            Roguelike. I want to build a more traditional roguelike, but don’t
+            want to spend as much time on the tooling and boring things as I did
+            the first time. This has led to me getting some thoughts down into a
+            repository called{' '}
+            <a href="https://github.com/katerberg/splinter">Splinter</a> that
+            hopefully can make the process less painful.
           </li>
         </ul>
       </section>
@@ -147,17 +150,15 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            What is family and how to keep engaged with it without spiraling
-            into a cycle of over-investment and then frustration and exhaustion.
-            Parenting either feels like a race to the bottom or a massive set of
-            impossible expectations a lot of the time.
+            How to function when it seems like our family is always in some
+            stage of sickness.
           </li>
           <li className={styles.sectionContentItem}>
-            How to compress more things into digestible chunks. Life feels like
-            it operates in 10 minute increments, so I am trying to think about
-            how to make things I want to do fall into those chunks. This largely
-            means that I tend to stop doing creative endeavors because those are
-            things that I need “mulling” time for.
+            I really value family, both extended and immediate. I have been
+            feeling incredibly grateful to be close with my immediate family and
+            want to make sure my kids feel the same way. My parents are coming
+            to visit for Thanksgiving and we get to go visit Michigan for
+            Christmas, so my cup is feeling very full with love right now.
           </li>
         </ul>
       </section>
@@ -169,6 +170,157 @@ function Now() {
       <hr />
       <h2>{'History'}</h2>
       <div className={styles.history}>
+        <p className={styles.lastUpdated}>{'Updated 2023-08-06'}</p>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              Rory is getting bigger by the day. She loves eating more than any
+              kid I’ve seen, and she just took her first steps at 13 months.
+            </li>
+            <li className={styles.sectionContentItem}>
+              Logan is so full of love and excitement. He is really proud of
+              biking on his balance bike and he loves giving advice on how to
+              best play{' '}
+              <a href="https://store.steampowered.com/app/646570/Slay_the_Spire/">
+                Slay the Spire
+              </a>
+              .
+            </li>
+            <li className={styles.sectionContentItem}>
+              Neem is still loving her job and is doing her best to live in the
+              moment. It has been amazing for us to take trips, some together
+              and some separate which have helped us remember that work isn’t
+              everything.
+            </li>
+          </ul>
+          <div className={styles.familyImages}>
+            <Image
+              alt="Neem and the kids smiling while Logan waves with his stuffed animal and Rory stands."
+              height={400}
+              src={kittyWave}
+            />
+          </div>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              I am still working at{' '}
+              <a href="https://opslevel.com">{'OpsLevel'}</a>, which has a great
+              balance of passion for delivering features quickly (driven by
+              actually being in a competitive market, which is something new to
+              me compared to previous companies) and ensuring that the company
+              has enough stability in people and product to be able to exist in
+              five years.
+            </li>
+            <li className={styles.sectionContentItem}>
+              After getting my feet under me by doing some basic feature work, I
+              have largely been hopping in to help speed big time-sensitive
+              feature lifts across the line, or upgrading long-neglected
+              libraries that have been slowing the team down for years.
+            </li>
+            <li className={styles.sectionContentItem}>
+              There was a fun journey about{' '}
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">
+                Content Security Policies
+              </a>{' '}
+              that I should probably write a blog post about. It started with a
+              simple request to pass a security audit and ended up yak-shaving
+              into a month long debacle where I learned a ton.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              I was saddened to finish{' '}
+              <a href="https://www.imdb.com/title/tt5788792/">
+                The Marvelous Mrs. Maisel
+              </a>
+              , which was such an immersive visual time capsule. I don’t think
+              it was the greatest show of all time, but it is such a fun watch
+              for people into comedy or who enjoyed the aesthetics of{' '}
+              <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">
+                Mad Men
+              </a>
+              .
+            </li>
+            <li className={styles.sectionContentItem}>
+              I went to Barbenheimer, which was like Peanut Butter and
+              Chocolate, two great tastes that get better due to fantastic
+              advertising. Because it’s likely the last big blockbuster due to
+              the WGA/SAG-AFTRA strike (which is a well-warranted strike), I
+              wanted to see these in theaters and it was well worth it.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              With the pending release of{' '}
+              <a href="https://en.wikipedia.org/wiki/Spider-Man_2_(2023_video_game)">
+                Spider-Man 2
+              </a>
+              , I went back and finished getting 100% of the trophies for the
+              previous two games. They are such immersive wonderful games that I
+              hope the new one can live up to.
+            </li>
+            <li className={styles.sectionContentItem}>
+              Magic: the Gathering Arena and Marvel Snap still have a little bit
+              of time on my mobile game rotation, but there hasn’t been anything
+              that has really bitten me recently so I’m hoping that I can find
+              an RPG to fall into. Gaming with children requires such short
+              attention spans that anything complex seems impossible right now.
+            </li>
+            <li className={styles.sectionContentItem}>
+              Slightly different than my normal games, but a group of us have
+              been meeting up to play outdoor Racquetball every week and it has
+              been a wonderful reminder than physical activity can actually be
+              fun and competitive without being emotionally exhausting.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              Neem got me a gift of a solo hotel for Father’s Day (after I did
+              the same for Mother’s Day (it’s probably a new tradition)), and in
+              the hotel, I built a{' '}
+              <a href="https://files.mastodonapp.uk/media_attachments/files/110/640/029/438/880/795/original/8d1fa48889cdc3b5.jpeg">
+                large Voyager set
+              </a>{' '}
+              that is trying to find a permanent home on our shelves at home.
+            </li>
+            <li className={styles.sectionContentItem}>
+              There’s a game-like concept I’m toying around with around
+              Tessellations, but most of my off-work development time has been
+              beefing up a lot of things for{' '}
+              <a href="https://stlotus.org">St Lotus</a> recently.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              What is family and how to keep engaged with it without spiraling
+              into a cycle of over-investment and then frustration and
+              exhaustion. Parenting either feels like a race to the bottom or a
+              massive set of impossible expectations a lot of the time.
+            </li>
+            <li className={styles.sectionContentItem}>
+              How to compress more things into digestible chunks. Life feels
+              like it operates in 10 minute increments, so I am trying to think
+              about how to make things I want to do fall into those chunks. This
+              largely means that I tend to stop doing creative endeavors because
+              those are things that I need “mulling” time for.
+            </li>
+          </ul>
+        </section>
         <p className={styles.lastUpdated}>{'Updated 2023-02-13'}</p>
         <section className={styles.section}>
           <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
