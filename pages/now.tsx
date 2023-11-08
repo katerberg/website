@@ -18,8 +18,8 @@ function Now() {
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
             Our family has had a lot of sickness, but nothing critical. As I
-            write this, I am on antibiotics ands steroids for some kind of
-            tonsil infection, Logan is on antibiotics for strep, and Rory is on
+            write this, I am on antibiotics and steroids for some kind of tonsil
+            infection, Logan is on antibiotics for strep, and Rory is on
             antibiotics for an ear infection. Neem is healthy as a change of
             pace.
           </li>
