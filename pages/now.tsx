@@ -7,169 +7,230 @@ import biking from '../images/now/2023-11-biking.png';
 import rory from '../images/now/2023-05-rory.png';
 import neemLogan from '../images/now/2023-05-neem-logan.png';
 import kittyWave from '../images/now/2023-08-kitty-wave.png';
+import arch from '../images/now/2023-12-arch.png';
+import shoes from '../images/now/2023-12-shoes.png';
 
 function Now() {
   return (
     <>
       <h1>{'What I am up to now'}</h1>
-      <p className={styles.lastUpdated}>{'Updated 2023-08-06'}</p>
-      <section className={styles.section}>
-        <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
-        <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}>
-            Our family has had a lot of sickness, but nothing critical. As I
-            write this, I am on antibiotics and steroids for some kind of tonsil
-            infection, Logan is on antibiotics for strep, and Rory is on
-            antibiotics for an ear infection. Neem is healthy as a change of
-            pace.
-          </li>
-          <li className={styles.sectionContentItem}>
-            Rory loves exploring and has been insistent on having books read to
-            her, which is adorable. Her favorite is{' '}
-            <a href="https://www.goodreads.com/book/show/18812587-the-itsy-bitsy-pumpkin">
-              The Itsy Bitsy Pumpkin
-            </a>
-            .
-          </li>
-        </ul>
-        <div className={styles.familyImages}>
-          <Image
-            alt="Mark and Logan on a tandem bike"
-            height={300}
-            src={biking}
-          />
-          <Image
-            alt="The whole family in our pokemon-themed halloween costumes"
-            height={400}
-            src={halloween}
-          />
-        </div>
-      </section>
-      <section className={styles.section}>
-        <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
-        <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}>
-            I am still working at{' '}
-            <a href="https://opslevel.com">{'OpsLevel'}</a>. It’s been a good
-            experience and although start-ups are chaotic, I feel like I’m
-            finding a solid balance that lets me leave work after work.
-          </li>
-          <li className={styles.sectionContentItem}>
-            The struggle to upgrade old libraries is still ongoing, but I have
-            merged over 60 upgrades so far, and there are only a few more big
-            ones left before we are fully caught up.
-          </li>
-        </ul>
-      </section>
-      <section className={styles.section}>
-        <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
-        <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}>
-            We are struggling to keep up with all of the Marvel and Star Wars
-            shows and movies, but so far have managed to do so. None of them
-            have stood out enough to mention, but all are still enjoyable
-            enough.
-          </li>
-          <li className={styles.sectionContentItem}>
-            The weekly movie night has been helpful in expanding tastes and I
-            have found a few that I really enjoyed, including{' '}
-            <a href="https://www.imdb.com/title/tt0027125/">Top Hat</a>, which
-            has moments that are on-par with the Marx Brothers, as well as more
-            serious films like{' '}
-            <a href="https://www.imdb.com/title/tt11813216">
-              The Banshees of Inisherin
-            </a>
-            .
-          </li>
-        </ul>
-      </section>
-      <section className={styles.section}>
-        <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
-        <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}>
-            <a href="https://en.wikipedia.org/wiki/Spider-Man_2_(2023_video_game)">
-              Spider-Man 2
-            </a>{' '}
-            came out! It was exactly what I wanted from the game, which added
-            enough interesting pieces from the first two without losing the core
-            fun of the game. I finished it in about 16 hours and then hit 100%
-            achievements by 26 hours. It was a little shorter than I hoped for,
-            but I expect DLCs to add more soon.
-          </li>
-          <li className={styles.sectionContentItem}>
-            Marvel Snap has ramped up a little, but it’s more of a time-filler
-            now that I removed TikTok from my phone. That has been a really nice
-            trade-off and I feel like I am spending more of my time
-            fully-conscious.
-          </li>
-          <li className={styles.sectionContentItem}>
-            <a href="https://stlotus.org">St Lotus</a> has our yearly city
-            championship against Chicago, and we managed to pull out a 10-6
-            victory to claim the title. This was a fun experience for a few
-            reasons:
-            <ul>
-              <li className={styles.sectionContentItem}>
-                We got to travel to Chicago to play on their turf.
-              </li>
-              <li className={styles.sectionContentItem}>
-                I actually got to play because I was not just focused on
-                hosting.
-              </li>
-              <li className={styles.sectionContentItem}>
-                We played a team-draft, which is a format that has largely been
-                unexplored in the rotisserie sphere.
-              </li>
-              <li className={styles.sectionContentItem}>
-                We put in a lot of preparation time to get ready for the
-                tournament, and it payed off with a win!
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-      <section className={styles.section}>
-        <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
-        <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}>
-            I spent a lot of time building tooling for St Lotus, including
-            migrating the website to <a href="https://nextjs.org/">Next JS</a>{' '}
-            and adding a few sections for top cards and bulk deck builder.
-          </li>
-          <li className={styles.sectionContentItem}>
-            My brain is already spinning on what to build for the next 7-Day
-            Roguelike. I want to build a more traditional roguelike, but don’t
-            want to spend as much time on the tooling and boring things as I did
-            the first time. This has led to me getting some thoughts down into a
-            repository called{' '}
-            <a href="https://github.com/katerberg/splinter">Splinter</a> that
-            hopefully can make the process less painful.
-          </li>
-        </ul>
-      </section>
-      <section className={styles.section}>
-        <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
-        <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}>
-            How to function when it seems like our family is always in some
-            stage of sickness.
-          </li>
-          <li className={styles.sectionContentItem}>
-            I really value family, both extended and immediate. I have been
-            feeling incredibly grateful to be close with my immediate family and
-            want to make sure my kids feel the same way. My parents are coming
-            to visit for Thanksgiving and we get to go visit Michigan for
-            Christmas, so my cup is feeling very full with love right now.
-          </li>
-        </ul>
-      </section>
       <p>
         <a href="https://nownownow.com/about">
           {'This is a ”now page“, and you should make one too.'}
         </a>
       </p>
+      <p className={styles.lastUpdated}>{'Updated 2023-12-25'}</p>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}>
+            Everyone is back to relatively good health and we are exploring the
+            world together. I’ve been trying to prioritize going outside with
+            the kiddos more while we have the opportunity, which led us to going
+            up in the Arch.
+          </li>
+          <li className={styles.sectionContentItem}>
+            One of the things I try to focus on with little kiddos is how to
+            ensure that we don’t just get focused on the day to day, but can
+            actually build traditions that they will remember. One of the
+            biggest for me is cultural heritage, particularly around St Nicholas
+            Day, where we put out wooden shoes and fill them with oranges and
+            treats for the kids.
+          </li>
+        </ul>
+        <div className={styles.familyImages}>
+          <Image
+            alt="All of us crowded into the Arch Pod"
+            height={300}
+            src={arch}
+          />
+          <Image
+            alt="Rory looking contemplatively at wooden shoes with carrots in them"
+            height={300}
+            src={shoes}
+          />
+        </div>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}></li>
+        </ul>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}></li>
+        </ul>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}></li>
+        </ul>
+      </section>
+      <section className={styles.section}>
+        <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}></li>
+        </ul>
+      </section>
       <hr />
       <h2>{'History'}</h2>
       <div className={styles.history}>
+        <p className={styles.lastUpdated}>{'Updated 2023-08-06'}</p>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              Our family has had a lot of sickness, but nothing critical. As I
+              write this, I am on antibiotics and steroids for some kind of
+              tonsil infection, Logan is on antibiotics for strep, and Rory is
+              on antibiotics for an ear infection. Neem is healthy as a change
+              of pace.
+            </li>
+            <li className={styles.sectionContentItem}>
+              Rory loves exploring and has been insistent on having books read
+              to her, which is adorable. Her favorite is{' '}
+              <a href="https://www.goodreads.com/book/show/18812587-the-itsy-bitsy-pumpkin">
+                The Itsy Bitsy Pumpkin
+              </a>
+              .
+            </li>
+          </ul>
+          <div className={styles.familyImages}>
+            <Image
+              alt="Mark and Logan on a tandem bike"
+              height={300}
+              src={biking}
+            />
+            <Image
+              alt="The whole family in our pokemon-themed halloween costumes"
+              height={300}
+              src={halloween}
+            />
+          </div>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              I am still working at{' '}
+              <a href="https://opslevel.com">{'OpsLevel'}</a>. It’s been a good
+              experience and although start-ups are chaotic, I feel like I’m
+              finding a solid balance that lets me leave work after work.
+            </li>
+            <li className={styles.sectionContentItem}>
+              The struggle to upgrade old libraries is still ongoing, but I have
+              merged over 60 upgrades so far, and there are only a few more big
+              ones left before we are fully caught up.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              We are struggling to keep up with all of the Marvel and Star Wars
+              shows and movies, but so far have managed to do so. None of them
+              have stood out enough to mention, but all are still enjoyable
+              enough.
+            </li>
+            <li className={styles.sectionContentItem}>
+              The weekly movie night has been helpful in expanding tastes and I
+              have found a few that I really enjoyed, including{' '}
+              <a href="https://www.imdb.com/title/tt0027125/">Top Hat</a>, which
+              has moments that are on-par with the Marx Brothers, as well as
+              more serious films like{' '}
+              <a href="https://www.imdb.com/title/tt11813216">
+                The Banshees of Inisherin
+              </a>
+              .
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              <a href="https://en.wikipedia.org/wiki/Spider-Man_2_(2023_video_game)">
+                Spider-Man 2
+              </a>{' '}
+              came out! It was exactly what I wanted from the game, which added
+              enough interesting pieces from the first two without losing the
+              core fun of the game. I finished it in about 16 hours and then hit
+              100% achievements by 26 hours. It was a little shorter than I
+              hoped for, but I expect DLCs to add more soon.
+            </li>
+            <li className={styles.sectionContentItem}>
+              Marvel Snap has ramped up a little, but it’s more of a time-filler
+              now that I removed TikTok from my phone. That has been a really
+              nice trade-off and I feel like I am spending more of my time
+              fully-conscious.
+            </li>
+            <li className={styles.sectionContentItem}>
+              <a href="https://stlotus.org">St Lotus</a> has our yearly city
+              championship against Chicago, and we managed to pull out a 10-6
+              victory to claim the title. This was a fun experience for a few
+              reasons:
+              <ul>
+                <li className={styles.sectionContentItem}>
+                  We got to travel to Chicago to play on their turf.
+                </li>
+                <li className={styles.sectionContentItem}>
+                  I actually got to play because I was not just focused on
+                  hosting.
+                </li>
+                <li className={styles.sectionContentItem}>
+                  We played a team-draft, which is a format that has largely
+                  been unexplored in the rotisserie sphere.
+                </li>
+                <li className={styles.sectionContentItem}>
+                  We put in a lot of preparation time to get ready for the
+                  tournament, and it payed off with a win!
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              I spent a lot of time building tooling for St Lotus, including
+              migrating the website to <a href="https://nextjs.org/">Next JS</a>{' '}
+              and adding a few sections for top cards and bulk deck builder.
+            </li>
+            <li className={styles.sectionContentItem}>
+              My brain is already spinning on what to build for the next 7-Day
+              Roguelike. I want to build a more traditional roguelike, but don’t
+              want to spend as much time on the tooling and boring things as I
+              did the first time. This has led to me getting some thoughts down
+              into a repository called{' '}
+              <a href="https://github.com/katerberg/splinter">Splinter</a> that
+              hopefully can make the process less painful.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              How to function when it seems like our family is always in some
+              stage of sickness.
+            </li>
+            <li className={styles.sectionContentItem}>
+              I really value family, both extended and immediate. I have been
+              feeling incredibly grateful to be close with my immediate family
+              and want to make sure my kids feel the same way. My parents are
+              coming to visit for Thanksgiving and we get to go visit Michigan
+              for Christmas, so my cup is feeling very full with love right now.
+            </li>
+          </ul>
+        </section>
         <p className={styles.lastUpdated}>{'Updated 2023-08-06'}</p>
         <section className={styles.section}>
           <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
