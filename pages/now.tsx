@@ -37,6 +37,13 @@ function Now() {
             Day, where we put out wooden shoes and fill them with oranges and
             treats for the kids.
           </li>
+          <li className={styles.sectionContentItem}>
+            For Christmas this year, we were separated from each other since
+            Neem and Ororo hung back in St Louis, while Logan and I went to
+            Grand Rapids to spend the holiday with my parents. It was so nice to
+            share some of my holiday traditions with him, but also sad to miss
+            Christmas with the girls.
+          </li>
         </ul>
         <div className={styles.familyImages}>
           <Image
@@ -53,29 +60,123 @@ function Now() {
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+        <ul className={styles.sectionContent}>
+          <li className={styles.sectionContentItem}>
+            I am working at OpsLevel, where it’s a pretty relaxed culture while
+            still exposing me to enough new things that I am having a good time.
+            Since we don’t have a lot of the other things I am used to, such as
+            a design department a strong engineering culture of design-focus, it
+            has been a fun journey trying to identify what things are actually
+            useful to fight for, and what things are not needed yet. Series A
+            start-ups are hard!
+          </li>
+          <li className={styles.sectionContentItem}>
+            The longer I spend doing front-end focused work in start-up culture,
+            the more I wonder if I would be better suited to either diversify
+            into a more generic skill-set (which would probably be better if I
+            want to be a first-four engineer) or slide back towards Fortune 500
+            companies. It is hard to feel like you are helping your co-workers
+            as much as you could be while still staying specialized.
+          </li>
+        </ul>
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
         <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}></li>
+          <li className={styles.sectionContentItem}>
+            Movies have still had a hold on my heart, with weekly movie nights
+            which range from the silly with{' '}
+            <a href="https://www.imdb.com/title/tt0091064/">The Fly</a>, to the
+            serious with{' '}
+            <a href="https://www.imdb.com/title/tt0054997/">The Hustler</a>.
+          </li>
+          <li className={styles.sectionContentItem}>
+            Reading snuck up on me, which I discovered when I realized that I
+            have{' '}
+            <a href="https://www.goodreads.com/user/show/55606019-mark-katerberg">
+              read seventy books this year
+            </a>
+            . Some of the stand-outs were{' '}
+            <a href="https://www.goodreads.com/book/show/55660735-hero-of-two-worlds">
+              a biography of Lafayette
+            </a>
+            , a{' '}
+            <a href="https://www.goodreads.com/book/show/40109367-dare-to-lead">
+              leadership book
+            </a>
+            , and{' '}
+            <a href="https://www.goodreads.com/book/show/60531406-tress-of-the-emerald-sea">
+              one of the latest by Sanderson
+            </a>
+            .
+          </li>
         </ul>
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
         <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}></li>
+          <li className={styles.sectionContentItem}>
+            I have largely been spending my time gaming on casual mobile games,
+            such as Marvel Snap and Pokemon Go. Although I have done well with
+            them, they alternate between boredom-fillers and chores. I look
+            forward to the kiddos being old enough to spend more time without
+            direct involvement so I can play games that require more continual
+            focus, but I genuinely love that I am choosing to spend my time
+            focusing on them instead of trying to play games.
+          </li>
+          <li className={styles.sectionContentItem}>
+            Table-top role playing games are even more of a time commitment, but
+            I recently ran{' '}
+            <a href="https://www.pennydragon.games/product/the-fight-before-christmas-pdf/">
+              a holiday one-off
+            </a>{' '}
+            that was fun because it was low-stakes and let me still get a little
+            invested with a group of friends.
+          </li>
         </ul>
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
         <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}></li>
+          <li className={styles.sectionContentItem}>
+            My free time creating has been largely focused on{' '}
+            <a href="https://stlotus.org">St Lotus</a> this quarter. Not only
+            did I play in an event in Chicago (where we soundly defeated them),
+            but I also ran another event in St Louis. On top of all of that, I
+            have started creating{' '}
+            <a href="https://www.youtube.com/@stlotus/shorts">YouTube Shorts</a>{' '}
+            in consumable one minute videos talking about Vintage Rotisserie
+            Draft which has recaptured some of the fun for it for me.
+          </li>
+          <li className={styles.sectionContentItem}>
+            Since I know that the next{' '}
+            <a href="https://7drl.com/">7 Day RogueLike</a> is happening in
+            March, I’ve been toying around with a framework for making a
+            traditional roguelike. It’s still more chore than fun at this point,
+            but my hope is that if I get it to a useable state, it will make the
+            game development during the game-jam more focused on mechanics and
+            fun than on rote-coding.
+          </li>
         </ul>
       </section>
       <section className={styles.section}>
         <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
         <ul className={styles.sectionContent}>
-          <li className={styles.sectionContentItem}></li>
+          <li className={styles.sectionContentItem}>
+            How to keep energy more consistent with the kids. I love that I can
+            spend time with them and devote my life to making theirs as good as
+            I can, but in my worst moments, I know that I am being dismissive. I
+            don’t want to flood them with affection one moment and stand-off the
+            next, so I’m thinking of ways to remind them that I love them even
+            when I can’t deal with them in those moments.
+          </li>
+          <li className={styles.sectionContentItem}>
+            What work means when it isn’t something I want to be the focal point
+            for my life. I still care about helping others, but it isn’t
+            something that I want to spend the majority of my waking day
+            thinking about, and finding a way to accept that it likely means
+            letting some aspirations go is a thing I am dealing with.
+          </li>
         </ul>
       </section>
       <hr />
