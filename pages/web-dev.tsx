@@ -12,6 +12,7 @@ import numble from '../images/applications/numble.png';
 import katerwedding from '../images/applications/katerwedding.png';
 import pathfinder from '../images/applications/pathfinder.png';
 import minesweeper from '../images/applications/minesweeper.png';
+import ricRacRogue from '../images/applications/ric-rac-rogue.png';
 
 function WebDevelopment() {
   return (
@@ -23,6 +24,43 @@ function WebDevelopment() {
         }
       </p>
       <section>
+        <article className={styles.application}>
+          <a href="https://github.com/katerberg/ric-rac-rogue">
+            <Image
+              alt="Tic-Tac-Toe game with some power-ups and neon lights"
+              height={200}
+              src={ricRacRogue}
+            />
+          </a>
+          <main>
+            <h2>{'Ric-Rac-Rogue'}</h2>
+            <h3>{'March 2024'}</h3>
+            <p>
+              {
+                'A take on the classic two-player game played on a 3x3 grid done for the '
+              }
+
+              <a href="https://itch.io/jam/7drl-challenge-2024">
+                {'7DRL challenge'}
+              </a>
+              {
+                '. The objective is to be the first player to form a line of three of your symbols (X or O) horizontally, vertically, or diagonally.'
+              }
+            </p>
+            <a
+              className={styles.applicationLink}
+              href="https://katerberg.github.io/ric-rac-rogue/"
+            >
+              {'Link to Application'}
+            </a>
+            <a
+              className={styles.applicationLink}
+              href="https://github.com/katerberg/ric-rac-rogue"
+            >
+              {'Link to Code'}
+            </a>
+          </main>
+        </article>
         <article className={styles.application}>
           <a href="https://katerberg.github.io/Ormos">
             <Image
