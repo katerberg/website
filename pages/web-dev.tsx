@@ -175,7 +175,7 @@ function WebDevelopment() {
               alt="St Lotus Logo"
               height={152}
               width={152}
-              src="https://stlotus.org/build/favicon-152.png"
+              src="https://stlotus.org/favicon-152.png"
             />
           </a>
           <main>
