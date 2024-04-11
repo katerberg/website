@@ -7,10 +7,11 @@ article.application {
     cursor: pointer;
     display: inline-block;
     max-height: 200px;
+    max-width: 350px;
     vertical-align: top;
   }
 
-  > a {
+  >a {
     text-align: center;
     display: inline-block;
     min-width: 375px;
@@ -23,14 +24,17 @@ article.application {
     padding: 16px;
     background: white;
     border-radius: 8px;
+
     h2 {
       margin: 0;
     }
+
     h3 {
       margin-top: 0;
       margin-left: 12px;
       font-size: 0.8em;
     }
+
     a.applicationLink {
       display: block;
     }
