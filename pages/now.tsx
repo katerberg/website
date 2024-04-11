@@ -9,6 +9,8 @@ import neemLogan from '../images/now/2023-05-neem-logan.png';
 import kittyWave from '../images/now/2023-08-kitty-wave.png';
 import arch from '../images/now/2023-12-arch.png';
 import shoes from '../images/now/2023-12-shoes.png';
+import eclipse from '../images/now/2024-04-eclipse.png';
+import bike from '../images/now/2024-04-bike.png';
 
 function Now() {
   return (
@@ -19,42 +21,41 @@ function Now() {
           {'This is a ”now page“, and you should make one too.'}
         </a>
       </p>
-      <p className={styles.lastUpdated}>{'Updated 2023-12-25'}</p>
+      <p className={styles.lastUpdated}>{'Updated 2024-04-10'}</p>
       <section className={styles.section}>
         <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            Everyone is back to relatively good health and we are exploring the
-            world together. I’ve been trying to prioritize going outside with
-            the kiddos more while we have the opportunity, which led us to going
-            up in the Arch.
+            Our family is full of so much excitement and busyness. It feels like
+            every day of the week we are getting the kiddos at five after their
+            activities, getting dinner, and then rushing to bed. I wish I could
+            be spending more chill time with them.
           </li>
           <li className={styles.sectionContentItem}>
-            One of the things I try to focus on with little kiddos is how to
-            ensure that we don’t just get focused on the day to day, but can
-            actually build traditions that they will remember. One of the
-            biggest for me is cultural heritage, particularly around St Nicholas
-            Day, where we put out wooden shoes and fill them with oranges and
-            treats for the kids.
+            Logan has taken to bike-riding like a fish to water after getting a
+            big-kid bike for his fifth birthday. He followed his Uncle Tim’s
+            training guide and is flying around parking lots. There are still
+            some control issues that make me leery of sidewalks, but we are on
+            our way.
           </li>
           <li className={styles.sectionContentItem}>
-            For Christmas this year, we were separated from each other since
-            Neem and Ororo hung back in St Louis, while Logan and I went to
-            Grand Rapids to spend the holiday with my parents. It was so nice to
-            share some of my holiday traditions with him, but also sad to miss
-            Christmas with the girls.
+            We had a wonderful journey out to Valier, IL to view the Solar
+            Eclipse this year. My parents, sister with family, and brother came
+            down to the home of my friend and we were able to see the eclipse
+            from totality. It is truly breathtaking and a once-in-a-lifetime
+            event that we have managed to see twice so far.
           </li>
         </ul>
         <div className={styles.familyImages}>
           <Image
-            alt="All of us crowded into the Arch Pod"
-            height={300}
-            src={arch}
+            alt="Standing in front of a projection of the total solar eclipse"
+            height={400}
+            src={eclipse}
           />
           <Image
-            alt="Rory looking contemplatively at wooden shoes with carrots in them"
-            height={300}
-            src={shoes}
+            alt="Logan looking pleased with himself as he rides a bike"
+            height={400}
+            src={bike}
           />
         </div>
       </section>
@@ -62,21 +63,23 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            I am working at OpsLevel, where it’s a pretty relaxed culture while
-            still exposing me to enough new things that I am having a good time.
-            Since we don’t have a lot of the other things I am used to, such as
-            a design department a strong engineering culture of design-focus, it
-            has been a fun journey trying to identify what things are actually
-            useful to fight for, and what things are not needed yet. Series A
-            start-ups are hard!
+            I hit my one-year anniversary at{' '}
+            <a href="https://www.opslevel.com/">OpsLevel</a>. It’s going well
+            and the constant battle of what is worth doing to make the future
+            easier is much harder to make decisions about when you’re a Series A
+            start-up. Finding the trade-offs and defaulting to trying things
+            with the assumption that a partial feature is better than a
+            perfectly scalable feature is a new experience that still feels fun.
           </li>
           <li className={styles.sectionContentItem}>
-            The longer I spend doing front-end focused work in start-up culture,
-            the more I wonder if I would be better suited to either diversify
-            into a more generic skill-set (which would probably be better if I
-            want to be a first-four engineer) or slide back towards Fortune 500
-            companies. It is hard to feel like you are helping your co-workers
-            as much as you could be while still staying specialized.
+            Tech still feels like the right fit for now, but basically all of my
+            interest is either in game-development (which isn’t tenable for
+            financial reasons), or in other arenas. There is no itch for me to
+            jump careers at the moment, and I don’t even feel like I am burnt
+            out, but work has never felt more like a job. My default assumption
+            is that this is largely driven by remote-culture, since I really
+            struggle to self-fund my motivation and generally receive energy
+            from others in the workplace.
           </li>
         </ul>
       </section>
@@ -84,29 +87,28 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            Movies have still had a hold on my heart, with weekly movie nights
-            which range from the silly with{' '}
-            <a href="https://www.imdb.com/title/tt0091064/">The Fly</a>, to the
-            serious with{' '}
-            <a href="https://www.imdb.com/title/tt0054997/">The Hustler</a>.
+            Movie night is going strong, with the highest point for me being{' '}
+            <a href="https://www.imdb.com/title/tt14849194/">The Holdovers</a>,
+            but I have been making a point of watching all of the movies from{' '}
+            <a href="https://www.orphanedentertainment.com/">
+              Orphaned Entertainment
+            </a>{' '}
+            as well, which has exposed me to many more old films that are
+            largely not great, but are always interesting.
           </li>
           <li className={styles.sectionContentItem}>
-            Reading snuck up on me, which I discovered when I realized that I
-            have{' '}
-            <a href="https://www.goodreads.com/user/show/55606019-mark-katerberg">
-              read seventy books this year
-            </a>
-            . Some of the stand-outs were{' '}
-            <a href="https://www.goodreads.com/book/show/55660735-hero-of-two-worlds">
-              a biography of Lafayette
-            </a>
-            , a{' '}
-            <a href="https://www.goodreads.com/book/show/40109367-dare-to-lead">
-              leadership book
+            Tons of books have been read, but nothing really stood out as
+            incredible so far.{' '}
+            <a href="https://www.goodreads.com/challenges/11634">GoodReads</a>{' '}
+            says that I have read 28 so far this year, but very few five stars.
+            Some high school classics that I had never read did manage to break
+            through however:{' '}
+            <a href="https://www.goodreads.com/book/show/76620.Watership_Down">
+              Watership Down
             </a>
             , and{' '}
-            <a href="https://www.goodreads.com/book/show/60531406-tress-of-the-emerald-sea">
-              one of the latest by Sanderson
+            <a href="https://www.goodreads.com/book/show/2165.The_Old_Man_and_the_Sea">
+              The Old Man and the Sea
             </a>
             .
           </li>
@@ -116,22 +118,19 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            I have largely been spending my time gaming on casual mobile games,
-            such as Marvel Snap and Pokemon Go. Although I have done well with
-            them, they alternate between boredom-fillers and chores. I look
-            forward to the kiddos being old enough to spend more time without
-            direct involvement so I can play games that require more continual
-            focus, but I genuinely love that I am choosing to spend my time
-            focusing on them instead of trying to play games.
+            <a href="https://www.marvelsnap.com/">Marvel Snap</a> is probably
+            still my primary game at this point, which still carries the same
+            feeling of obligation rather than true immersion that often comes in
+            mobile games. I did fall deeply in love with the casual game{' '}
+            <a href="https://store.steampowered.com/app/1161580/Hardspace_Shipbreaker/">
+              Hardspace: Shipbreaker
+            </a>{' '}
+            as well, and got all the trophies before setting it down.
           </li>
           <li className={styles.sectionContentItem}>
-            Table-top role playing games are even more of a time commitment, but
-            I recently ran{' '}
-            <a href="https://www.pennydragon.games/product/the-fight-before-christmas-pdf/">
-              a holiday one-off
-            </a>{' '}
-            that was fun because it was low-stakes and let me still get a little
-            invested with a group of friends.
+            Lego has been a good time, both individually (doing a big Star Trek
+            set) and working with Logan on it, since he likes the parallel play
+            and doing a big set ”together”.
           </li>
         </ul>
       </section>
@@ -139,23 +138,24 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            My free time creating has been largely focused on{' '}
-            <a href="https://stlotus.org">St Lotus</a> this quarter. Not only
-            did I play in an event in Chicago (where we soundly defeated them),
-            but I also ran another event in St Louis. On top of all of that, I
-            have started creating{' '}
+            I finished the series of{' '}
             <a href="https://www.youtube.com/@stlotus/shorts">YouTube Shorts</a>{' '}
-            in consumable one minute videos talking about Vintage Rotisserie
-            Draft which has recaptured some of the fun for it for me.
+            for Vintage Rotisserie Draft, which was fun, but definitely burnt me
+            out in the end. We have another big event coming up in May, so that
+            will be a good time, but trying to get the daily content out is such
+            a chore.
           </li>
           <li className={styles.sectionContentItem}>
-            Since I know that the next{' '}
-            <a href="https://7drl.com/">7 Day RogueLike</a> is happening in
-            March, I’ve been toying around with a framework for making a
-            traditional roguelike. It’s still more chore than fun at this point,
-            but my hope is that if I get it to a useable state, it will make the
-            game development during the game-jam more focused on mechanics and
-            fun than on rote-coding.
+            I succumbed to temptation and threw together a game for the{' '}
+            <a href="https://7drl.com/">7 Day RogueLike</a> after saying that I
+            probably would not do it.{' '}
+            <a href="https://katerberg.github.io/ric-rac-rogue/">
+              Ric-Rac-Rogue
+            </a>{' '}
+            was a lot of fun to build, and even though people are in conflict
+            over whether it is a roguelike, I still love it. I wish I had more
+            time for it like always, but it is probably the one I feel I should
+            be most proud of finishing.
           </li>
         </ul>
       </section>
@@ -163,25 +163,190 @@ function Now() {
         <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
         <ul className={styles.sectionContent}>
           <li className={styles.sectionContentItem}>
-            How to keep energy more consistent with the kids. I love that I can
-            spend time with them and devote my life to making theirs as good as
-            I can, but in my worst moments, I know that I am being dismissive. I
-            don’t want to flood them with affection one moment and stand-off the
-            next, so I’m thinking of ways to remind them that I love them even
-            when I can’t deal with them in those moments.
+            Due to weird health stuff with my sinuses, most of my time has been
+            more about surviving than actually contemplating life. I look
+            forward to having a healthy body that lets me go to bed without
+            feeling completely exhausted, and hopefully by then, life will stay
+            at the same slower pace where I can do things more mindfully.
           </li>
           <li className={styles.sectionContentItem}>
-            What work means when it isn’t something I want to be the focal point
-            for my life. I still care about helping others, but it isn’t
-            something that I want to spend the majority of my waking day
-            thinking about, and finding a way to accept that it likely means
-            letting some aspirations go is a thing I am dealing with.
+            The biggest focus of my past quarter has been about being
+            intentional with the kids. Finding a way to ensure that every night
+            we do something together and that I am not just dropping them to
+            their own things while I am on my phone near them, but instead
+            spending time engaging with them has been my goal. This particularly
+            matters with Rory, since she is little and it is much easier to play
+            with Logan since he engages more.
           </li>
         </ul>
       </section>
       <hr />
       <h2>{'History'}</h2>
       <div className={styles.history}>
+        <p className={styles.lastUpdated}>{'Updated 2023-12-25'}</p>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              Everyone is back to relatively good health and we are exploring
+              the world together. I’ve been trying to prioritize going outside
+              with the kiddos more while we have the opportunity, which led us
+              to going up in the Arch.
+            </li>
+            <li className={styles.sectionContentItem}>
+              One of the things I try to focus on with little kiddos is how to
+              ensure that we don’t just get focused on the day to day, but can
+              actually build traditions that they will remember. One of the
+              biggest for me is cultural heritage, particularly around St
+              Nicholas Day, where we put out wooden shoes and fill them with
+              oranges and treats for the kids.
+            </li>
+            <li className={styles.sectionContentItem}>
+              For Christmas this year, we were separated from each other since
+              Neem and Ororo hung back in St Louis, while Logan and I went to
+              Grand Rapids to spend the holiday with my parents. It was so nice
+              to share some of my holiday traditions with him, but also sad to
+              miss Christmas with the girls.
+            </li>
+          </ul>
+          <div className={styles.familyImages}>
+            <Image
+              alt="All of us crowded into the Arch Pod"
+              height={300}
+              src={arch}
+            />
+            <Image
+              alt="Rory looking contemplatively at wooden shoes with carrots in them"
+              height={300}
+              src={shoes}
+            />
+          </div>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              I am working at OpsLevel, where it’s a pretty relaxed culture
+              while still exposing me to enough new things that I am having a
+              good time. Since we don’t have a lot of the other things I am used
+              to, such as a design department a strong engineering culture of
+              design-focus, it has been a fun journey trying to identify what
+              things are actually useful to fight for, and what things are not
+              needed yet. Series A start-ups are hard!
+            </li>
+            <li className={styles.sectionContentItem}>
+              The longer I spend doing front-end focused work in start-up
+              culture, the more I wonder if I would be better suited to either
+              diversify into a more generic skill-set (which would probably be
+              better if I want to be a first-four engineer) or slide back
+              towards Fortune 500 companies. It is hard to feel like you are
+              helping your co-workers as much as you could be while still
+              staying specialized.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              Movies have still had a hold on my heart, with weekly movie nights
+              which range from the silly with{' '}
+              <a href="https://www.imdb.com/title/tt0091064/">The Fly</a>, to
+              the serious with{' '}
+              <a href="https://www.imdb.com/title/tt0054997/">The Hustler</a>.
+            </li>
+            <li className={styles.sectionContentItem}>
+              Reading snuck up on me, which I discovered when I realized that I
+              have{' '}
+              <a href="https://www.goodreads.com/user/show/55606019-mark-katerberg">
+                read seventy books this year
+              </a>
+              . Some of the stand-outs were{' '}
+              <a href="https://www.goodreads.com/book/show/55660735-hero-of-two-worlds">
+                a biography of Lafayette
+              </a>
+              , a{' '}
+              <a href="https://www.goodreads.com/book/show/40109367-dare-to-lead">
+                leadership book
+              </a>
+              , and{' '}
+              <a href="https://www.goodreads.com/book/show/60531406-tress-of-the-emerald-sea">
+                one of the latest by Sanderson
+              </a>
+              .
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              I have largely been spending my time gaming on casual mobile
+              games, such as Marvel Snap and Pokemon Go. Although I have done
+              well with them, they alternate between boredom-fillers and chores.
+              I look forward to the kiddos being old enough to spend more time
+              without direct involvement so I can play games that require more
+              continual focus, but I genuinely love that I am choosing to spend
+              my time focusing on them instead of trying to play games.
+            </li>
+            <li className={styles.sectionContentItem}>
+              Table-top role playing games are even more of a time commitment,
+              but I recently ran{' '}
+              <a href="https://www.pennydragon.games/product/the-fight-before-christmas-pdf/">
+                a holiday one-off
+              </a>{' '}
+              that was fun because it was low-stakes and let me still get a
+              little invested with a group of friends.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              My free time creating has been largely focused on{' '}
+              <a href="https://stlotus.org">St Lotus</a> this quarter. Not only
+              did I play in an event in Chicago (where we soundly defeated
+              them), but I also ran another event in St Louis. On top of all of
+              that, I have started creating{' '}
+              <a href="https://www.youtube.com/@stlotus/shorts">
+                YouTube Shorts
+              </a>{' '}
+              in consumable one minute videos talking about Vintage Rotisserie
+              Draft which has recaptured some of the fun for it for me.
+            </li>
+            <li className={styles.sectionContentItem}>
+              Since I know that the next{' '}
+              <a href="https://7drl.com/">7 Day RogueLike</a> is happening in
+              March, I’ve been toying around with a framework for making a
+              traditional roguelike. It’s still more chore than fun at this
+              point, but my hope is that if I get it to a useable state, it will
+              make the game development during the game-jam more focused on
+              mechanics and fun than on rote-coding.
+            </li>
+          </ul>
+        </section>
+        <section className={styles.section}>
+          <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
+          <ul className={styles.sectionContent}>
+            <li className={styles.sectionContentItem}>
+              How to keep energy more consistent with the kids. I love that I
+              can spend time with them and devote my life to making theirs as
+              good as I can, but in my worst moments, I know that I am being
+              dismissive. I don’t want to flood them with affection one moment
+              and stand-off the next, so I’m thinking of ways to remind them
+              that I love them even when I can’t deal with them in those
+              moments.
+            </li>
+            <li className={styles.sectionContentItem}>
+              What work means when it isn’t something I want to be the focal
+              point for my life. I still care about helping others, but it isn’t
+              something that I want to spend the majority of my waking day
+              thinking about, and finding a way to accept that it likely means
+              letting some aspirations go is a thing I am dealing with.
+            </li>
+          </ul>
+        </section>
         <p className={styles.lastUpdated}>{'Updated 2023-08-06'}</p>
         <section className={styles.section}>
           <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
