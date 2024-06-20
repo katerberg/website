@@ -12,6 +12,7 @@ module.exports = {
       '/': { page: '/' },
       '/now': { page: '/now' },
       '/mtg': { page: '/mtg' },
+      '/privacy': { page: '/privacy' },
       '/web-dev': { page: '/web-dev' },
     };
   },
