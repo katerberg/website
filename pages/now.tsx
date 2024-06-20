@@ -9,8 +9,12 @@ import neemLogan from '../images/now/2023-05-neem-logan.png';
 import kittyWave from '../images/now/2023-08-kitty-wave.png';
 import arch from '../images/now/2023-12-arch.png';
 import shoes from '../images/now/2023-12-shoes.png';
+<<<<<<< Updated upstream
 import eclipse from '../images/now/2024-04-eclipse.png';
 import bike from '../images/now/2024-04-bike.png';
+=======
+import NowSection from '../components/NowSection';
+>>>>>>> Stashed changes
 
 function Now() {
   return (
@@ -21,6 +25,7 @@ function Now() {
           {'This is a ”now page“, and you should make one too.'}
         </a>
       </p>
+<<<<<<< Updated upstream
       <p className={styles.lastUpdated}>{'Updated 2024-04-10'}</p>
       <section className={styles.section}>
         <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
@@ -59,6 +64,31 @@ function Now() {
           />
         </div>
       </section>
+=======
+      <p className={styles.lastUpdated}>{'Updated 2023-12-25'}</p>
+      <NowSection
+        header="👨‍👩‍👧‍👦 Family"
+        sections={[
+          'Everyone is back to relatively good health and we are exploring the world together. I’ve been trying to prioritize going outside with the kiddos more while we have the opportunity, which led us to going up in the Arch.',
+          'One of the things I try to focus on with little kiddos is how to ensure that we don’t just get focused on the day to day, but can actually build traditions that they will remember. One of the biggest for me is cultural heritage, particularly around St Nicholas Day, where we put out wooden shoes and fill them with oranges and treats for the kids.',
+          'For Christmas this year, we were separated from each other since Neem and Ororo hung back in St Louis, while Logan and I went to Grand Rapids to spend the holiday with my parents. It was so nice to share some of my holiday traditions with him, but also sad to miss Christmas with the girls.',
+        ]}
+        images={[
+          <Image
+            key="arch"
+            alt="All of us crowded into the Arch Pod"
+            height={300}
+            src={arch}
+          />,
+          <Image
+            key="shoes"
+            alt="Rory looking contemplatively at wooden shoes with carrots in them"
+            height={300}
+            src={shoes}
+          />,
+        ]}
+      />
+>>>>>>> Stashed changes
       <section className={styles.section}>
         <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
         <ul className={styles.sectionContent}>
