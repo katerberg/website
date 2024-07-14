@@ -90,7 +90,7 @@ function Now() {
               rather than hard-hitting dramas.
             </li>
             <li className={styles.sectionContentItem}>
-              I finished the last books of Olivia Butler’s, and can now confirm
+              I finished the last books of Octavia Butler’s, and can now confirm
               her as my favorite author.{' '}
               <a href="https://www.goodreads.com/book/show/60932.Parable_of_the_Talents">
                 Parable of the Talents
