@@ -13,6 +13,8 @@ import eclipse from '../images/now/2024-04-eclipse.png';
 import bike from '../images/now/2024-04-bike.png';
 import xmen from '../images/now/2024-07-xmen.png';
 import cousins from '../images/now/2024-07-cousins.png';
+import desserts from '../images/now/2024-09-desserts.png';
+import london from '../images/now/2024-09-london.png';
 
 function Now() {
   return (
@@ -24,39 +26,34 @@ function Now() {
         </a>
       </p>
       <div>
-        <p className={styles.lastUpdated}>{'Updated 2024-07-13'}</p>
+        <p className={styles.lastUpdated}>{'Updated 2024-09-02'}</p>
         <section className={styles.section}>
           <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              Our family is wonderful, with many trips to see the extended
-              family (two to Austin and two to Chicago this quarter!) and it is
-              wonderful to see the kiddos building great memories with their
-              cousins.
+              We’ve made a tradition of going out for a meal together as a
+              family on one day per weekend, and it has been a blast to see the
+              kiddos grow into polite restaurant children even if they can still
+              be monsters sometimes.
             </li>
             <li className={styles.sectionContentItem}>
-              Logan has been riding his bike often, while Ororo is far more
-              nervous around her trike, but is still a good sport because she
-              wants to keep up with her brother. Neem has been venturing out
-              more on family walks and it is good to be able to spend time
-              outdoors as a family, including an aborted camping trip that got
-              flash-flooded.
-            </li>
-            <li>
-              Despite the ridiculousness of the situation, we all went to the
-              UFL Championship Football Game hosted in STL.
+              Neem and I went to London for a trip to see Taylor Swift, but she
+              was kind enough to let me see a bunch of historical sites as well.
+              Stonehenge was a bore, but the inside of Parliament and Windsor
+              were huge highlights. The concert was very cool as well, both from
+              a vibes-aspect as well as the sheer technical achievement of it.
             </li>
           </ul>
           <div className={styles.familyImages}>
             <Image
-              alt="Logan, Ororo, and me standing in front of a X-Men sign dressed up at the Science Center."
-              height={300}
-              src={xmen}
+              alt="Logan and Mark making a silly face in front of two tiny sundaes."
+              height={400}
+              src={desserts}
             />
             <Image
-              alt="Cousins, Neem, and Bethany at an impromptu photoshoot"
-              height={300}
-              src={cousins}
+              alt="Neem and Mark in front of Big Ben"
+              height={400}
+              src={london}
             />
           </div>
         </section>
@@ -64,18 +61,17 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              I am stil at <a href="https://www.opslevel.com/">OpsLevel</a> and
-              enjoying it. There is much more dreaming about the future and
-              hoping that things are set up to make those dreams a possibility.
-              Assuming that the company can deliver on some big initiatives that
-              we are aiming for, it would be really cool to be able to help
-              level up the product in a bunch of ways that we know we want to
-              do.
+              I am still at <a href="https://www.opslevel.com/">OpsLevel</a> and
+              having fun with lots of little learnings, such as drag-and-drop
+              libraries. Still looking forward to the future, but it is nice to
+              see technical investments that and re-organizations to support it.
             </li>
             <li className={styles.sectionContentItem}>
-              I have been spending more time doing back-end Rails work, which I
-              really do not generally enjoy, but being able to help with stuff
-              that needs to get done regardless of skill-set is a nice feeling.
+              The biggest challenge has been trying to move quickly with
+              experimental items (which is very fun) while also making sure they
+              are built in a way to be supported by others, which is tricky
+              given the lack of time to productionize them. It largely feels
+              like being a sales engineer.
             </li>
           </ul>
         </section>
@@ -83,21 +79,22 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              Movie night is great, largely leaning more towards fun movies like{' '}
-              <a href="https://www.imdb.com/title/tt0116629/">
-                Independence Day
+              On family movie night, we have been watching{' '}
+              <a href="https://www.imdb.com/title/tt10285320/">
+                Lego Masters Australia
               </a>{' '}
-              rather than hard-hitting dramas.
+              which I fully admit is not a movie, but I will not complain. I am
+              also re-watching{' '}
+              <a href="https://www.imdb.com/title/tt0200276">The West Wing</a>{' '}
+              as is a semi-yearly tradition.
             </li>
             <li className={styles.sectionContentItem}>
-              I finished the last books of Octavia Butler’s, and can now confirm
-              her as my favorite author.{' '}
-              <a href="https://www.goodreads.com/book/show/60932.Parable_of_the_Talents">
-                Parable of the Talents
-              </a>{' '}
-              hit me really hard, and possibly due to the election, and possibly
-              just due to being more in tune with my own mortality due to my
-              children, it’s been in my thoughts a lot.
+              While we were in London, Neem and I spent most of the time reading
+              books, which was delightful. The stand-out was a{' '}
+              <a href="https://www.goodreads.com/book/show/40864002-a-psalm-for-the-wild-built">
+                meditation on being disguised as a sci-fi novel
+              </a>
+              .
             </li>
           </ul>
         </section>
@@ -105,22 +102,25 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              Traditional rogue-likes have been more in my focus recently, with{' '}
-              <a href="https://store.steampowered.com/app/811320/Jupiter_Hell/">
-                Jupiter Hell
+              <a href="https://store.steampowered.com/app/1868140/DAVE_THE_DIVER/">
+                Dave the Diver
               </a>{' '}
-              being the most addictive. I am not at the point in my life when I
-              can dive really deep into wikis or even into perfecting game-play,
-              but it is a nice step back into challenge while allowing me to
-              step out of the game if I need to handle the kids.
+              has been a fun game that is playable in small chunks and is great
+              to play with the kiddos in the room. When they’re not around, I
+              have found{' '}
+              <a href="https://store.steampowered.com/app/1313140/Cult_of_the_Lamb/">
+                Cult of the Lamb
+              </a>{' '}
+              to be a fun Binding of Isaac clone that is definitely not
+              child-appropriate.
             </li>
             <li className={styles.sectionContentItem}>
-              The physical copy of{' '}
-              <a href="https://boardgamegeek.com/boardgame/338960/slay-the-spire-the-board-game">
-                Slay the Spire
+              Physical games have been tough to get to the table, but{' '}
+              <a href="https://boardgamegeek.com/boardgame/162886/spirit-island">
+                Spirit Island
               </a>{' '}
-              was a nice addition to my board game collection, as well as the
-              first single-player board game that I had fun with.
+              is a great one that and it’s been an easy one to play in 2-3 hours
+              after kid bedtime
             </li>
           </ul>
         </section>
@@ -128,28 +128,23 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              Vintage Rotisserie Draft went well this quarter, but I have put
-              the quarterly cadence on a hiatus after over 5 years. We are still
-              going to play the events, but trying to get the Twitch streaming
-              working and not being able to audible if people cannot make it was
-              just very stressful.
+              We played another Vintage Rotisserie Draft and it was fun with
+              less stress about making the stream perfect. I didn’t do great,
+              but it was still relaxed. I’m trying to do some{' '}
+              <a href="https://www.youtube.com/watch?v=Rd74cqqCrqA">
+                content afterwards
+              </a>
+              .
             </li>
             <li className={styles.sectionContentItem}>
-              <a href="https://apps.apple.com/us/app/friends-builder/id1529389123">
-                Friends Builder
-              </a>{' '}
-              was my first app release! While I enjoyed the experience of
-              getting an app out there and able to be used, I feel like the end
-              of the experience left me mostly disappointed in all the things I
-              could not do rather than happy about having finished it. There is
-              still plenty I could add to it, but the effort versus the benefit
-              feels like it hard to justify.
-            </li>
-            <li className={styles.sectionContentItem}>
-              I am spending some time making a base for building traditional
-              roguelikes (previously I was working on a much more ambitious
-              project with a similar ethos called Splinter) that hopefully will
-              let me prototype roguelike ideas much faster.
+              Despite not really knowing what I am doing with art at all, I have
+              been playing around with making some{' '}
+              <a href="https://mastodonapp.uk/@katerberg/112933568574664906">
+                pixel art
+              </a>
+              . It is interesting to learn about how deep it goes, and I mostly
+              just wish that I had the mental endurance to be able to tackle
+              them after a full day of work. Context switching is hard!
             </li>
           </ul>
         </section>
@@ -157,20 +152,18 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              How to stay focused on projects after the initial luster wears
-              off. Whether it is a game I am making, a hobby, or even a video
-              game that I want to play, I find that my lack of{' '}
-              <a href="https://www.goodreads.com/book/show/27213329-grit">
-                Grit
-              </a>{' '}
-              has really been holding me back and I want to get better at it.
+              It is really hard to find the energy to do things after work and
+              bedtime for the kids. It seems like there’s a narrow window where
+              I have time to do side-projects but before I start winding down
+              (since my brain goes buzz while I need to sleep if I write code
+              after 10pm) and I can’t use it effectively.
             </li>
             <li className={styles.sectionContentItem}>
-              Continuing my focus on time with the children, particularly Rory.
-              It is easy to make sure to go on adventures with Logan because he
-              wants to and gives me actual feedback afterwards, but it is
-              equally important with Rory even though she is too little to be
-              able to express herself.
+              Spending quality time with the kiddos. Knowing that my phone will
+              always be small but my children won’t be is incredibly true, but
+              in the moments where I feel brain-dead or annoyed, it is hard to
+              muster the self-control to still engage with them in the way they
+              deserve.
             </li>
           </ul>
         </section>
@@ -179,6 +172,162 @@ function Now() {
       <hr />
       <h2>{'History'}</h2>
       <div className={styles.history}>
+        <div>
+          <p className={styles.lastUpdated}>{'Updated 2024-07-13'}</p>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                Our family is wonderful, with many trips to see the extended
+                family (two to Austin and two to Chicago this quarter!) and it
+                is wonderful to see the kiddos building great memories with
+                their cousins.
+              </li>
+              <li className={styles.sectionContentItem}>
+                Logan has been riding his bike often, while Ororo is far more
+                nervous around her trike, but is still a good sport because she
+                wants to keep up with her brother. Neem has been venturing out
+                more on family walks and it is good to be able to spend time
+                outdoors as a family, including an aborted camping trip that got
+                flash-flooded.
+              </li>
+              <li>
+                Despite the ridiculousness of the situation, we all went to the
+                UFL Championship Football Game hosted in STL.
+              </li>
+            </ul>
+            <div className={styles.familyImages}>
+              <Image
+                alt="Logan, Ororo, and me standing in front of a X-Men sign dressed up at the Science Center."
+                height={300}
+                src={xmen}
+              />
+              <Image
+                alt="Cousins, Neem, and Bethany at an impromptu photoshoot"
+                height={300}
+                src={cousins}
+              />
+            </div>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                I am still at <a href="https://www.opslevel.com/">OpsLevel</a>{' '}
+                and enjoying it. There is much more dreaming about the future
+                and hoping that things are set up to make those dreams a
+                possibility. Assuming that the company can deliver on some big
+                initiatives that we are aiming for, it would be really cool to
+                be able to help level up the product in a bunch of ways that we
+                know we want to do.
+              </li>
+              <li className={styles.sectionContentItem}>
+                I have been spending more time doing back-end Rails work, which
+                I really do not generally enjoy, but being able to help with
+                stuff that needs to get done regardless of skill-set is a nice
+                feeling.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                Movie night is great, largely leaning more towards fun movies
+                like{' '}
+                <a href="https://www.imdb.com/title/tt0116629/">
+                  Independence Day
+                </a>{' '}
+                rather than hard-hitting dramas.
+              </li>
+              <li className={styles.sectionContentItem}>
+                I finished the last books of Octavia Butler’s, and can now
+                confirm her as my favorite author.{' '}
+                <a href="https://www.goodreads.com/book/show/60932.Parable_of_the_Talents">
+                  Parable of the Talents
+                </a>{' '}
+                hit me really hard, and possibly due to the election, and
+                possibly just due to being more in tune with my own mortality
+                due to my children, it’s been in my thoughts a lot.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                Traditional rogue-likes have been more in my focus recently,
+                with{' '}
+                <a href="https://store.steampowered.com/app/811320/Jupiter_Hell/">
+                  Jupiter Hell
+                </a>{' '}
+                being the most addictive. I am not at the point in my life when
+                I can dive really deep into wikis or even into perfecting
+                game-play, but it is a nice step back into challenge while
+                allowing me to step out of the game if I need to handle the
+                kids.
+              </li>
+              <li className={styles.sectionContentItem}>
+                The physical copy of{' '}
+                <a href="https://boardgamegeek.com/boardgame/338960/slay-the-spire-the-board-game">
+                  Slay the Spire
+                </a>{' '}
+                was a nice addition to my board game collection, as well as the
+                first single-player board game that I had fun with.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                Vintage Rotisserie Draft went well this quarter, but I have put
+                the quarterly cadence on a hiatus after over 5 years. We are
+                still going to play the events, but trying to get the Twitch
+                streaming working and not being able to audible if people cannot
+                make it was just very stressful.
+              </li>
+              <li className={styles.sectionContentItem}>
+                <a href="https://apps.apple.com/us/app/friends-builder/id1529389123">
+                  Friends Builder
+                </a>{' '}
+                was my first app release! While I enjoyed the experience of
+                getting an app out there and able to be used, I feel like the
+                end of the experience left me mostly disappointed in all the
+                things I could not do rather than happy about having finished
+                it. There is still plenty I could add to it, but the effort
+                versus the benefit feels like it hard to justify.
+              </li>
+              <li className={styles.sectionContentItem}>
+                I am spending some time making a base for building traditional
+                roguelikes (previously I was working on a much more ambitious
+                project with a similar ethos called Splinter) that hopefully
+                will let me prototype roguelike ideas much faster.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                How to stay focused on projects after the initial luster wears
+                off. Whether it is a game I am making, a hobby, or even a video
+                game that I want to play, I find that my lack of{' '}
+                <a href="https://www.goodreads.com/book/show/27213329-grit">
+                  Grit
+                </a>{' '}
+                has really been holding me back and I want to get better at it.
+              </li>
+              <li className={styles.sectionContentItem}>
+                Continuing my focus on time with the children, particularly
+                Rory. It is easy to make sure to go on adventures with Logan
+                because he wants to and gives me actual feedback afterwards, but
+                it is equally important with Rory even though she is too little
+                to be able to express herself.
+              </li>
+            </ul>
+          </section>
+        </div>
         <div>
           <p className={styles.lastUpdated}>{'Updated 2024-04-10'}</p>
           <section className={styles.section}>
