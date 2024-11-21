@@ -25,7 +25,7 @@ function WebDevelopment() {
       </p>
       <section>
         <article className={styles.application}>
-          <a href="https://github.com/katerberg/ric-rac-rogue">
+          <a href="https://katerberg.github.io/ric-rac-rogue/">
             <Image
               alt="Tic-Tac-Toe game with some power-ups and neon lights"
               height={200}
