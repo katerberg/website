@@ -13,6 +13,7 @@ import katerwedding from '../images/applications/katerwedding.png';
 import pathfinder from '../images/applications/pathfinder.png';
 import minesweeper from '../images/applications/minesweeper.png';
 import ricRacRogue from '../images/applications/ric-rac-rogue.png';
+import friendsBuilder from '../images/applications/friends-builder.png';
 
 function WebDevelopment() {
   return (
@@ -24,6 +25,37 @@ function WebDevelopment() {
         }
       </p>
       <section>
+        <article className={styles.application}>
+          <a href="https://apps.apple.com/us/app/friends-builder/id1529389123?platform=iphone">
+            <Image
+              alt="An entry screen for putting in your hangouts with friends"
+              height={200}
+              src={friendsBuilder}
+            />
+          </a>
+          <main>
+            <h2>{'Friends Builder'}</h2>
+            <h3>{'June 2024'}</h3>
+            <p>
+              Help keep up with friends that you don’t talk with as much as
+              you’d like. A way to log times that you see your friends and to
+              set up reminders to stay in touch with the ones that live far away
+              or that you miss hanging out with.
+            </p>
+            <a
+              className={styles.applicationLink}
+              href="https://apps.apple.com/us/app/friends-builder/id1529389123?platform=iphone"
+            >
+              {'Link to Application'}
+            </a>
+            <a
+              className={styles.applicationLink}
+              href="https://github.com/katerberg/friend-builder"
+            >
+              {'Link to Code'}
+            </a>
+          </main>
+        </article>
         <article className={styles.application}>
           <a href="https://katerberg.github.io/ric-rac-rogue/">
             <Image
