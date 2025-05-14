@@ -3,7 +3,7 @@ import styles from '../styles/AboutMe.module.scss';
 import redditLogo from '../images/logos/reddit-logo.svg';
 import githubLogo from '../images/logos/github-logo.svg';
 import mastodonLogo from '../images/logos/mastodon-logo.svg';
-import twitterLogo from '../images/logos/twitter-logo.svg';
+import goodReadsLogo from '../images/logos/good-reads-logo.svg';
 
 const Home = () => {
   return (
@@ -31,9 +31,9 @@ const Home = () => {
           src={mastodonLogo}
         />
         <FollowIcon
-          alt="Twitter Logo"
-          link="https://katerberg.github.io/tweetback/"
-          src={twitterLogo}
+          alt="GoodReads Logo"
+          link="https://www.goodreads.com/user/show/55606019"
+          src={goodReadsLogo}
         />
       </div>
       <p>
