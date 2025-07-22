@@ -59,6 +59,18 @@ function Mtg() {
           />
         </li>
         <li>
+          <a href="https://moxfield.com/decks/UAjhAJv_oEyFVyffgrcmMA">
+            {'Sauron, the Dark Lord'}
+          </a>
+          <iframe
+            id="sauron-the-dark-lord"
+            style={{ border: 'none' }}
+            onLoad={moxfieldInit}
+            src="https://www.moxfield.com/embed/UAjhAJv_oEyFVyffgrcmMA"
+            width="100%"
+          />
+        </li>
+        <li>
           <a href="https://www.moxfield.com/decks/HUC4WcumRka3EHcKHAivvg">
             {'Glissa Recursion'}
           </a>
@@ -67,6 +79,18 @@ function Mtg() {
             style={{ border: 'none' }}
             onLoad={moxfieldInit}
             src="https://www.moxfield.com/embed/HUC4WcumRka3EHcKHAivvg"
+            width="100%"
+          />
+        </li>
+        <li>
+          <a href="https://moxfield.com/decks/q-ohXhoWr0-EG2F8vOZCSw">
+            {'Massacre Girl, Known Killer'}
+          </a>
+          <iframe
+            id="massacre-girl"
+            style={{ border: 'none' }}
+            onLoad={moxfieldInit}
+            src="https://www.moxfield.com/embed/q-ohXhoWr0-EG2F8vOZCSw"
             width="100%"
           />
         </li>
