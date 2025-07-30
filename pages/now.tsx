@@ -19,6 +19,8 @@ import christmas from '../images/now/2025-02-christmas.png';
 import airplaneBed from '../images/now/2025-02-airplane-bed.png';
 import schoolShirts from '../images/now/2025-05-school-shirts.png';
 import scoutsLifeJackets from '../images/now/2025-05-scouts.png';
+import dutchVillage from '../images/now/2025-07-dutch.png';
+import kansasCityHoldingKids from '../images/now/2025-07-kc.png';
 
 function Now() {
   return (
@@ -30,47 +32,47 @@ function Now() {
         </a>
       </p>
       <div>
-        <p className={styles.lastUpdated}>{'Updated 2025-05-14'}</p>
+        <p className={styles.lastUpdated}>{'Updated 2025-07-29'}</p>
         <section className={styles.section}>
           <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              The kids got to spend time with their cousins since we went on a
-              trip to the{' '}
-              <a href="https://crownridgetigers.com/">
-                Crown Ridge Tiger Sanctuary
-              </a>{' '}
-              for Bethany and my birthday. Seeing the Tigers from 4 feet away
-              and learning about them was great, but the time together (with a
-              surprise visit by Tim and his family) was the true magic.
+              Our family has been on several trips together this summer,
+              including two trips to Michigan where the kids got to see their
+              grandparents and some cousins at{' '}
+              <a href="https://www.dutchvillage.com/">Dutch Village</a>, a
+              Dutch-themed amusement park that was a core memory of my
+              childhood.
             </li>
             <li className={styles.sectionContentItem}>
-              Neem went on a bunch of trips for work, but Logan and I went on a
-              Cub Scouts Camporee at{' '}
-              <a href="https://stlbsa.org/properties/s-bar-f-scout-ranch/">
-                S-F Scout Ranch
-              </a>
-              . It involved fishing, canoeing, sleeping on the ground, and
-              learning safety techniques of all sorts.
+              Our nuclear family went to Kansas City with no agenda, and it was
+              a reminder that low-stakes road trips are really my favorite. It
+              can be wonderful to visit with others, but the people I love most
+              are often the ones I take for granted, and it is just wonderful to
+              spend time together when we are not trying to rush to something in
+              particular. We spent almost three hours in{' '}
+              <a href="https://levelonegameshop.com/">Level One</a>, a local
+              board game shop just showing each other things we liked.
             </li>
             <li className={styles.sectionContentItem}>
-              We went to the Red Wings vs Blues game, per a somewhat annual
-              tradition, and this time, instead of going with Neem, I went with
-              Logan and a few friends. It was a great time that ended with Logan
-              nearly falling asleep on the MetroLink and talking about it for
-              days.
+              Neem went to Italy on a cheese trip and also took her regular
+              Mother’s Day weekend in a hotel. I went on a couple trips with
+              friends without her or the kids. All of these trips without each
+              other were really nice to remember why I like her enough to miss
+              her. It can be hard to both work in the same place that you live
+              together all the time, regardless of how much you love each other!
             </li>
           </ul>
           <div className={styles.familyImages}>
             <Image
-              alt="Mark and Logan wearing Cub Scouts life jackets"
-              height={400}
-              src={scoutsLifeJackets}
+              alt="The extended family at Dutch Village in front of an antique pipe organ"
+              height={300}
+              src={dutchVillage}
             />
             <Image
-              alt="Ororo and Logan outside of their school"
-              height={400}
-              src={schoolShirts}
+              alt="Me holding Logan and Ororo in Kansas City"
+              height={300}
+              src={kansasCityHoldingKids}
             />
           </div>
         </section>
@@ -78,21 +80,19 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              I made a tough decision to leave{' '}
-              <a href="https://www.opslevel.com/">OpsLevel</a> to go to{' '}
-              <a href="https://www.maestroqa.com/">Maestro QA</a>. It is a
-              start-up that is focused on making call centers and customer
-              support better. Since all of the funding in the world is currently
-              only going to AI-focused areas, I wanted to be in that space, but
-              most of the use-cases are pretty suspect to me. This company has
-              actually compelling use-cases that are focused on the problems
-              instead of on the technology.
+              <a href="https://www.maestroqa.com/">Maestro QA</a> is going well
+              and I have two work trips scheduled, which is more than what I did
+              in my entire last two years at my previous company. It is really
+              hard starting at a new company without knowing anyone, but things
+              are going well even though I am doing more infrastructure and
+              architecture work than I anticipated.
             </li>
             <li className={styles.sectionContentItem}>
-              It sounds like I will be going to to be traveling about once a
-              quarter for meet-ups with the team, which I am hoping will really
-              help me stay engaged, since I thrive on the uplifting energy in my
-              workplace, and that is a tricky thing to do purely remotely.
+              Some of the struggles with chaotic start-ups are hitting me, but
+              it is largely just the lack of clear direction on what I need to
+              be doing given that there is so much opportunity to choose my own
+              adventure there. I am looking forward to doing more
+              customer-facing features soon.
             </li>
           </ul>
         </section>
@@ -100,30 +100,34 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              Movie Night every week is still a high-point of my week, with more
-              silly films this quarter like{' '}
-              <a href="https://www.imdb.com/title/tt0106697/">Demolition Man</a>{' '}
-              and{' '}
-              <a href="https://www.imdb.com/title/tt0029947">
-                Bringing Up Baby
+              Lots of movies as always, including
+              <a href="https://mastodonapp.uk/@katerberg/114894854141018546">
+                Superman
               </a>
-              , but also with harder hitting films like{' '}
-              <a href="https://www.imdb.com/title/tt0056801/">8½</a>.
+              , which was a delightfully campy romp, but the stand-out was
+              <a href="https://mastodonapp.uk/@katerberg/114874743492835087">
+                Fantastic Mr Fox
+              </a>
+              , which is shocking because I find Wes Anderson to be fairly
+              yawn-worthy most of the time.
             </li>
             <li className={styles.sectionContentItem}>
-              I am always reading 2-3 books at once, but the most impactful so
-              far this quarter has been{' '}
-              <a href="https://www.goodreads.com/book/show/24800.House_of_Leaves">
-                House of Leaves
+              Now fully caught up on the
+              <a href="https://www.goodreads.com/series/309211-dungeon-crawler-carl">
+                Dungeon Crawler Carl
+              </a>{' '}
+              series, I am kinda bummed that I have to wait for the next one
+              until 2026. They are violent, offensive, and downright silly, but
+              they have kept my interest and excitement like no series since{' '}
+              <a href="https://www.goodreads.com/series/192752-bobiverse">
+                Bobiverse
               </a>
-              , which is a strange-horror book that is the most ambitious
-              non-religious text I have encountered. I am looking forward to
-              finishing it to have more thoughts, but you can always track what
-              I am reading at my{' '}
-              <a href="https://www.goodreads.com/user/show/55606019">
-                GoodReads
+              . Having a break from them has let me start digging back into{' '}
+              <a href="https://www.goodreads.com/author/show/38550.Brandon_Sanderson">
+                Sanderson
               </a>
-              .
+              , who has more books than a human could expect to read in a
+              decade.
             </li>
           </ul>
         </section>
@@ -131,25 +135,20 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              I was gifted a{' '}
-              <a href="https://www.msi.com/Handhelds/Claw-7-AI-Plus-A2VMX">
-                MSI Claw
-              </a>{' '}
-              handheld gaming computer which has re-sparked my interest in a
-              bunch of games I have been unable to play on Mac computers, so my{' '}
-              <a href="https://steamcommunity.com/profiles/76561198049021576/">
-                Steam
-              </a>{' '}
-              profile has been more active than usual.
+              In the past two months, I have gone on three board game trips. One
+              to Las Vegas for some light gambling, one to{' '}
+              <a href="https://geekway.com/">Geekway</a> for four days of
+              complicated board games, and one to BenCon at the{' '}
+              <a href="https://gamersranch.com/">Gamers Ranch</a>.
             </li>
             <li className={styles.sectionContentItem}>
-              <a href="https://store.steampowered.com/app/1835240/Spiritfall/">
-                Spiritfall
-              </a>{' '}
-              (Super Smash Bros mixed with Hades) has probably been the biggest
-              winner of my time recently, but there have just been a lot of new
-              games that I’ve been able to try and I am enjoying the
-              exploration.
+              In video game world, I have mostly logged hours into{' '}
+              <a href="https://store.steampowered.com/app/2084000/Shogun_Showdown/">
+                Shogun Showdown
+              </a>
+              , where I completed all of the achievements other than one, which
+              would take at least 100 hours more to get, so I will probably take
+              a break from that for a while.
             </li>
           </ul>
         </section>
@@ -157,23 +156,20 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              This year I opted to skip the{' '}
-              <a href="https://itch.io/jam/7drl-challenge-2025">
-                7 Day Roguelike
-              </a>{' '}
-              since life was just a bit too chaotic. I really missed out on it
-              and there are a few game ideas that are spinning in my head even
-              though none of them fit cleanly in the “Roguelike” genre.
+              Not much has been happening for my creative outlets recently since
+              most of my energy has been driving into work and family
+              obligations. It was pretty disheartening to have my five week gap
+              in work basically get eaten alive by acts of god that knocked kids
+              out of school, but at least it is a good reason to not feel mad at
+              myself about not getting a game out the door in that time.
             </li>
             <li className={styles.sectionContentItem}>
-              One of the biggest ideas I have had is just to clean up some of my
-              previous 7DRLs into releasable Steam games that are $5. It would
-              require some time, and require learning how to publish things, but
-              it would be nice to have them available for people to play as more
-              than just tech demos. The thing holding me back is the lack of
-              time constraint on the process. Since it is not a one-week
-              project, the games feel like they are likely to seem incomplete
-              rather than a nice example of what is doable in 7 days.
+              One of my struggles has been that a lot of the joy I get from
+              exploring development happens while I am completing the rote tasks
+              needed in development, and those can largely be done by AI, which
+              gives my brain very little time to bask and explore. I am trying
+              to supplement this with walks or other creativity-driving
+              endeavors, but not having much luck with it yet.
             </li>
           </ul>
         </section>
@@ -181,22 +177,27 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              How to function with ADHD. I have gone to therapy for a month or
-              so, but feel like most of the therapy has been intellectualizing
-              the experiences rather than trying new strategies to be better
-              able to accomplish goals. Some of this certainly comes from the
-              lack of concrete goals, but it is all connected since the lack of
-              goal-setting comes from the likely inability to achieve them to
-              the level that makes me happy (all-or-nothing thinking, which is
-              deeply common in ADHD).
+              What a good marriage looks like. We are looking at{' '}
+              <a href="https://www.toyota.com/sienna/">minivans</a> and finding
+              places where we compromise without becoming resentful of each
+              other is hard even though we share 95% of our values. Being a good
+              spouse and parent is absolutely the priority, and doing so in a
+              way that keeps me as a whole person that is adding to those
+              relationships is a constant balancing.
             </li>
             <li className={styles.sectionContentItem}>
-              What do to after school for the kiddos. There is a about a
-              two-hour window of time after pick up where they need to eat, get
-              ready for bed, and ideally have some family experiences that are
-              positive. It is hard to find the right things to fit in the 30-60
-              minute window of time to help them feel like a part of the family
-              without making the necessary activities fall through the cracks.
+              How to prioritize friendships without feeling drained. As much as
+              I value seeing people, it can be really tiring and I enjoy time
+              just being able to process things alone. Some of the friendships I
+              value most are the ones where we go on walks or just wander
+              talking about things instead of doing an activity (even one as
+              simple as dinner) and I want to foster those types of activities
+              more. It feels like it is much easier to actually build deep
+              relationships when you are not focused on an activity, but
+              obviously that is not a thing you can just jump into. Finding a
+              way to transition from a lighter form of friendship that centers
+              around activity into a deeper form that centers around caring for
+              and fostering each other’s goals is not easy.
             </li>
           </ul>
         </section>
@@ -205,6 +206,184 @@ function Now() {
       <hr />
       <h2>{'History'}</h2>
       <div className={styles.history}>
+        <div>
+          <p className={styles.lastUpdated}>{'Updated 2025-05-14'}</p>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                The kids got to spend time with their cousins since we went on a
+                trip to the{' '}
+                <a href="https://crownridgetigers.com/">
+                  Crown Ridge Tiger Sanctuary
+                </a>{' '}
+                for Bethany and my birthday. Seeing the Tigers from 4 feet away
+                and learning about them was great, but the time together (with a
+                surprise visit by Tim and his family) was the true magic.
+              </li>
+              <li className={styles.sectionContentItem}>
+                Neem went on a bunch of trips for work, but Logan and I went on
+                a Cub Scouts Camporee at{' '}
+                <a href="https://stlbsa.org/properties/s-bar-f-scout-ranch/">
+                  S-F Scout Ranch
+                </a>
+                . It involved fishing, canoeing, sleeping on the ground, and
+                learning safety techniques of all sorts.
+              </li>
+              <li className={styles.sectionContentItem}>
+                We went to the Red Wings vs Blues game, per a somewhat annual
+                tradition, and this time, instead of going with Neem, I went
+                with Logan and a few friends. It was a great time that ended
+                with Logan nearly falling asleep on the MetroLink and talking
+                about it for days.
+              </li>
+            </ul>
+            <div className={styles.familyImages}>
+              <Image
+                alt="Mark and Logan wearing Cub Scouts life jackets"
+                height={300}
+                src={scoutsLifeJackets}
+              />
+              <Image
+                alt="Ororo and Logan outside of their school"
+                height={300}
+                src={schoolShirts}
+              />
+            </div>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                I made a tough decision to leave{' '}
+                <a href="https://www.opslevel.com/">OpsLevel</a> to go to{' '}
+                <a href="https://www.maestroqa.com/">Maestro QA</a>. It is a
+                start-up that is focused on making call centers and customer
+                support better. Since all of the funding in the world is
+                currently only going to AI-focused areas, I wanted to be in that
+                space, but most of the use-cases are pretty suspect to me. This
+                company has actually compelling use-cases that are focused on
+                the problems instead of on the technology.
+              </li>
+              <li className={styles.sectionContentItem}>
+                It sounds like I will be going to to be traveling about once a
+                quarter for meet-ups with the team, which I am hoping will
+                really help me stay engaged, since I thrive on the uplifting
+                energy in my workplace, and that is a tricky thing to do purely
+                remotely.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                Movie Night every week is still a high-point of my week, with
+                more silly films this quarter like{' '}
+                <a href="https://www.imdb.com/title/tt0106697/">
+                  Demolition Man
+                </a>{' '}
+                and{' '}
+                <a href="https://www.imdb.com/title/tt0029947">
+                  Bringing Up Baby
+                </a>
+                , but also with harder hitting films like{' '}
+                <a href="https://www.imdb.com/title/tt0056801/">8½</a>.
+              </li>
+              <li className={styles.sectionContentItem}>
+                I am always reading 2-3 books at once, but the most impactful so
+                far this quarter has been{' '}
+                <a href="https://www.goodreads.com/book/show/24800.House_of_Leaves">
+                  House of Leaves
+                </a>
+                , which is a strange-horror book that is the most ambitious
+                non-religious text I have encountered. I am looking forward to
+                finishing it to have more thoughts, but you can always track
+                what I am reading at my{' '}
+                <a href="https://www.goodreads.com/user/show/55606019">
+                  GoodReads
+                </a>
+                .
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                I was gifted a{' '}
+                <a href="https://www.msi.com/Handhelds/Claw-7-AI-Plus-A2VMX">
+                  MSI Claw
+                </a>{' '}
+                handheld gaming computer which has re-sparked my interest in a
+                bunch of games I have been unable to play on Mac computers, so
+                my{' '}
+                <a href="https://steamcommunity.com/profiles/76561198049021576/">
+                  Steam
+                </a>{' '}
+                profile has been more active than usual.
+              </li>
+              <li className={styles.sectionContentItem}>
+                <a href="https://store.steampowered.com/app/1835240/Spiritfall/">
+                  Spiritfall
+                </a>{' '}
+                (Super Smash Bros mixed with Hades) has probably been the
+                biggest winner of my time recently, but there have just been a
+                lot of new games that I’ve been able to try and I am enjoying
+                the exploration.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                This year I opted to skip the{' '}
+                <a href="https://itch.io/jam/7drl-challenge-2025">
+                  7 Day Roguelike
+                </a>{' '}
+                since life was just a bit too chaotic. I really missed out on it
+                and there are a few game ideas that are spinning in my head even
+                though none of them fit cleanly in the “Roguelike” genre.
+              </li>
+              <li className={styles.sectionContentItem}>
+                One of the biggest ideas I have had is just to clean up some of
+                my previous 7DRLs into releasable Steam games that are $5. It
+                would require some time, and require learning how to publish
+                things, but it would be nice to have them available for people
+                to play as more than just tech demos. The thing holding me back
+                is the lack of time constraint on the process. Since it is not a
+                one-week project, the games feel like they are likely to seem
+                incomplete rather than a nice example of what is doable in 7
+                days.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                How to function with ADHD. I have gone to therapy for a month or
+                so, but feel like most of the therapy has been intellectualizing
+                the experiences rather than trying new strategies to be better
+                able to accomplish goals. Some of this certainly comes from the
+                lack of concrete goals, but it is all connected since the lack
+                of goal-setting comes from the likely inability to achieve them
+                to the level that makes me happy (all-or-nothing thinking, which
+                is deeply common in ADHD).
+              </li>
+              <li className={styles.sectionContentItem}>
+                What do to after school for the kiddos. There is a about a
+                two-hour window of time after pick up where they need to eat,
+                get ready for bed, and ideally have some family experiences that
+                are positive. It is hard to find the right things to fit in the
+                30-60 minute window of time to help them feel like a part of the
+                family without making the necessary activities fall through the
+                cracks.
+              </li>
+            </ul>
+          </section>
+        </div>
         <div>
           <p className={styles.lastUpdated}>{'Updated 2025-02-16'}</p>
           <section className={styles.section}>
@@ -240,12 +419,12 @@ function Now() {
             <div className={styles.familyImages}>
               <Image
                 alt="All the family visiting for Christmas"
-                height={300}
+                height={250}
                 src={christmas}
               />
               <Image
                 alt="Ororo and Logan sleeping on a plane to Hong Kong"
-                height={300}
+                height={250}
                 src={airplaneBed}
               />
             </div>
@@ -536,12 +715,12 @@ function Now() {
             <div className={styles.familyImages}>
               <Image
                 alt="Logan, Ororo, and me standing in front of a X-Men sign dressed up at the Science Center."
-                height={300}
+                height={250}
                 src={xmen}
               />
               <Image
                 alt="Cousins, Neem, and Bethany at an impromptu photoshoot"
-                height={300}
+                height={250}
                 src={cousins}
               />
             </div>
@@ -695,12 +874,12 @@ function Now() {
             <div className={styles.familyImages}>
               <Image
                 alt="Standing in front of a projection of the total solar eclipse"
-                height={400}
+                height={300}
                 src={eclipse}
               />
               <Image
                 alt="Logan looking pleased with himself as he rides a bike"
-                height={400}
+                height={300}
                 src={bike}
               />
             </div>
@@ -1328,12 +1507,12 @@ function Now() {
           <div className={styles.familyImages}>
             <Image
               alt="Neem and Logan reading a Spider-Man book in his room"
-              height={400}
+              height={300}
               src={neemLogan}
             />
             <Image
               alt="Rory smiling and being adorable outside"
-              height={400}
+              height={300}
               src={rory}
             />
           </div>
