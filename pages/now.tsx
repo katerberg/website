@@ -28,7 +28,7 @@ function Now() {
       <h1>{'What I am up to now'}</h1>
       <p>
         <a href="https://nownownow.com/about">
-          {'This is a ”now page“, and you should make one too.'}
+          {'This is a “now page”, and you should make one too.'}
         </a>
       </p>
       <div>
@@ -963,7 +963,7 @@ function Now() {
               <li className={styles.sectionContentItem}>
                 Lego has been a good time, both individually (doing a big Star
                 Trek set) and working with Logan on it, since he likes the
-                parallel play and doing a big set ”together”.
+                parallel play and doing a big set “together”.
               </li>
             </ul>
           </section>
