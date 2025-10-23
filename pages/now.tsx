@@ -21,6 +21,8 @@ import schoolShirts from '../images/now/2025-05-school-shirts.png';
 import scoutsLifeJackets from '../images/now/2025-05-scouts.png';
 import dutchVillage from '../images/now/2025-07-dutch.png';
 import kansasCityHoldingKids from '../images/now/2025-07-kc.png';
+import familyPhoto from '../images/now/2025-10-family-photo.png';
+import miniMouse from '../images/now/2025-10-mini-mouse.png';
 
 function Now() {
   return (
@@ -32,67 +34,58 @@ function Now() {
         </a>
       </p>
       <div>
-        <p className={styles.lastUpdated}>{'Updated 2025-07-29'}</p>
+        <p className={styles.lastUpdated}>{'Updated 2025-10-22'}</p>
         <section className={styles.section}>
           <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              Our family has been on several trips together this summer,
-              including two trips to Michigan where the kids got to see their
-              grandparents and some cousins at{' '}
-              <a href="https://www.dutchvillage.com/">Dutch Village</a>, a
-              Dutch-themed amusement park that was a core memory of my
-              childhood.
+              It has been a busy summer, with family trips to Michigan and
+              Louisville, and with individual trips all over the place. It is
+              now nice to just be home for a bit.
             </li>
             <li className={styles.sectionContentItem}>
-              Our nuclear family went to Kansas City with no agenda, and it was
-              a reminder that low-stakes road trips are really my favorite. It
-              can be wonderful to visit with others, but the people I love most
-              are often the ones I take for granted, and it is just wonderful to
-              spend time together when we are not trying to rush to something in
-              particular. We spent almost three hours in{' '}
-              <a href="https://levelonegameshop.com/">Level One</a>, a local
-              board game shop just showing each other things we liked.
+              Lots of big purchases have happened this quarter, such as a new
+              minivan which the children have dubbed Mini Mouse, as well as less
+              fun, but still helpful purchases, like a fridge, new basement
+              flooring/walls, and new paint in the kitchen.
             </li>
             <li className={styles.sectionContentItem}>
-              Neem went to Italy on a cheese trip and also took her regular
-              Mother’s Day weekend in a hotel. I went on a couple trips with
-              friends without her or the kids. All of these trips without each
-              other were really nice to remember why I like her enough to miss
-              her. It can be hard to both work in the same place that you live
-              together all the time, regardless of how much you love each other!
+              The kids are back in school and loving it as always. Somehow
+              Forsyth has been a perfect match for them, and while they have
+              touch days occasionally, we could not ask for better support from
+              the staff there.
             </li>
+            <div className={styles.familyImages}>
+              <Image
+                alt="Our family all standing behind each other"
+                height={300}
+                src={familyPhoto}
+              />
+              <Image
+                alt="The kids hopping out of the mini-van"
+                height={300}
+                src={miniMouse}
+              />
+            </div>
           </ul>
-          <div className={styles.familyImages}>
-            <Image
-              alt="The extended family at Dutch Village in front of an antique pipe organ"
-              height={300}
-              src={dutchVillage}
-            />
-            <Image
-              alt="Me holding Logan and Ororo in Kansas City"
-              height={300}
-              src={kansasCityHoldingKids}
-            />
-          </div>
         </section>
         <section className={styles.section}>
           <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              <a href="https://www.maestroqa.com/">Maestro QA</a> is going well
-              and I have two work trips scheduled, which is more than what I did
-              in my entire last two years at my previous company. It is really
-              hard starting at a new company without knowing anyone, but things
-              are going well even though I am doing more infrastructure and
-              architecture work than I anticipated.
+              Start-up life has been intense in a way that my previous start-ups
+              have not been. I am not sure if it is due to the rise of AI which
+              pushes expectations higher, or that the culture of a hungry NYC
+              start-up is just different than West Coast versions, but I am
+              definitely learning a lot!
             </li>
             <li className={styles.sectionContentItem}>
-              Some of the struggles with chaotic start-ups are hitting me, but
-              it is largely just the lack of clear direction on what I need to
-              be doing given that there is so much opportunity to choose my own
-              adventure there. I am looking forward to doing more
-              customer-facing features soon.
+              Unlike my last few jobs where I essentially did nothing except
+              front-end development, here I am spending about a third of my time
+              writing Node API code, which has been mostly nice. While I still
+              do not want to go back to full-stack all day, being able to flex
+              those muscles again is nice primarily because it feels like riding
+              a bike instead of being a struggle.
             </li>
           </ul>
         </section>
@@ -100,34 +93,30 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              Lots of movies as always, including
-              <a href="https://mastodonapp.uk/@katerberg/114894854141018546">
-                Superman
-              </a>
-              , which was a delightfully campy romp, but the stand-out was
-              <a href="https://mastodonapp.uk/@katerberg/114874743492835087">
-                Fantastic Mr Fox
-              </a>
-              , which is shocking because I find Wes Anderson to be fairly
-              yawn-worthy most of the time.
+              Neem and I watched the first season of{' '}
+              <a href="https://www.imdb.com/title/tt26933824/">
+                Nobody Wants This
+              </a>{' '}
+              to my great joy. It has enough romance and comedy (amazing combo
+              of Bell and Brody) to keep us both engaged in the story drama, but
+              also enough meat on it with the difficult topics of family and
+              religion to feel like it is not just puff fiction.
             </li>
             <li className={styles.sectionContentItem}>
-              Now fully caught up on the
-              <a href="https://www.goodreads.com/series/309211-dungeon-crawler-carl">
-                Dungeon Crawler Carl
-              </a>{' '}
-              series, I am kinda bummed that I have to wait for the next one
-              until 2026. They are violent, offensive, and downright silly, but
-              they have kept my interest and excitement like no series since{' '}
-              <a href="https://www.goodreads.com/series/192752-bobiverse">
-                Bobiverse
+              None of the movies that I have seen have been huge hits for me,
+              largely because we have been watching lighter things at movie
+              night. Luckily, I was able to see{' '}
+              <a href="https://www.imdb.com/title/tt0055630/">Yojimbo</a> in the
+              theater and that was a fantastic experience.
+            </li>
+            <li className={styles.sectionContentItem}>
+              My reading has been very puffy recently, given that I am about 25
+              books through the{' '}
+              <a href="https://en.wikipedia.org/wiki/Animorphs">
+                Animorphs series
               </a>
-              . Having a break from them has let me start digging back into{' '}
-              <a href="https://www.goodreads.com/author/show/38550.Brandon_Sanderson">
-                Sanderson
-              </a>
-              , who has more books than a human could expect to read in a
-              decade.
+              . It has been a great time and a nice reprieve from an otherwise
+              pretty taxing schedule.
             </li>
           </ul>
         </section>
@@ -135,20 +124,30 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              In the past two months, I have gone on three board game trips. One
-              to Las Vegas for some light gambling, one to{' '}
-              <a href="https://geekway.com/">Geekway</a> for four days of
-              complicated board games, and one to BenCon at the{' '}
-              <a href="https://gamersranch.com/">Gamers Ranch</a>.
+              <a href="https://store.steampowered.com/app/1145350/Hades_II/">
+                Hades II
+              </a>{' '}
+              came out and has eaten pretty much all of my gaming time. Because
+              I can play it on a handheld device, it is easy to get an hour or
+              two in during an evening after bedtime. I am not loving it as much
+              as the first one, but it is still a fantastic experience and a
+              great core loop.
             </li>
             <li className={styles.sectionContentItem}>
-              In video game world, I have mostly logged hours into{' '}
-              <a href="https://store.steampowered.com/app/2084000/Shogun_Showdown/">
-                Shogun Showdown
-              </a>
-              , where I completed all of the achievements other than one, which
-              would take at least 100 hours more to get, so I will probably take
-              a break from that for a while.
+              Because spending time with friends can be hard while also watching
+              children,{' '}
+              <a href="https://store.steampowered.com/app/2001120/Split_Fiction/">
+                Split Fiction
+              </a>{' '}
+              has been my co-op game of choice. It is pretty much just a
+              narrative movie, but it provides a fun backdrop to a conversation
+              while playing it with a friend.
+            </li>
+            <li className={styles.sectionContentItem}>
+              At BenCon, I played all sorts of board games (and pinball), but
+              none really stuck out as being particularly memorable. Being able
+              to play with friends is fun even if the games are not great, but
+              it would have been nice to get a new favorite.
             </li>
           </ul>
         </section>
@@ -156,20 +155,29 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              Not much has been happening for my creative outlets recently since
-              most of my energy has been driving into work and family
-              obligations. It was pretty disheartening to have my five week gap
-              in work basically get eaten alive by acts of god that knocked kids
-              out of school, but at least it is a good reason to not feel mad at
-              myself about not getting a game out the door in that time.
+              The purchase of a{' '}
+              <a href="https://us.store.bambulab.com/products/x1-carbon">
+                3D printer
+              </a>{' '}
+              has been fun since it is a toy that is purely a hobby for me. Most
+              things I have gotten into feel like they become chores eventually,
+              but this is just pure fun and not really any kind of temptation to
+              turn it into more. Being able to make Halloween costumes for
+              friends or board game inserts has been a treat.
             </li>
             <li className={styles.sectionContentItem}>
-              One of my struggles has been that a lot of the joy I get from
-              exploring development happens while I am completing the rote tasks
-              needed in development, and those can largely be done by AI, which
-              gives my brain very little time to bask and explore. I am trying
-              to supplement this with walks or other creativity-driving
-              endeavors, but not having much luck with it yet.
+              Years ago, I created a Dungeons and Dragons kingdom called{' '}
+              <a href="https://drive.google.com/file/d/1nzLqXZIODseb_NLOxtgzek_tf6yCYXqL/view?usp=sharing">
+                Galeduhr
+              </a>{' '}
+              which we played in for a little while but set down. Recently a
+              group reached out to me and we are running another game in it. The
+              conceit of the game is that players schedule time to play and tell
+              me what they want to go explore, but the world is large enough and
+              fleshed out already, so the prep work for me is fairly minimal.
+              This has made it so much more fun to DM since I am largely not
+              scrambling to come up with something and can instead focus on
+              making the session fun.
             </li>
           </ul>
         </section>
@@ -177,27 +185,17 @@ function Now() {
           <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
           <ul className={styles.sectionContent}>
             <li className={styles.sectionContentItem}>
-              What a good marriage looks like. We are looking at{' '}
-              <a href="https://www.toyota.com/sienna/">minivans</a> and finding
-              places where we compromise without becoming resentful of each
-              other is hard even though we share 95% of our values. Being a good
-              spouse and parent is absolutely the priority, and doing so in a
-              way that keeps me as a whole person that is adding to those
-              relationships is a constant balancing.
-            </li>
-            <li className={styles.sectionContentItem}>
-              How to prioritize friendships without feeling drained. As much as
-              I value seeing people, it can be really tiring and I enjoy time
-              just being able to process things alone. Some of the friendships I
-              value most are the ones where we go on walks or just wander
-              talking about things instead of doing an activity (even one as
-              simple as dinner) and I want to foster those types of activities
-              more. It feels like it is much easier to actually build deep
-              relationships when you are not focused on an activity, but
-              obviously that is not a thing you can just jump into. Finding a
-              way to transition from a lighter form of friendship that centers
-              around activity into a deeper form that centers around caring for
-              and fostering each other’s goals is not easy.
+              Figuring out what I want to get out of therapy has been a
+              consideration. I originally went because I wanted to get better
+              control of ADHD symptoms, but since going, I think they are better
+              handled than I thought (particularly after finishing{' '}
+              <a href="https://www.goodreads.com/book/show/125227576-how-to-adhd">
+                How to ADHD
+              </a>
+              , which was amazing) even if there is still room to stretch. I am
+              still aiming to find ways to be more productive, but think that a
+              lot of that starts with getting better in touch with my own energy
+              levels and emotions.
             </li>
           </ul>
         </section>
@@ -206,6 +204,182 @@ function Now() {
       <hr />
       <h2>{'History'}</h2>
       <div className={styles.history}>
+        <div>
+          <p className={styles.lastUpdated}>{'Updated 2025-07-29'}</p>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'👨‍👩‍👧‍👦 Family'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                Our family has been on several trips together this summer,
+                including two trips to Michig where the kids got to see their
+                grandparents and some cousins at{' '}
+                <a href="https://www.dutchvillage.com/">Dutch Village</a>, a
+                Dutch-themed amusement park that was a core memory of my
+                childhood.
+              </li>
+              <li className={styles.sectionContentItem}>
+                Our nuclear family went to Kansas City with no agenda, and it
+                was a reminder that low-stakes road trips are really my
+                favorite. It can be wonderful to visit with others, but the
+                people I love most are often the ones I take for granted, and it
+                is just wonderful to spend time together when we are not trying
+                to rush to something in particular. We spent almost three hours
+                in <a href="https://levelonegameshop.com/">Level One</a>, a
+                local board game shop just showing each other things we liked.
+              </li>
+              <li className={styles.sectionContentItem}>
+                Neem went to Italy on a cheese trip and also took her regular
+                Mother’s Day weekend in a hotel. I went on a couple trips with
+                friends without her or the kids. All of these trips without each
+                other were really nice to remember why I like her enough to miss
+                her. It can be hard to both work in the same place that you live
+                together all the time, regardless of how much you love each
+                other!
+              </li>
+            </ul>
+            <div className={styles.familyImages}>
+              <Image
+                alt="The extended family at Dutch Village in front of an antique pipe organ"
+                height={300}
+                src={dutchVillage}
+              />
+              <Image
+                alt="Me holding Logan and Ororo in Kansas City"
+                height={300}
+                src={kansasCityHoldingKids}
+              />
+            </div>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🧑‍💻 Work'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                <a href="https://www.maestroqa.com/">Maestro QA</a> is going
+                well and I have two work trips scheduled, which is more than
+                what I did in my entire last two years at my previous company.
+                It is really hard starting at a new company without knowing
+                anyone, but things are going well even though I am doing more
+                infrastructure and architecture work than I anticipated.
+              </li>
+              <li className={styles.sectionContentItem}>
+                Some of the struggles with chaotic start-ups are hitting me, but
+                it is largely just the lack of clear direction on what I need to
+                be doing given that there is so much opportunity to choose my
+                own adventure there. I am looking forward to doing more
+                customer-facing features soon.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🍿 Media Consumption'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                Lots of movies as always, including
+                <a href="https://mastodonapp.uk/@katerberg/114894854141018546">
+                  Superman
+                </a>
+                , which was a delightfully campy romp, but the stand-out was
+                <a href="https://mastodonapp.uk/@katerberg/114874743492835087">
+                  Fantastic Mr Fox
+                </a>
+                , which is shocking because I find Wes Anderson to be fairly
+                yawn-worthy most of the time.
+              </li>
+              <li className={styles.sectionContentItem}>
+                Now fully caught up on the
+                <a href="https://www.goodreads.com/series/309211-dungeon-crawler-carl">
+                  Dungeon Crawler Carl
+                </a>{' '}
+                series, I am kinda bummed that I have to wait for the next one
+                until 2026. They are violent, offensive, and downright silly,
+                but they have kept my interest and excitement like no series
+                since{' '}
+                <a href="https://www.goodreads.com/series/192752-bobiverse">
+                  Bobiverse
+                </a>
+                . Having a break from them has let me start digging back into{' '}
+                <a href="https://www.goodreads.com/author/show/38550.Brandon_Sanderson">
+                  Sanderson
+                </a>
+                , who has more books than a human could expect to read in a
+                decade.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🎲 Games'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                In the past two months, I have gone on three board game trips.
+                One to Las Vegas for some light gambling, one to{' '}
+                <a href="https://geekway.com/">Geekway</a> for four days of
+                complicated board games, and one to BenCon at the{' '}
+                <a href="https://gamersranch.com/">Gamers Ranch</a>.
+              </li>
+              <li className={styles.sectionContentItem}>
+                In video game world, I have mostly logged hours into{' '}
+                <a href="https://store.steampowered.com/app/2084000/Shogun_Showdown/">
+                  Shogun Showdown
+                </a>
+                , where I completed all of the achievements other than one,
+                which would take at least 100 hours more to get, so I will
+                probably take a break from that for a while.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🎨 Creation'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                Not much has been happening for my creative outlets recently
+                since most of my energy has been driving into work and family
+                obligations. It was pretty disheartening to have my five week
+                gap in work basically get eaten alive by acts of god that
+                knocked kids out of school, but at least it is a good reason to
+                not feel mad at myself about not getting a game out the door in
+                that time.
+              </li>
+              <li className={styles.sectionContentItem}>
+                One of my struggles has been that a lot of the joy I get from
+                exploring development happens while I am completing the rote
+                tasks needed in development, and those can largely be done by
+                AI, which gives my brain very little time to bask and explore. I
+                am trying to supplement this with walks or other
+                creativity-driving endeavors, but not having much luck with it
+                yet.
+              </li>
+            </ul>
+          </section>
+          <section className={styles.section}>
+            <h3 className={styles.sectionHeader}>{'🧠 Thinking About'}</h3>
+            <ul className={styles.sectionContent}>
+              <li className={styles.sectionContentItem}>
+                What a good marriage looks like. We are looking at{' '}
+                <a href="https://www.toyota.com/sienna/">minivans</a> and
+                finding places where we compromise without becoming resentful of
+                each other is hard even though we share 95% of our values. Being
+                a good spouse and parent is absolutely the priority, and doing
+                so in a way that keeps me as a whole person that is adding to
+                those relationships is a constant balancing.
+              </li>
+              <li className={styles.sectionContentItem}>
+                How to prioritize friendships without feeling drained. As much
+                as I value seeing people, it can be really tiring and I enjoy
+                time just being able to process things alone. Some of the
+                friendships I value most are the ones where we go on walks or
+                just wander talking about things instead of doing an activity
+                (even one as simple as dinner) and I want to foster those types
+                of activities more. It feels like it is much easier to actually
+                build deep relationships when you are not focused on an
+                activity, but obviously that is not a thing you can just jump
+                into. Finding a way to transition from a lighter form of
+                friendship that centers around activity into a deeper form that
+                centers around caring for and fostering each other’s goals is
+                not easy.
+              </li>
+            </ul>
+          </section>
+        </div>
         <div>
           <p className={styles.lastUpdated}>{'Updated 2025-05-14'}</p>
           <section className={styles.section}>
