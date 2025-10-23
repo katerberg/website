@@ -52,7 +52,7 @@ function Now() {
             <li className={styles.sectionContentItem}>
               The kids are back in school and loving it as always. Somehow
               Forsyth has been a perfect match for them, and while they have
-              touch days occasionally, we could not ask for better support from
+              tough days occasionally, we could not ask for better support from
               the staff there.
             </li>
             <div className={styles.familyImages}>
