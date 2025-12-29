@@ -1,0 +1,24 @@
+# Cursor Rules for Website Project
+
+## Formatting
+- **Always use 2-space indentation** (not 4 spaces)
+- The project uses Prettier with ESLint integration
+- Prettier config: 2 spaces, single quotes, semicolons, ES5 trailing commas
+- EditorConfig is configured - respect `.editorconfig` settings
+- **Important**: Cursor's auto-format should match Prettier settings. If auto-save is changing formatting, check that Cursor is using the project's Prettier config, not default settings.
+
+## Linting
+- Always run `npm run lint:fix` after making changes to ensure linting passes
+- Fix any linting errors before committing code
+- The project uses ESLint with Next.js configuration and Prettier integration
+- ESLint enforces Prettier rules via `eslint-plugin-prettier`
+
+## Code Style
+- Follow the existing code style and patterns
+- Use TypeScript for type safety
+- Prefer functional components in React
+- Use 2-space indentation consistently
+
+## Build Process
+- The feed generation script runs automatically before builds
+- Always test locally with `npm run build` before pushing

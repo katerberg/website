@@ -18,6 +18,12 @@ export default function Layout({ children }: LayoutProperties) {
         <link rel="icon" href="https://fav.farm/☕️" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="me" href="https://mastodonapp.uk/@katerberg" />
+        <link
+          rel="alternate"
+          title="Mark Katerberg"
+          type="application/atom+xml"
+          href="/feed.atom"
+        />
         <title>Mark Katerberg</title>
       </Head>
       <div className="app">
