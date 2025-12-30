@@ -29,29 +29,56 @@ function generateAtomFeed(): string {
   const nowPagePath = path.join(process.cwd(), 'pages', 'now.tsx');
   const nowPageContent = fs.readFileSync(nowPagePath, 'utf8');
 
-  // Extract the update date from the "Updated YYYY-MM-DD" pattern
-  const dateMatch = nowPageContent.match(/Updated (\d{4}-\d{2}-\d{2})/);
-  if (!dateMatch) {
-    throw new Error('Could not find update date in now.tsx');
+  // Read the NowHistory component to extract historical dates
+  const nowHistoryPath = path.join(
+    process.cwd(),
+    'components',
+    'NowHistory.tsx'
+  );
+  const nowHistoryContent = fs.readFileSync(nowHistoryPath, 'utf8');
+
+  // Extract all update dates from both files using the "Updated YYYY-MM-DD" pattern
+  const datePattern = /Updated (\d{4}-\d{2}-\d{2})/g;
+  const allDates = new Set<string>();
+
+  // Extract dates from now.tsx
+  let match;
+  while ((match = datePattern.exec(nowPageContent)) !== null) {
+    allDates.add(match[1]);
   }
 
-  const updateDateString = dateMatch[1];
-  const [year, month, day] = updateDateString.split('-').map(Number);
-  const updatedDate = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
+  // Extract dates from NowHistory.tsx
+  datePattern.lastIndex = 0; // Reset regex
+  while ((match = datePattern.exec(nowHistoryContent)) !== null) {
+    allDates.add(match[1]);
+  }
 
-  // Generate entries - for now, just the "now" page
-  const entries: FeedEntry[] = [
-    {
-      title: 'What I am up to now',
-      link: `${siteUrl}/now`,
-      id: `${siteUrl}/now`,
-      published: updatedDate,
-      updated: updatedDate,
-      summary:
-        'An update on what I am currently up to - family, work, media consumption, games, creation, and things I am thinking about.',
-      content: `<p>I've updated my <a href="${siteUrl}/now">now page</a> with the latest on what I'm up to.</p>`,
-    },
-  ];
+  if (allDates.size === 0) {
+    throw new Error(
+      'Could not find any update dates in now.tsx or NowHistory.tsx'
+    );
+  }
+
+  // Convert dates to Date objects and create entries
+  // Using Array.from() instead of spread operator for ES5 compatibility
+  const entries: FeedEntry[] = [...allDates]
+    .map((dateString: string) => {
+      const [year, month, day] = dateString.split('-').map(Number);
+      const updatedDate = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
+      return {
+        title: 'What I am up to now',
+        link: `${siteUrl}/now`,
+        // Use date in ID to make each entry unique
+        id: `${siteUrl}/now#${dateString}`,
+        published: updatedDate,
+        updated: updatedDate,
+        summary:
+          'An update on what I am currently up to - family, work, media consumption, games, creation, and things I am thinking about.',
+        content: `<p>I've updated my <a href="${siteUrl}/now">now page</a> with the latest on what I'm up to.</p>`,
+      };
+    })
+    // Sort by date, newest first
+    .sort((a, b) => b.updated.getTime() - a.updated.getTime());
 
   // Generate the feed
   const feedUpdated = entries[0]?.updated || new Date();

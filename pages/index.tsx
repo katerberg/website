@@ -1,6 +1,6 @@
 import FollowIcon from '../components/FollowIcon';
 import styles from '../styles/AboutMe.module.scss';
-import redditLogo from '../images/logos/reddit-logo.svg';
+import rssLogo from '../images/logos/rss-logo.svg';
 import githubLogo from '../images/logos/github-logo.svg';
 import mastodonLogo from '../images/logos/mastodon-logo.svg';
 import goodReadsLogo from '../images/logos/good-reads-logo.svg';
@@ -15,11 +15,7 @@ const Home = () => {
         }
       </p>
       <div className={styles.followIcons}>
-        <FollowIcon
-          alt="Reddit Logo"
-          link="https://www.reddit.com/user/diablomarcus"
-          src={redditLogo}
-        />
+        <FollowIcon alt="RSS Logo" link="/feed.atom" src={rssLogo} />
         <FollowIcon
           alt="Github Logo"
           link="https://github.com/katerberg"

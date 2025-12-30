@@ -29,6 +29,7 @@
         }
       }
     ],
-    "unicorn/prevent-abbreviations": ["error", { "checkFilenames": false }]
+    "unicorn/prevent-abbreviations": ["error", { "checkFilenames": false }],
+    "unicorn/prefer-spread": "off"
   }
 }
