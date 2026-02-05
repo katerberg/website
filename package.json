@@ -11,7 +11,9 @@
     "generate-feed": "tsx scripts/generate-feed.ts"
   },
   "dependencies": {
-    "@next/eslint-plugin-next": "^13.4.12",
+    "gray-matter": "^4.0.3",
+    "react-markdown": "^9.0.1",
+    "remark-gfm": "^4.0.0",
     "@types/node": "18.11.9",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
@@ -27,6 +29,7 @@
     "typescript": "4.9.3"
   },
   "devDependencies": {
+    "marked": "^12.0.1",
     "tsx": "^4.7.0"
   }
 }

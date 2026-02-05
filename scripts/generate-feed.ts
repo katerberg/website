@@ -1,5 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import matter from 'gray-matter';
+import { marked } from 'marked';
 
 interface FeedEntry {
   title: string;
@@ -11,6 +13,10 @@ interface FeedEntry {
   content: string;
 }
 
+interface NowEntryFrontmatter {
+  date: string;
+}
+
 function escapeXml(unsafe: string): string {
   return unsafe
     .replace(/&/g, '&amp;')
@@ -20,67 +26,66 @@ function escapeXml(unsafe: string): string {
     .replace(/'/g, '&apos;');
 }
 
+/** Get HTML excerpt: first block or first ~400 chars of text, then strip to last complete tag. */
+function excerptFromHtml(html: string, maxChars: number = 400): string {
+  const stripped = html.replace(/\s+/g, ' ').trim();
+  if (stripped.length <= maxChars) return stripped;
+  const cut = stripped.slice(0, maxChars);
+  const lastOpen = cut.lastIndexOf('<');
+  const lastClose = cut.lastIndexOf('>');
+  if (lastClose > lastOpen && lastClose < cut.length) {
+    return cut.slice(0, lastClose + 1);
+  }
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut) + '…';
+}
+
 function generateAtomFeed(): string {
   const siteUrl = 'https://katerberg.net';
   const feedUrl = `${siteUrl}/feed.atom`;
   const authorName = 'Mark Katerberg';
 
-  // Read the now.tsx file to extract the update date
-  const nowPagePath = path.join(process.cwd(), 'pages', 'now.tsx');
-  const nowPageContent = fs.readFileSync(nowPagePath, 'utf8');
-
-  // Read the NowHistory component to extract historical dates
-  const nowHistoryPath = path.join(
-    process.cwd(),
-    'components',
-    'NowHistory.tsx'
-  );
-  const nowHistoryContent = fs.readFileSync(nowHistoryPath, 'utf8');
-
-  // Extract all update dates from both files using the "Updated YYYY-MM-DD" pattern
-  const datePattern = /Updated (\d{4}-\d{2}-\d{2})/g;
-  const allDates = new Set<string>();
-
-  // Extract dates from now.tsx
-  let match;
-  while ((match = datePattern.exec(nowPageContent)) !== null) {
-    allDates.add(match[1]);
+  const contentDir = path.join(process.cwd(), 'content', 'now');
+  if (!fs.existsSync(contentDir)) {
+    throw new Error(`Content directory not found: ${contentDir}`);
   }
 
-  // Extract dates from NowHistory.tsx
-  datePattern.lastIndex = 0; // Reset regex
-  while ((match = datePattern.exec(nowHistoryContent)) !== null) {
-    allDates.add(match[1]);
+  const files = fs.readdirSync(contentDir).filter((f) => f.endsWith('.md'));
+  const entries: FeedEntry[] = [];
+
+  for (const file of files) {
+    const filePath = path.join(contentDir, file);
+    const raw = fs.readFileSync(filePath, 'utf8');
+    const { data, content } = matter(raw);
+    const frontmatter = data as NowEntryFrontmatter;
+    const dateString = frontmatter?.date;
+    if (!dateString || !/^\d{4}-\d{2}-\d{2}$/.test(dateString)) {
+      continue;
+    }
+
+    const [year, month, day] = dateString.split('-').map(Number);
+    const updatedDate = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
+    const htmlBody = marked.parse(content, { async: false }) as string;
+    const excerpt = excerptFromHtml(htmlBody);
+    const readMore = `<p>Read more at <a href="${siteUrl}/now#${dateString}">now page</a>.</p>`;
+
+    entries.push({
+      title: 'What I am up to now',
+      link: `${siteUrl}/now#${dateString}`,
+      id: `${siteUrl}/now#${dateString}`,
+      published: updatedDate,
+      updated: updatedDate,
+      summary: excerpt,
+      content: excerpt + readMore,
+    });
   }
 
-  if (allDates.size === 0) {
-    throw new Error(
-      'Could not find any update dates in now.tsx or NowHistory.tsx'
-    );
+  if (entries.length === 0) {
+    throw new Error('No valid now entries found in content/now/*.md');
   }
 
-  // Convert dates to Date objects and create entries (sort for deterministic output)
-  const entries: FeedEntry[] = [...allDates]
-    .sort()
-    .map((dateString: string) => {
-      const [year, month, day] = dateString.split('-').map(Number);
-      const updatedDate = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
-      return {
-        title: 'What I am up to now',
-        link: `${siteUrl}/now`,
-        // Use date in ID to make each entry unique
-        id: `${siteUrl}/now#${dateString}`,
-        published: updatedDate,
-        updated: updatedDate,
-        summary:
-          'An update on what I am currently up to - family, work, media consumption, games, creation, and things I am thinking about.',
-        content: `<p>I've updated my <a href="${siteUrl}/now">now page</a> with the latest on what I'm up to.</p>`,
-      };
-    })
-    // Sort by date, newest first
-    .sort((a, b) => b.updated.getTime() - a.updated.getTime());
+  entries.sort((a, b) => b.updated.getTime() - a.updated.getTime());
 
-  // Generate the feed
   const feedUpdated = entries[0]?.updated || new Date();
   const feedUpdatedRFC3339 = feedUpdated.toISOString();
 
@@ -96,7 +101,6 @@ function generateAtomFeed(): string {
   </author>
 `;
 
-  // Add entries
   for (const entry of entries) {
     const publishedRFC3339 = entry.published.toISOString();
     const updatedRFC3339 = entry.updated.toISOString();

@@ -27,6 +27,12 @@ h3.sectionHeader {
   }
 }
 
+.nowMarkdownImage {
+  height: auto;
+  margin-top: 16px;
+  max-width: 80%;
+}
+
 section.section {
   &:hover {
     >h3.sectionHeader {
