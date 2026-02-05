@@ -3,7 +3,6 @@ import React, { SyntheticEvent, useCallback } from 'react';
 function Mtg() {
   const moxfieldInit = useCallback(
     (event: SyntheticEvent<HTMLIFrameElement, Event>) => {
-      // eslint-disable-next-line no-undef -- Moxfield is global
       setTimeout(() => moxfieldOnLoad(event), 10);
     },
     []
