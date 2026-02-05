@@ -30,6 +30,19 @@ jobs:
       - name: Build my App
         run: npm run build && touch ./out/.nojekyll
 
+      # Only deploy a new feed file when now page content actually changed.
+      # If the generated feed matches production byte-for-byte, use the production
+      # copy so the deployed file is unchanged and feed readers don't see an update.
+      - name: Preserve feed when content unchanged
+        run: |
+          curl -sf -o /tmp/current-feed.atom https://katerberg.net/feed.atom || true
+          if [ -f /tmp/current-feed.atom ] && [ -f ./out/feed.atom ]; then
+            if cmp -s ./out/feed.atom /tmp/current-feed.atom; then
+              cp /tmp/current-feed.atom ./out/feed.atom
+              echo "Feed unchanged: using production copy so readers do not see an update"
+            fi
+          fi
+
       - name: Move CNAME
         run: cp CNAME ./out/CNAME
 

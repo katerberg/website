@@ -59,9 +59,9 @@ function generateAtomFeed(): string {
     );
   }
 
-  // Convert dates to Date objects and create entries
-  // Using Array.from() instead of spread operator for ES5 compatibility
+  // Convert dates to Date objects and create entries (sort for deterministic output)
   const entries: FeedEntry[] = [...allDates]
+    .sort()
     .map((dateString: string) => {
       const [year, month, day] = dateString.split('-').map(Number);
       const updatedDate = new Date(Date.UTC(year, month - 1, day, 12, 0, 0));
