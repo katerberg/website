@@ -15,13 +15,7 @@ export const getStaticProps: GetStaticProps<NowPageProps> = () => {
   return { props: { entries } };
 };
 
-function NowEntryBlock({
-  entry,
-  isHistory,
-}: {
-  entry: NowEntry;
-  isHistory: boolean;
-}) {
+function NowEntryBlock({ entry }: { entry: NowEntry }) {
   const components = {
     h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
       <h3 className={styles.sectionHeader} {...props}>
@@ -43,6 +37,7 @@ function NowEntryBlock({
       src,
       ...props
     }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+      // eslint-disable-next-line @next/next/no-img-element -- Chill out Next.js
       <img
         alt={alt || ''}
         className={styles.nowMarkdownImage}
@@ -76,14 +71,14 @@ function Now({ entries }: NowPageProps) {
           {'This is a "now page", and you should make one too.'}
         </a>
       </p>
-      {current ? <NowEntryBlock entry={current} isHistory={false} /> : null}
+      {current ? <NowEntryBlock entry={current} /> : null}
       {history.length > 0 ? (
         <>
           <hr />
           <h2>{'History'}</h2>
           <div className={styles.history}>
             {history.map((entry) => (
-              <NowEntryBlock key={entry.date} entry={entry} isHistory />
+              <NowEntryBlock key={entry.date} entry={entry} />
             ))}
           </div>
         </>
