@@ -14,7 +14,17 @@ export default function Layout({ children }: LayoutProperties) {
       <Head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="color-scheme" content="light dark" />
+        <meta
+          name="theme-color"
+          content="#ffffff"
+          media="(prefers-color-scheme: light)"
+        />
+        <meta
+          name="theme-color"
+          content="#1a1a1a"
+          media="(prefers-color-scheme: dark)"
+        />
         <link rel="icon" href="https://fav.farm/☕️" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="me" href="https://mastodonapp.uk/@katerberg" />
