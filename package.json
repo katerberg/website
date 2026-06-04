@@ -11,6 +11,7 @@
     "generate-feed": "tsx scripts/generate-feed.ts"
   },
   "dependencies": {
+    "@next/third-parties": "^16.2.7",
     "@types/node": "18.11.9",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
