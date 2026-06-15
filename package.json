@@ -34,6 +34,6 @@
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^16.2.0",
     "marked": "^12.0.1",
-    "tsx": "^4.7.0"
+    "tsx": "^4.22.4"
   }
 }
