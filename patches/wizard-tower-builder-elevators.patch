@@ -1,0 +1,1349 @@
+From 849a0c1814809ff66b5b7a574945f7bdac172a45 Mon Sep 17 00:00:00 2001
+From: Cursor Agent <cursoragent@cursor.com>
+Date: Thu, 16 Jul 2026 03:08:29 +0000
+Subject: [PATCH] Add elevators as vertical shaft infra with shared cars
+
+Paint contiguous elevator cells into shafts (gaps and adjacent columns
+are separate). Each shaft gets one car that calls to idle, boards up to
+6 staff, multi-stops for dropoffs and same-direction pickups, and
+forbids free vertical climbing while allowing horizontal walk-through.
+---
+ README.md                                    |  11 +-
+ docs/HOUSING.md                              |   1 +
+ docs/INFRASTRUCTURE.md                       |  59 ++-
+ src/calculations/buildCost.ts                |   4 +-
+ src/calculations/interiorGraph.ts            |  12 +-
+ src/calculations/interiorPathfinding.test.ts |  16 +
+ src/config/constants.ts                      |   5 +
+ src/model/elevators.test.ts                  | 218 ++++++++++
+ src/model/elevators.ts                       | 400 +++++++++++++++++++
+ src/model/game.ts                            |   5 +-
+ src/model/infraBlueprints.ts                 |  26 +-
+ src/model/phases.ts                          |   3 +
+ src/model/staff/index.ts                     |  44 +-
+ src/model/types.ts                           |  45 ++-
+ src/static/librarySections.ts                |   1 +
+ src/store/selectors.test.ts                  |   1 +
+ src/view/canvas/renderer.ts                  |  37 ++
+ 17 files changed, 848 insertions(+), 40 deletions(-)
+ create mode 100644 src/model/elevators.test.ts
+ create mode 100644 src/model/elevators.ts
+
+diff --git a/README.md b/README.md
+index 452bc40..4851ccc 100644
+--- a/README.md
++++ b/README.md
+@@ -172,7 +172,7 @@ Mount points: `#board`, `#stage`, `#hud`, `#library`, `#message-log`, `#modal-ro
+ | **Room** | Placed blueprint instance (origin, size, hp, modifications) |
+ | **Blueprint** | Room type definition (cost, size, base hp, description) — structure rooms and specialty rooms (Turret, Steam Turret, Gold Mine, housing, Slot, Boiler, Mana Spring, …) |
+ | **Modification** | Leveled add-on on a room (spikes, housing/slot/boiler expansions, …) |
+-| **Infra layer** | Per-cell overlay (`stair` or `pipe`) on the same grid as rooms; one kind per cell (elevators deferred) |
++| **Infra layer** | Per-cell overlay (`stair`, `pipe`, or `elevator`) on the same grid as rooms; one kind per cell |
+ | **Staff** | Mobile units (soldier / mage / laborer) recruited into housing; route to workplaces during attack |
+ | **Spell / school** | Hotbar ability spending mana; fire · air · earth kits today (water deferred) |
+ | **Layer** | Visibility/edit plane: `rooms`, `infra`, or `workers` (Maps-style toggles) |
+@@ -241,22 +241,23 @@ flowchart TB
+ | Concept | Behavior |
+ |---------|----------|
+ | **Layers** | `rooms`, `infra`, `workers` — toggled for display; tool selection drives editing |
+-| **Infra granularity** | Same `(col, row)` as rooms; **one** of stair *or* pipe per cell (forces wider towers) |
++| **Infra granularity** | Same `(col, row)` as rooms; **one** of stair *or* pipe *or* elevator per cell (forces wider towers) |
+ | **Housing** | Guardroom (soldiers 3→6), chamber (magi 1→2), quarters (laborers 6→12) |
+ | **Slot** | Player sets headcount; auto-assign closest; fires during attack (2→4 via mod) |
+ | **Mana spring** | Water + stationed magi; regen falls off with more magi (cap 5) |
+-| **Stairs** | Cheap ad-hoc infra; **only** way to move vertically; one staffer per cell en route |
++| **Stairs** | Cheap ad-hoc infra; slow vertical; one staffer per cell en route |
++| **Elevators** | Expensive vertical shafts; one car (cap 6); call-to-idle; no free climb |
+ | **Movement** | Staff spawn from housing each wave; **attack phase only** |
+ | **Pathfinding** | Interior/infra graph for staff; exterior graph for enemies (unchanged) |
+ | **Logistics** | Warn-only before wave; hover/click shows broken routes |
+ 
+-**Implementation status:** Housing + staff workplaces shipped (see [`docs/HOUSING.md`](docs/HOUSING.md)). Pipes/boilers/springs shipped ([`docs/PIPES.md`](docs/PIPES.md)). Fire · air · earth spell schools shipped. Elevators and mid-wave pipe breaks remain deferred.
++**Implementation status:** Housing + staff workplaces shipped (see [`docs/HOUSING.md`](docs/HOUSING.md)). Pipes/boilers/springs shipped ([`docs/PIPES.md`](docs/PIPES.md)). Fire · air · earth spell schools shipped. Elevators shipped. Mid-wave pipe breaks remain deferred.
+ 
+ ## Deferred / not in v1
+ 
+ Still not done:
+ 
+-- Elevators; dynamic pipe/network breaks on room destruction
++- Dynamic pipe/network breaks on room destruction
+ - Soldier death / targeting; pipe damage
+ - Advanced mage tech (research / combat casting) — housing basics shipped in [`docs/HOUSING.md`](docs/HOUSING.md)
+ - Multiple currencies beyond gold; roguelike map branching
+diff --git a/docs/HOUSING.md b/docs/HOUSING.md
+index 3d886e0..f3e28dd 100644
+--- a/docs/HOUSING.md
++++ b/docs/HOUSING.md
+@@ -27,6 +27,7 @@ Shared rules:
+ - Attack-only movement; spawn from housing at wave start; clear runtime entities at wave end (roster + allocations persist)
+ - Auto-assign to workplaces; path via stairs between levels
+ - Stair shafts: **one staffer per cell** en route (queues down the column; destination workplaces may stack)
++- Elevator shafts: shared car (cap 6); waiters/riders stack on the car/landing; no free vertical climb
+ - Selling housing prunes roster/allocations for that room
+ - Build-phase **undo / revert** covers room place/remove, recruit/unrecruit, mods, and workplace allocations
+ 
+diff --git a/docs/INFRASTRUCTURE.md b/docs/INFRASTRUCTURE.md
+index 15d6dcc..a6f0097 100644
+--- a/docs/INFRASTRUCTURE.md
++++ b/docs/INFRASTRUCTURE.md
+@@ -12,7 +12,7 @@ Developer-facing architecture for the tower’s **infrastructure layer** — the
+ 2. **Layered editing** — structure, infra, and workers are separate overlays on the same grid (Maps-style visibility).
+ 3. **Logistics during attack** — staff spawn from housing at wave start and **move only during the attack phase**; build phase is untimed planning with no movement.
+ 4. **Separate graphs** — staff pathfind on an interior/infra graph; enemies keep the existing exterior surface graph.
+-5. **Fat towers by choice** — one infra occupancy per cell (stair *or* pipe, not both) forces horizontal expansion.
++5. **Fat towers by choice** — one infra occupancy per cell (stair *or* pipe *or* elevator) forces horizontal expansion.
+ 
+ ---
+ 
+@@ -23,7 +23,7 @@ Three tower layers (visibility toggles; workers use glyphs when the layer is on)
+ | Layer | Contents | Edit trigger |
+ |-------|----------|--------------|
+ | **rooms** | Structure blueprints (spire, buttress, housing, slot, turret, …) | Select a structure blueprint |
+-| **infra** | Stairs, pipes (elevators future) | Select an infra blueprint / tool |
++| **infra** | Stairs, pipes, elevators | Select an infra blueprint / tool |
+ | **workers** | Staff positions during attack (build: allocation UI, not free movement) | Slot/spring headcount; auto-routing at wave start |
+ 
+ `TowerLayer = 'rooms' | 'infra' | 'workers'`.
+@@ -40,7 +40,7 @@ infra[col,row]      → InfraKind | null  // at most ONE kind per cell
+ ```
+ 
+ ```ts
+-type InfraKind = 'stair' | 'pipe'; // elevator: future
++type InfraKind = 'stair' | 'pipe' | 'elevator';
+ 
+ interface InfraCell {
+   kind: InfraKind;
+@@ -48,7 +48,7 @@ interface InfraCell {
+ }
+ ```
+ 
+-**Mutual exclusion:** a cell may hold **one staircase *or* one pipe**, never both. Infra may be painted on cells that already have a structure room (“drawn over” the room on the infra layer). This intentionally prevents cramming pipe + stair through a single spire block.
++**Mutual exclusion:** a cell may hold **one** of staircase, pipe, or elevator — never two. Infra may be painted on cells that already have a structure room (“drawn over” the room on the infra layer). This intentionally prevents cramming multiple infra kinds through a single spire block.
+ 
+ **Future damage model:** pipes inside a room footprint are logically protected when external bombs hit the room shell first (not implemented yet).
+ 
+@@ -121,15 +121,29 @@ Baseline: one soldier at 100% ≈ one magic turret shot (turrets cost **1 mana**
+ 
+ **Status:** Typed pipes, boilers, steam turrets, mana springs, and magic-turret mana are shipped.
+ 
+-### Elevator (`elevator`) — future
++### Elevator (`elevator`)
+ 
+ | Property | Value |
+ |----------|--------|
+-| Placement | Start and end on a strictly vertical line |
+-| Speed | **2×** horizontal baseline |
+-| Throughput | Platform carries multiple staff; wait at landings |
++| Cost | More expensive than stairs (infra blueprint; exact constant tunable) |
++| Placement | Paint ad hoc like stairs; **contiguous cells in one column = one shaft**; a gap splits into **two shafts** |
++| Adjacent columns | Always separate shafts (transfer by walking off one, onto the other) |
++| Boarding | **Any** elevator cell (board/exit in place) |
++| Capacity | Up to **6** staff per car; **one car per shaft** |
++| Leave rule | At a stop, board all eligible waiters until full or queue empty, **then** leave |
++| Empty car | **Park at last stop**; travel empty when **called** |
++| Mid-route pickup | **Yes** — stop if capacity remains and waiters want the **same direction** |
++| Horizontal | Elevator cells are **walkable horizontally** (like stairs) |
++| Vertical | **No free climbing** — vertical travel only inside the car |
++| Speed | Faster than stairs (~**5×** stair intent; exact constant tunable) |
+ | Exclusion | Same cell mutual exclusion as stairs/pipes |
+ 
++**Shaft discovery:** contiguous `(col, row)` runs of `kind: 'elevator'`. Wave start spawns one car per shaft parked at the **bottom** cell.
++
++**Dispatch defaults:** among calls, serve the **nearest** floor (tie-break longest wait). Trip direction is set by the **first boarded** passenger’s exit. Only same-direction waiters board; opposite-direction waiters stay queued.
++
++**Occupancy:** riders share the car cell; waiters **stack** on landing cells (exceptions to one-staffer-per-cell).
++
+ ### Passability flag
+ 
+ Blueprints may define `passable: boolean` (default **true**). Boilers and steam turrets are `passable: false`. Mana springs are `passable: true` so magi can station inside.
+@@ -150,7 +164,7 @@ interface StaffUnit {
+   path: Cell[];
+   pathIndex: number;
+   moveCooldown: number;
+-  status: 'idle' | 'moving' | 'stationed' | 'working';
++  status: 'idle' | 'moving' | 'stationed' | 'working' | 'waiting_elevator' | 'riding_elevator';
+ }
+ ```
+ 
+@@ -202,7 +216,7 @@ Assignment distance uses **Manhattan on room anchors**; each unit then pathfinds
+ | Graph | Used by | Walkability |
+ |-------|---------|-------------|
+ | **Exterior** | Enemies | Empty cells hugging room surfaces |
+-| **Interior/infra** | Staff | Structure cells with `passable !== false` + stair infra cells |
++| **Interior/infra** | Staff | Structure cells with `passable !== false` + stair/elevator infra cells |
+ 
+ ### Movement speeds (relative)
+ 
+@@ -210,9 +224,9 @@ Assignment distance uses **Manhattan on room anchors**; each unit then pathfinds
+ |------|-------|
+ | Horizontal through passable rooms | **1.0×** |
+ | Stair vertical | **0.2×** |
+-| Elevator (future) | **2.0×** |
++| Elevator car vertical | ~**1.0×** (~5× stairs; tunable) |
+ 
+-Vertical movement requires a stair on the **lower** floor of the step.
++Vertical movement: a **stair** on the lower floor of the step, **or** both cells in the **same elevator shaft** (pathfinding only — runtime riding uses the car).
+ 
+ ### Connectivity validation
+ 
+@@ -228,12 +242,13 @@ Relevant order inside `game.step(dt)` (attack only):
+ 
+ ```
+ 1. Spawn / tick enemies, wizard, spells (existing)
+-2. stepStaff — cell-exclusive movement; shared stair links
+-3. tickLaborerRepairs — repair + retarget
+-4. runRoomEffects — slots, turrets, mods
+-5. tickManaSprings — water + stationed magi
+-6. tickBoilers → tickSteamTurrets
+-7. Reap enemies, wave clear
++2. stepElevators — car call / empty travel / board / multi-stop
++3. stepStaff — cell-exclusive movement; stairs; elevator wait/ride handoff
++4. tickLaborerRepairs — repair + retarget
++5. runRoomEffects — slots, turrets, mods
++6. tickManaSprings — water + stationed magi
++7. tickBoilers → tickSteamTurrets
++8. Reap enemies, wave clear
+ ```
+ 
+ ---
+@@ -246,7 +261,7 @@ Relevant order inside `game.step(dt)` (attack only):
+ | Housing expansion mods | Modification cost (guardroom / chamber / quarters) |
+ | Slot capacity mod | `slotExpansion` (2 → 4) |
+ | Wave start upkeep | Per rostered occupant by kind; failure deserts |
+-| Stair / pipe placement | Infra blueprint cost |
++| Stair / pipe / elevator placement | Infra blueprint cost |
+ 
+ **Mana** — shared pool; magic turret **1**/shot; springs staffed by magi; boilers drain while producing. See [`PIPES.md`](PIPES.md).
+ 
+@@ -314,7 +329,7 @@ interface GameState {
+ | `quartersRoom` | Laborer housing |
+ | `slotRoom` | Ranged soldier defense |
+ | `manaSpringRoom` | Mana workplace (pipe + magi) |
+-| `stair` / `pipe` | Infra kinds |
++| `stair` / `pipe` / `elevator` | Infra kinds |
+ 
+ ---
+ 
+@@ -326,7 +341,7 @@ interface GameState {
+ | Guardroom → slot staffing | Shipped |
+ | Housing (three types), workers layer, logistics | Shipped — [`HOUSING.md`](HOUSING.md) |
+ | Pipes, boilers, steam, mana springs | Shipped — [`PIPES.md`](PIPES.md) |
+-| Elevators | Future |
++| Elevators | Shipped |
+ | Mid-wave pipe/room network breaks | Deferred |
+ | Soldier death / targeting | Deferred |
+ 
+@@ -339,6 +354,8 @@ interface GameState {
+ | Infra placement | One kind per cell; exclusion; paint over structure |
+ | Interior path | Horizontal through passable room; vertical when lower cell has a stair |
+ | Stair throughput | Second climber waits only for the next occupied cell |
++| Elevator shafts | Contiguous column = one shaft; gap = two; adjacent columns separate |
++| Elevator dispatch | Call/empty travel; capacity 6; mid-pickup; no free vertical walk |
+ | Auto-assign | Closest housing preferred; unconnected workplaces flagged |
+ | Slot combat | Efficiency table; only stationed count |
+ | Economy | Wave-start upkeep; unpaid desert |
+diff --git a/src/calculations/buildCost.ts b/src/calculations/buildCost.ts
+index 2ba1671..d7903c5 100644
+--- a/src/calculations/buildCost.ts
++++ b/src/calculations/buildCost.ts
+@@ -1,12 +1,12 @@
+ import { getBlueprint } from '@/model/blueprints';
+-import { getInfraBlueprint } from '@/model/infraBlueprints';
++import { getInfraBlueprint, infraBlueprintIdForKind } from '@/model/infraBlueprints';
+ import { getModification, modificationCost } from '@/model/modifications';
+ import type { BuildBaseline, Room, Tower } from '@/model/types';
+ 
+ export function infraBuildCost(tower: Tower): number {
+   let cost = 0;
+   for (const cell of Object.values(tower.infra ?? {})) {
+-    const bp = getInfraBlueprint(cell.kind === 'stair' ? 'staircase' : 'pipe');
++    const bp = getInfraBlueprint(infraBlueprintIdForKind(cell.kind));
+     cost += bp?.cost ?? 0;
+   }
+   return cost;
+diff --git a/src/calculations/interiorGraph.ts b/src/calculations/interiorGraph.ts
+index 578d503..0e39d71 100644
+--- a/src/calculations/interiorGraph.ts
++++ b/src/calculations/interiorGraph.ts
+@@ -1,5 +1,6 @@
+ import { getBlueprint } from '@/model/blueprints';
+ import { hasInfraKind } from '@/model/infra';
++import { isElevatorVerticalStep } from '@/model/elevators';
+ import { roomAt } from '@/model/tower';
+ import { inBounds, roomCells } from './grid';
+ import type { Cell, Tower } from '@/model/types';
+@@ -11,10 +12,11 @@ export function isPassableStructure(tower: Tower, col: number, row: number): boo
+   return blueprint?.passable !== false;
+ }
+ 
+-/** A cell soldiers may occupy: passable structure and/or stair infra. */
++/** A cell staff may occupy: passable structure and/or stair/elevator infra. */
+ export function isSoldierWalkable(tower: Tower, col: number, row: number): boolean {
+   if (!inBounds(col, row)) return false;
+   if (hasInfraKind(tower, col, row, 'stair')) return true;
++  if (hasInfraKind(tower, col, row, 'elevator')) return true;
+   return isPassableStructure(tower, col, row);
+ }
+ 
+@@ -27,10 +29,12 @@ export function canSoldierTraverse(tower: Tower, from: Cell, to: Cell): boolean
+   if (dc + dr !== 1) return false;
+ 
+   if (dr > 0) {
+-    // A stair on the lower floor reaches the floor above (either direction).
+-    // Stair on row N connects N ↔ N+1; it does not connect N-1 → N.
++    // Stair on the lower floor reaches the floor above (either direction).
+     const lowerRow = Math.min(from.row, to.row);
+-    return hasInfraKind(tower, from.col, lowerRow, 'stair');
++    if (hasInfraKind(tower, from.col, lowerRow, 'stair')) return true;
++    // Elevator: both cells must be elevator infra in the same contiguous shaft.
++    // Runtime forbids free climbing — staff must ride the car — but A* may route through.
++    return isElevatorVerticalStep(tower, from, to);
+   }
+   return true;
+ }
+diff --git a/src/calculations/interiorPathfinding.test.ts b/src/calculations/interiorPathfinding.test.ts
+index e2a5126..a896aa8 100644
+--- a/src/calculations/interiorPathfinding.test.ts
++++ b/src/calculations/interiorPathfinding.test.ts
+@@ -56,6 +56,17 @@ describe('findInteriorPath', () => {
+     expect(path[0]).toEqual({ col: 4, row: 0 });
+     expect(path[path.length - 1]).toEqual({ col: 4, row: 2 });
+   });
++
++  it('finds a path via elevator shaft cells', () => {
++    let tower = towerWithRooms();
++    tower = placeInfra(tower, { col: 4, row: 0 }, 'elevator');
++    tower = placeInfra(tower, { col: 4, row: 1 }, 'elevator');
++    tower = placeInfra(tower, { col: 4, row: 2 }, 'elevator');
++    expect(canSoldierTraverse(tower, { col: 4, row: 0 }, { col: 4, row: 1 })).toBe(true);
++    const path = findInteriorPath(tower, { col: 4, row: 0 }, { col: 4, row: 2 });
++    expect(path.length).toBeGreaterThan(0);
++    expect(path[path.length - 1]).toEqual({ col: 4, row: 2 });
++  });
+ });
+ 
+ describe('infra placement', () => {
+@@ -63,9 +74,14 @@ describe('infra placement', () => {
+     const tower = createTower();
+     const stair = getInfraBlueprint('staircase')!;
+     const pipe = getInfraBlueprint('pipe')!;
++    const elevator = getInfraBlueprint('elevator')!;
+     expect(canPlaceInfra(tower, stair, { col: 1, row: 0 }).ok).toBe(true);
+     const withStair = placeInfra(tower, { col: 1, row: 0 }, 'stair');
+     expect(canPlaceInfra(withStair, pipe, { col: 1, row: 0 }).ok).toBe(true);
+     expect(placeInfra(withStair, { col: 1, row: 0 }, 'pipe').infra['1,0']?.kind).toBe('pipe');
++    expect(canPlaceInfra(withStair, elevator, { col: 1, row: 0 }).ok).toBe(true);
++    expect(placeInfra(withStair, { col: 1, row: 0 }, 'elevator').infra['1,0']?.kind).toBe(
++      'elevator',
++    );
+   });
+ });
+diff --git a/src/config/constants.ts b/src/config/constants.ts
+index 51655d9..aff5fda 100644
+--- a/src/config/constants.ts
++++ b/src/config/constants.ts
+@@ -54,6 +54,10 @@ export const LABORER_REPAIR_HP_PER_SEC = 2;
+ 
+ export const STAFF_HORIZONTAL_SPEED = 2;
+ export const STAFF_STAIR_SPEED = 0.4;
++/** Elevator car vertical speed (~5× stairs). */
++export const STAFF_ELEVATOR_SPEED = 2;
++/** Max staff riding one elevator car. */
++export const ELEVATOR_CAPACITY = 6;
+ /** @deprecated Use STAFF_HORIZONTAL_SPEED. */
+ export const SOLDIER_HORIZONTAL_SPEED = STAFF_HORIZONTAL_SPEED;
+ /** @deprecated Use STAFF_STAIR_SPEED. */
+@@ -120,6 +124,7 @@ export const colors = {
+   text: '#e2e8f0',
+   pathDebug: '#63b3ed',
+   infraStair: '#a0aec0',
++  infraElevator: '#ecc94b',
+   infraPipe: '#4299e1',
+   /** Pipe not yet connected to a water (or steam) seed. */
+   infraPipeDry: '#718096',
+diff --git a/src/model/elevators.test.ts b/src/model/elevators.test.ts
+new file mode 100644
+index 0000000..9a0be40
+--- /dev/null
++++ b/src/model/elevators.test.ts
+@@ -0,0 +1,218 @@
++import { describe, expect, it } from 'vitest';
++import { ELEVATOR_CAPACITY, SOLDIER_RECRUIT_COST } from '@/config/constants';
++import { canSoldierTraverse, isSoldierWalkable } from '@/calculations/interiorGraph';
++import { findInteriorPath } from '@/calculations/interiorPathfinding';
++import { createInitialState } from '@/model/game';
++import { getBlueprint } from '@/model/blueprints';
++import { placeInfra } from '@/model/infra';
++import { getInfraBlueprint } from '@/model/infraBlueprints';
++import {
++  discoverElevatorShafts,
++  initElevators,
++  isElevatorVerticalStep,
++  stepElevators,
++} from '@/model/elevators';
++import { createRoom, createTower, placeRoom } from '@/model/tower';
++import { deployStaffForWave, stepStaff } from '@/model/staff';
++
++function towerWithElevatorShaft() {
++  const state = createInitialState('elevator-base');
++  state.tower = createTower();
++  const guardroomBp = getBlueprint('guardroomRoom')!;
++  const slotBp = getBlueprint('slotRoom')!;
++  state.tower = placeRoom(state.tower, createRoom('b1', guardroomBp, { col: 3, row: 0 }));
++  state.tower = placeRoom(state.tower, createRoom('s1', slotBp, { col: 3, row: 3 }));
++  // Stem cells for shaft mid floors.
++  const stem = getBlueprint('stem')!;
++  state.tower = placeRoom(state.tower, createRoom('m1', stem, { col: 3, row: 1 }));
++  state.tower = placeRoom(state.tower, createRoom('m2', stem, { col: 3, row: 2 }));
++  for (const row of [0, 1, 2, 3]) {
++    state.tower = placeInfra(state.tower, { col: 3, row }, 'elevator');
++  }
++  return state;
++}
++
++describe('elevator shaft discovery', () => {
++  it('treats a contiguous column as one shaft', () => {
++    let tower = createTower();
++    for (const row of [0, 1, 2]) {
++      tower = placeInfra(tower, { col: 2, row }, 'elevator');
++    }
++    const shafts = discoverElevatorShafts(tower);
++    expect(shafts).toHaveLength(1);
++    expect(shafts[0]).toMatchObject({ col: 2, minRow: 0, maxRow: 2 });
++  });
++
++  it('splits a gapped column into two shafts', () => {
++    let tower = createTower();
++    tower = placeInfra(tower, { col: 2, row: 0 }, 'elevator');
++    tower = placeInfra(tower, { col: 2, row: 1 }, 'elevator');
++    tower = placeInfra(tower, { col: 2, row: 3 }, 'elevator');
++    tower = placeInfra(tower, { col: 2, row: 4 }, 'elevator');
++    const shafts = discoverElevatorShafts(tower);
++    expect(shafts).toHaveLength(2);
++    expect(shafts.map((s) => `${s.minRow}-${s.maxRow}`).sort()).toEqual(['0-1', '3-4']);
++  });
++
++  it('treats adjacent columns as separate shafts', () => {
++    let tower = createTower();
++    tower = placeInfra(tower, { col: 2, row: 0 }, 'elevator');
++    tower = placeInfra(tower, { col: 2, row: 1 }, 'elevator');
++    tower = placeInfra(tower, { col: 3, row: 0 }, 'elevator');
++    tower = placeInfra(tower, { col: 3, row: 1 }, 'elevator');
++    const shafts = discoverElevatorShafts(tower);
++    expect(shafts).toHaveLength(2);
++    expect(new Set(shafts.map((s) => s.col))).toEqual(new Set([2, 3]));
++  });
++});
++
++describe('elevator interior graph', () => {
++  it('allows vertical pathfinding through a shaft but marks elevator vertical steps', () => {
++    const state = towerWithElevatorShaft();
++    expect(isSoldierWalkable(state.tower, 3, 1)).toBe(true);
++    expect(canSoldierTraverse(state.tower, { col: 3, row: 0 }, { col: 3, row: 1 })).toBe(true);
++    expect(isElevatorVerticalStep(state.tower, { col: 3, row: 0 }, { col: 3, row: 1 })).toBe(true);
++    const path = findInteriorPath(state.tower, { col: 3, row: 0 }, { col: 3, row: 3 });
++    expect(path.length).toBeGreaterThan(0);
++    expect(path[path.length - 1]).toEqual({ col: 3, row: 3 });
++  });
++
++  it('allows horizontal walk across elevator cells for adjacent-shaft transfer', () => {
++    let tower = createTower();
++    const stem = getBlueprint('stem')!;
++    tower = placeRoom(tower, createRoom('a', stem, { col: 4, row: 0 }));
++    tower = placeRoom(tower, createRoom('b', stem, { col: 5, row: 0 }));
++    tower = placeInfra(tower, { col: 4, row: 0 }, 'elevator');
++    tower = placeInfra(tower, { col: 5, row: 0 }, 'elevator');
++    expect(canSoldierTraverse(tower, { col: 4, row: 0 }, { col: 5, row: 0 })).toBe(true);
++  });
++});
++
++describe('elevator runtime', () => {
++  it('makes staff wait for the car instead of free-climbing', () => {
++    const state = towerWithElevatorShaft();
++    state.housingRecruited.b1 = 1;
++    state.slotAllocations.s1 = 1;
++    state.buildRecruitSpend = SOLDIER_RECRUIT_COST;
++    deployStaffForWave(state);
++    initElevators(state);
++
++    const soldier = state.staff[0];
++    soldier.moveCooldown = 0;
++    stepStaff(state, 1);
++    expect(soldier.status).toBe('waiting_elevator');
++    expect(soldier.pos).toEqual({ col: 3, row: 0 });
++  });
++
++  it('calls an idle car, boards, and rides to the exit floor', () => {
++    const state = towerWithElevatorShaft();
++    state.housingRecruited.b1 = 1;
++    state.slotAllocations.s1 = 1;
++    state.buildRecruitSpend = SOLDIER_RECRUIT_COST;
++    deployStaffForWave(state);
++    initElevators(state);
++
++    const soldier = state.staff[0];
++    soldier.moveCooldown = 0;
++    stepStaff(state, 1);
++    expect(soldier.status).toBe('waiting_elevator');
++
++    // Car is already at bottom — board and travel up.
++    for (let i = 0; i < 20; i++) {
++      stepElevators(state, 1);
++      stepStaff(state, 1);
++      if (soldier.status === 'stationed') break;
++    }
++    expect(soldier.status).toBe('stationed');
++    expect(soldier.pos).toEqual({ col: 3, row: 3 });
++  });
++
++  it('caps a car at ELEVATOR_CAPACITY and leaves extras waiting', () => {
++    const state = towerWithElevatorShaft();
++    // Expand guardroom capacity via recruit count; slot needs headroom.
++    state.housingRecruited.b1 = ELEVATOR_CAPACITY + 1;
++    state.slotAllocations.s1 = ELEVATOR_CAPACITY + 1;
++    // Slot base capacity is 2 — place enough slots.
++    const slotBp = getBlueprint('slotRoom')!;
++    for (let i = 0; i < ELEVATOR_CAPACITY; i++) {
++      const id = `sExtra${i}`;
++      state.tower = placeRoom(state.tower, createRoom(id, slotBp, { col: 4 + (i % 4), row: 3 }));
++      // Connect horizontally via stems at row 3 if needed — soldiers path to their slot.
++      state.slotAllocations[id] = 1;
++    }
++    // Ensure row 3 walkable horizontally from elevator: place stems under slots.
++    const stem = getBlueprint('stem')!;
++    for (let c = 4; c <= 7; c++) {
++      if (!state.tower.occupancy[`${c},3`]) {
++        state.tower = placeRoom(state.tower, createRoom(`stem${c}`, stem, { col: c, row: 3 }));
++      }
++    }
++    state.slotAllocations.s1 = 1;
++    state.buildRecruitSpend = SOLDIER_RECRUIT_COST * (ELEVATOR_CAPACITY + 1);
++
++    deployStaffForWave(state);
++    initElevators(state);
++
++    for (const unit of state.staff) unit.moveCooldown = 0;
++    stepStaff(state, 1);
++    const waiters = state.staff.filter((s) => s.status === 'waiting_elevator');
++    expect(waiters.length).toBeGreaterThanOrEqual(ELEVATOR_CAPACITY);
++
++    stepElevators(state, 1);
++    const car = state.elevators[0];
++    expect(car.passengers.length).toBe(ELEVATOR_CAPACITY);
++    const stillWaiting = state.staff.filter((s) => s.status === 'waiting_elevator');
++    expect(stillWaiting.length).toBeGreaterThanOrEqual(1);
++  });
++
++  it('picks up same-direction waiters mid-route when capacity remains', () => {
++    const state = towerWithElevatorShaft();
++    state.housingRecruited.b1 = 2;
++    state.slotAllocations.s1 = 2;
++    state.buildRecruitSpend = SOLDIER_RECRUIT_COST * 2;
++    deployStaffForWave(state);
++    initElevators(state);
++
++    const [a, b] = state.staff;
++    // Only a starts waiting at the bottom; b waits at an intermediate floor.
++    for (const unit of state.staff) unit.moveCooldown = 99;
++    a.moveCooldown = 0;
++    stepStaff(state, 1);
++    expect(a.status).toBe('waiting_elevator');
++
++    b.pos = { col: 3, row: 1 };
++    b.path = [
++      { col: 3, row: 1 },
++      { col: 3, row: 2 },
++      { col: 3, row: 3 },
++    ];
++    b.pathIndex = 0;
++    b.status = 'waiting_elevator';
++    b.elevatorShaftId = a.elevatorShaftId;
++    b.elevatorExitRow = 3;
++    b.elevatorExitPathIndex = 2;
++    b.elevatorWaitElapsed = 0;
++
++    // Small dt: board a at 0 without yet reaching floor 1.
++    stepElevators(state, 0.01);
++    expect(state.elevators[0].passengers).toContain(a.id);
++    expect(state.elevators[0].passengers).not.toContain(b.id);
++    expect(state.elevators[0].row).toBe(0);
++
++    // Travel until the car picks up b at row 1.
++    for (let i = 0; i < 20; i++) {
++      stepElevators(state, 0.5);
++      if (state.elevators[0].passengers.includes(b.id)) break;
++    }
++    expect(state.elevators[0].passengers).toContain(a.id);
++    expect(state.elevators[0].passengers).toContain(b.id);
++  });
++});
++
++describe('elevator blueprint', () => {
++  it('exposes an elevator infra blueprint', () => {
++    const bp = getInfraBlueprint('elevator');
++    expect(bp?.infraKind).toBe('elevator');
++    expect(bp?.cost).toBeGreaterThan(getInfraBlueprint('staircase')!.cost);
++  });
++});
+diff --git a/src/model/elevators.ts b/src/model/elevators.ts
+new file mode 100644
+index 0000000..d4f3979
+--- /dev/null
++++ b/src/model/elevators.ts
+@@ -0,0 +1,400 @@
++import { ELEVATOR_CAPACITY, STAFF_ELEVATOR_SPEED } from '@/config/constants';
++import { hasInfraKind } from '@/model/infra';
++import type {
++  Cell,
++  ElevatorCar,
++  ElevatorDir,
++  ElevatorShaft,
++  GameState,
++  StaffUnit,
++  Tower,
++} from '@/model/types';
++
++function parseInfraKey(key: string): Cell {
++  const [col, row] = key.split(',').map(Number);
++  return { col, row };
++}
++
++/** Contiguous elevator runs in each column — a gap yields separate shafts. */
++export function discoverElevatorShafts(tower: Tower): ElevatorShaft[] {
++  const byCol = new Map<number, number[]>();
++  for (const [key, cell] of Object.entries(tower.infra ?? {})) {
++    if (cell.kind !== 'elevator') continue;
++    const { col, row } = parseInfraKey(key);
++    const rows = byCol.get(col) ?? [];
++    rows.push(row);
++    byCol.set(col, rows);
++  }
++
++  const shafts: ElevatorShaft[] = [];
++  for (const [col, rows] of byCol) {
++    rows.sort((a, b) => a - b);
++    let runStart = rows[0];
++    let prev = rows[0];
++    for (let i = 1; i <= rows.length; i++) {
++      const row = rows[i];
++      if (row === prev + 1) {
++        prev = row;
++        continue;
++      }
++      shafts.push({
++        id: `shaft-${col}-${runStart}-${prev}`,
++        col,
++        minRow: runStart,
++        maxRow: prev,
++      });
++      if (row !== undefined) {
++        runStart = row;
++        prev = row;
++      }
++    }
++  }
++  return shafts;
++}
++
++export function shaftAt(tower: Tower, col: number, row: number): ElevatorShaft | null {
++  if (!hasInfraKind(tower, col, row, 'elevator')) return null;
++  return discoverElevatorShafts(tower).find((s) => s.col === col && row >= s.minRow && row <= s.maxRow) ?? null;
++}
++
++export function shaftById(tower: Tower, shaftId: string): ElevatorShaft | null {
++  return discoverElevatorShafts(tower).find((s) => s.id === shaftId) ?? null;
++}
++
++/** True when adjacent vertical cells are both elevator infra in the same column (same shaft). */
++export function isElevatorVerticalStep(tower: Tower, from: Cell, to: Cell): boolean {
++  if (from.col !== to.col) return false;
++  if (Math.abs(from.row - to.row) !== 1) return false;
++  return (
++    hasInfraKind(tower, from.col, from.row, 'elevator') &&
++    hasInfraKind(tower, to.col, to.row, 'elevator')
++  );
++}
++
++/**
++ * Scan the path forward from pathIndex for a contiguous same-shaft vertical ride.
++ * Returns null if the next step is not an elevator vertical.
++ */
++export function planElevatorRide(
++  tower: Tower,
++  path: Cell[],
++  pathIndex: number,
++): { shaftId: string; exitRow: number; exitPathIndex: number } | null {
++  if (pathIndex >= path.length - 1) return null;
++  const from = path[pathIndex];
++  const next = path[pathIndex + 1];
++  if (!isElevatorVerticalStep(tower, from, next)) return null;
++
++  const shaft = shaftAt(tower, from.col, from.row);
++  if (!shaft) return null;
++
++  let i = pathIndex;
++  while (i < path.length - 1) {
++    const a = path[i];
++    const b = path[i + 1];
++    if (!isElevatorVerticalStep(tower, a, b)) break;
++    if (a.col !== shaft.col || b.row < shaft.minRow || b.row > shaft.maxRow) break;
++    i += 1;
++  }
++  if (i === pathIndex) return null;
++  return { shaftId: shaft.id, exitRow: path[i].row, exitPathIndex: i };
++}
++
++export function initElevators(state: GameState): void {
++  const shafts = discoverElevatorShafts(state.tower);
++  state.elevators = shafts.map((shaft) => ({
++    shaftId: shaft.id,
++    col: shaft.col,
++    row: shaft.minRow,
++    dir: 'idle' as const,
++    passengers: [],
++    moveCooldown: 0,
++    targetRow: null,
++  }));
++}
++
++export function clearElevators(state: GameState): void {
++  state.elevators = [];
++}
++
++function staffById(state: GameState, id: string): StaffUnit | undefined {
++  return state.staff.find((s) => s.id === id);
++}
++
++function waitersAt(
++  state: GameState,
++  shaftId: string,
++  row: number,
++): StaffUnit[] {
++  return state.staff.filter(
++    (s) =>
++      s.status === 'waiting_elevator' &&
++      s.elevatorShaftId === shaftId &&
++      s.pos.row === row &&
++      s.elevatorExitRow !== undefined &&
++      s.elevatorExitRow !== row,
++  );
++}
++
++function wantsDirection(unit: StaffUnit, dir: ElevatorDir, carRow: number): boolean {
++  if (unit.elevatorExitRow === undefined) return false;
++  if (dir === 'up') return unit.elevatorExitRow > carRow;
++  if (dir === 'down') return unit.elevatorExitRow < carRow;
++  return false;
++}
++
++function clearElevatorFields(unit: StaffUnit): void {
++  delete unit.elevatorShaftId;
++  delete unit.elevatorExitRow;
++  delete unit.elevatorExitPathIndex;
++  delete unit.elevatorWaitElapsed;
++}
++
++function unloadAtFloor(state: GameState, car: ElevatorCar): void {
++  const remaining: string[] = [];
++  for (const id of car.passengers) {
++    const unit = staffById(state, id);
++    if (!unit) continue;
++    if (unit.elevatorExitRow === car.row) {
++      unit.pos = { col: car.col, row: car.row };
++      if (unit.elevatorExitPathIndex !== undefined) {
++        unit.pathIndex = unit.elevatorExitPathIndex;
++      }
++      clearElevatorFields(unit);
++      unit.status = 'moving';
++      unit.moveCooldown = 0;
++    } else {
++      remaining.push(id);
++      unit.pos = { col: car.col, row: car.row };
++    }
++  }
++  car.passengers = remaining;
++}
++
++function boardAtFloor(state: GameState, car: ElevatorCar, dir: ElevatorDir): void {
++  const queue = waitersAt(state, car.shaftId, car.row).sort(
++    (a, b) => (b.elevatorWaitElapsed ?? 0) - (a.elevatorWaitElapsed ?? 0),
++  );
++  for (const unit of queue) {
++    if (car.passengers.length >= ELEVATOR_CAPACITY) break;
++    if (!wantsDirection(unit, dir, car.row)) continue;
++    car.passengers.push(unit.id);
++    unit.status = 'riding_elevator';
++    unit.pos = { col: car.col, row: car.row };
++    unit.moveCooldown = 0;
++  }
++}
++
++/** When idle, first boarded waiter sets direction; then fill same-direction waiters. */
++function boardFromIdle(state: GameState, car: ElevatorCar): ElevatorDir | null {
++  const queue = waitersAt(state, car.shaftId, car.row).sort(
++    (a, b) => (b.elevatorWaitElapsed ?? 0) - (a.elevatorWaitElapsed ?? 0),
++  );
++  if (queue.length === 0) return null;
++
++  const first = queue[0];
++  if (first.elevatorExitRow === undefined || first.elevatorExitRow === car.row) return null;
++  const dir: ElevatorDir = first.elevatorExitRow > car.row ? 'up' : 'down';
++  boardAtFloor(state, car, dir);
++  return car.passengers.length > 0 ? dir : null;
++}
++
++function farthestPassengerExit(state: GameState, car: ElevatorCar, dir: ElevatorDir): number | null {
++  let best: number | null = null;
++  for (const id of car.passengers) {
++    const unit = staffById(state, id);
++    if (unit?.elevatorExitRow === undefined) continue;
++    if (dir === 'up' && unit.elevatorExitRow > car.row) {
++      best = best === null ? unit.elevatorExitRow : Math.max(best, unit.elevatorExitRow);
++    }
++    if (dir === 'down' && unit.elevatorExitRow < car.row) {
++      best = best === null ? unit.elevatorExitRow : Math.min(best, unit.elevatorExitRow);
++    }
++  }
++  return best;
++}
++
++function nextPickupRow(
++  state: GameState,
++  car: ElevatorCar,
++  dir: ElevatorDir,
++  farthest: number,
++): number | null {
++  if (car.passengers.length >= ELEVATOR_CAPACITY) return null;
++  const shaft = shaftById(state.tower, car.shaftId);
++  if (!shaft) return null;
++
++  let best: number | null = null;
++  const lo = dir === 'up' ? car.row + 1 : farthest;
++  const hi = dir === 'up' ? farthest : car.row - 1;
++  for (let row = lo; row <= hi; row++) {
++    const waiters = waitersAt(state, car.shaftId, row).filter((w) => wantsDirection(w, dir, row));
++    if (waiters.length === 0) continue;
++    if (dir === 'up') {
++      best = best === null ? row : Math.min(best, row);
++    } else {
++      best = best === null ? row : Math.max(best, row);
++    }
++  }
++  return best;
++}
++
++function nextPassengerStop(state: GameState, car: ElevatorCar, dir: ElevatorDir): number | null {
++  let best: number | null = null;
++  for (const id of car.passengers) {
++    const unit = staffById(state, id);
++    if (unit?.elevatorExitRow === undefined) continue;
++    const exit = unit.elevatorExitRow;
++    if (dir === 'up' && exit > car.row) {
++      best = best === null ? exit : Math.min(best, exit);
++    }
++    if (dir === 'down' && exit < car.row) {
++      best = best === null ? exit : Math.max(best, exit);
++    }
++  }
++  return best;
++}
++
++function chooseNextTarget(state: GameState, car: ElevatorCar, dir: ElevatorDir): number | null {
++  const farthest = farthestPassengerExit(state, car, dir);
++  const dropoff = nextPassengerStop(state, car, dir);
++  if (farthest === null || dropoff === null) return null;
++  const pickup = nextPickupRow(state, car, dir, farthest);
++  if (pickup === null) return dropoff;
++  if (dir === 'up') return Math.min(dropoff, pickup);
++  return Math.max(dropoff, pickup);
++}
++
++interface CallFloor {
++  row: number;
++  maxWait: number;
++}
++
++function collectCalls(state: GameState, shaftId: string): CallFloor[] {
++  const byRow = new Map<number, number>();
++  for (const unit of state.staff) {
++    if (unit.status !== 'waiting_elevator' || unit.elevatorShaftId !== shaftId) continue;
++    if (unit.elevatorExitRow === undefined || unit.elevatorExitRow === unit.pos.row) continue;
++    const wait = unit.elevatorWaitElapsed ?? 0;
++    byRow.set(unit.pos.row, Math.max(byRow.get(unit.pos.row) ?? 0, wait));
++  }
++  return [...byRow.entries()].map(([row, maxWait]) => ({ row, maxWait }));
++}
++
++function pickNearestCall(car: ElevatorCar, calls: CallFloor[]): CallFloor | null {
++  if (calls.length === 0) return null;
++  let best = calls[0];
++  let bestDist = Math.abs(best.row - car.row);
++  for (let i = 1; i < calls.length; i++) {
++    const c = calls[i];
++    const dist = Math.abs(c.row - car.row);
++    if (dist < bestDist || (dist === bestDist && c.maxWait > best.maxWait)) {
++      best = c;
++      bestDist = dist;
++    }
++  }
++  return best;
++}
++
++function syncPassengerPositions(state: GameState, car: ElevatorCar): void {
++  for (const id of car.passengers) {
++    const unit = staffById(state, id);
++    if (unit) unit.pos = { col: car.col, row: car.row };
++  }
++}
++
++function processStop(state: GameState, car: ElevatorCar): void {
++  unloadAtFloor(state, car);
++
++  if (car.passengers.length > 0 && car.dir !== 'idle') {
++    boardAtFloor(state, car, car.dir);
++    const next = chooseNextTarget(state, car, car.dir);
++    if (next !== null && next !== car.row) {
++      car.targetRow = next;
++      return;
++    }
++    // No further stops in this direction — unload should have cleared; fall through.
++  }
++
++  if (car.passengers.length === 0) {
++    const boardedDir = boardFromIdle(state, car);
++    if (boardedDir) {
++      car.dir = boardedDir;
++      const next = chooseNextTarget(state, car, boardedDir);
++      car.targetRow = next;
++      if (next === null || next === car.row) {
++        // Degenerate — unload immediately next tick
++        car.dir = 'idle';
++        car.targetRow = null;
++      }
++      return;
++    }
++
++    car.dir = 'idle';
++    const call = pickNearestCall(car, collectCalls(state, car.shaftId));
++    if (call && call.row !== car.row) {
++      car.dir = call.row > car.row ? 'up' : 'down';
++      car.targetRow = call.row;
++      return;
++    }
++    if (call?.row === car.row) {
++      // Waiters here but boardFromIdle failed (e.g. exit==row); stay idle
++      car.targetRow = null;
++      return;
++    }
++    car.targetRow = null;
++    return;
++  }
++
++  // Passengers remain but no valid next — reset direction from passengers
++  const unit = staffById(state, car.passengers[0]);
++  if (unit?.elevatorExitRow !== undefined && unit.elevatorExitRow !== car.row) {
++    car.dir = unit.elevatorExitRow > car.row ? 'up' : 'down';
++    car.targetRow = chooseNextTarget(state, car, car.dir);
++  } else {
++    car.dir = 'idle';
++    car.targetRow = null;
++  }
++}
++
++function stepCarOneFloor(state: GameState, car: ElevatorCar): void {
++  if (car.targetRow === null || car.targetRow === car.row) {
++    processStop(state, car);
++    return;
++  }
++  if (car.targetRow > car.row) car.row += 1;
++  else car.row -= 1;
++  syncPassengerPositions(state, car);
++  car.moveCooldown = 1 / STAFF_ELEVATOR_SPEED;
++
++  if (car.row === car.targetRow) {
++    processStop(state, car);
++  }
++}
++
++/** Advance elevator cars and boarding during the attack phase. */
++export function stepElevators(state: GameState, dt: number): void {
++  // Accumulate wait time for callers.
++  for (const unit of state.staff) {
++    if (unit.status === 'waiting_elevator') {
++      unit.elevatorWaitElapsed = (unit.elevatorWaitElapsed ?? 0) + dt;
++    }
++  }
++
++  for (const car of state.elevators) {
++    car.moveCooldown -= dt;
++    if (car.moveCooldown > 0) continue;
++
++    // Idle car with no target: look for calls / local waiters.
++    if (car.dir === 'idle' && car.targetRow === null) {
++      processStop(state, car);
++      // Depart next tick (door close) — do not step the same frame as boarding.
++      if (car.targetRow !== null && car.targetRow !== car.row) {
++        car.moveCooldown = 1 / STAFF_ELEVATOR_SPEED;
++      }
++      continue;
++    }
++
++    stepCarOneFloor(state, car);
++  }
++}
+diff --git a/src/model/game.ts b/src/model/game.ts
+index 4afbd6d..95dd16e 100644
+--- a/src/model/game.ts
++++ b/src/model/game.ts
+@@ -7,6 +7,7 @@ import {
+ } from '@/config/constants';
+ import { sameMacroCell, macroCellOfNode } from '@/calculations/subGrid';
+ import { resetStaffCounter, stepStaff, tickLaborerRepairs } from './staff';
++import { stepElevators } from './elevators';
+ import { tickBoilers } from './boilers';
+ import { tickManaSprings } from './manaSprings';
+ import { tickSteamTurrets } from './steamTurrets';
+@@ -92,6 +93,7 @@ export function createInitialState(seed: string | number = 'wizard'): GameState
+     activeSpellSchool: 'fire',
+     boilerRuntime: {},
+     steamTurretRuntime: {},
++    elevators: [],
+     buildBaseline: null,
+   };
+   resetStaffCounter();
+@@ -283,7 +285,8 @@ export function step(state: GameState, dt: number): void {
+   tickAirEffects(state, dt, (spellName) => buildSpellContext(state, spellName));
+   tickEarthEffects(state, dt, (spellName) => buildSpellContext(state, spellName));
+ 
+-  // Staff movement and laborer repairs during attack.
++  // Elevator cars, then staff movement and laborer repairs during attack.
++  stepElevators(state, dt);
+   stepStaff(state, dt);
+   tickLaborerRepairs(state, dt);
+ 
+diff --git a/src/model/infraBlueprints.ts b/src/model/infraBlueprints.ts
+index ce93857..655659f 100644
+--- a/src/model/infraBlueprints.ts
++++ b/src/model/infraBlueprints.ts
+@@ -1,4 +1,4 @@
+-import type { Blueprint } from './types';
++import type { Blueprint, InfraKind } from './types';
+ 
+ /** Infrastructure blueprints painted on the infra layer (same cell grid as rooms). */
+ export const INFRA_BLUEPRINTS: Blueprint[] = [
+@@ -27,6 +27,19 @@ export const INFRA_BLUEPRINTS: Blueprint[] = [
+     infraKind: 'pipe',
+     description: 'Thin logistics line on structure. Empty cells auto-place a Spire Block when legal.',
+   },
++  {
++    id: 'elevator',
++    name: 'Elevator',
++    glyph: '=',
++    color: '#ecc94b',
++    size: { w: 1, h: 1 },
++    cost: 8,
++    baseHp: 0,
++    category: 'infra',
++    infraKind: 'elevator',
++    description:
++      'Fast vertical shaft. Contiguous cells in a column form one shaft with a shared car (up to 6 staff). Empty cells auto-place a Spire Block when legal.',
++  },
+ ];
+ 
+ export function getInfraBlueprint(id: string): Blueprint | undefined {
+@@ -36,3 +49,14 @@ export function getInfraBlueprint(id: string): Blueprint | undefined {
+ export function isInfraBlueprint(id: string): boolean {
+   return INFRA_BLUEPRINTS.some((b) => b.id === id);
+ }
++
++export function infraBlueprintIdForKind(kind: InfraKind): string {
++  switch (kind) {
++    case 'stair':
++      return 'staircase';
++    case 'pipe':
++      return 'pipe';
++    case 'elevator':
++      return 'elevator';
++  }
++}
+diff --git a/src/model/phases.ts b/src/model/phases.ts
+index ea149b2..9f05db9 100644
+--- a/src/model/phases.ts
++++ b/src/model/phases.ts
+@@ -1,3 +1,4 @@
++import { clearElevators, initElevators } from './elevators';
+ import { prepareWaveNames } from './game';
+ import { addMessage } from './messages';
+ import { resetBoilerRuntime } from './boilers';
+@@ -42,6 +43,7 @@ export function beginWave(state: GameState): void {
+   resetBoilerRuntime(state);
+   resetSteamTurretRuntime(state);
+   deployStaffForWave(state);
++  initElevators(state);
+   refillMana(state);
+   resetSpellCooldowns(state);
+   resetFireState(state);
+@@ -66,6 +68,7 @@ export function endWave(state: GameState): void {
+   state.waveIndex += 1;
+   state.phase = 'build';
+   clearStaffAfterWave(state);
++  clearElevators(state);
+   state.boilerRuntime = {};
+   state.steamTurretRuntime = {};
+   captureBuildBaseline(state);
+diff --git a/src/model/staff/index.ts b/src/model/staff/index.ts
+index aca1a87..aa87f85 100644
+--- a/src/model/staff/index.ts
++++ b/src/model/staff/index.ts
+@@ -12,6 +12,7 @@ import { roomAnchorCell } from '@/calculations/interiorGraph';
+ import { roomCells } from '@/calculations/grid';
+ import { computeRoomStats } from '@/calculations/combat';
+ import { getBlueprint } from '@/model/blueprints';
++import { planElevatorRide, isElevatorVerticalStep } from '@/model/elevators';
+ import { hasInfraKind } from '@/model/infra';
+ import { addMessage } from '@/model/messages';
+ import { isManaSpringRoom } from '@/model/pipes';
+@@ -366,8 +367,15 @@ function isVerticalStep(from: Cell, to: Cell): boolean {
+ }
+ 
+ function isCellOccupiedByOtherStaff(state: GameState, cell: Cell, exceptId: string): boolean {
++  // Elevator landings allow stacking; waiters/riders never block cell locks.
++  if (hasInfraKind(state.tower, cell.col, cell.row, 'elevator')) return false;
+   return state.staff.some(
+-    (s) => s.id !== exceptId && s.pos.col === cell.col && s.pos.row === cell.row,
++    (s) =>
++      s.id !== exceptId &&
++      s.pos.col === cell.col &&
++      s.pos.row === cell.row &&
++      s.status !== 'waiting_elevator' &&
++      s.status !== 'riding_elevator',
+   );
+ }
+ 
+@@ -375,10 +383,28 @@ function arriveStatus(kind: StaffKind): 'stationed' | 'working' {
+   return kind === 'laborer' ? 'working' : 'stationed';
+ }
+ 
++function beginElevatorWait(state: GameState, unit: StaffUnit): boolean {
++  const ride = planElevatorRide(state.tower, unit.path, unit.pathIndex);
++  if (!ride) return false;
++  unit.status = 'waiting_elevator';
++  unit.elevatorShaftId = ride.shaftId;
++  unit.elevatorExitRow = ride.exitRow;
++  unit.elevatorExitPathIndex = ride.exitPathIndex;
++  unit.elevatorWaitElapsed = 0;
++  unit.moveCooldown = 0;
++  return true;
++}
++
+ /** Advance staff movement during the attack phase. */
+ export function stepStaff(state: GameState, dt: number): void {
+   for (const unit of state.staff) {
+-    if (unit.status === 'stationed' || unit.status === 'working' || unit.status === 'idle') {
++    if (
++      unit.status === 'stationed' ||
++      unit.status === 'working' ||
++      unit.status === 'idle' ||
++      unit.status === 'waiting_elevator' ||
++      unit.status === 'riding_elevator'
++    ) {
+       continue;
+     }
+ 
+@@ -404,6 +430,12 @@ export function stepStaff(state: GameState, dt: number): void {
+     const vertical = isVerticalStep(unit.pos, next);
+     const enteringWorkplace = isInRoomFootprint(workplace, next);
+ 
++    // Vertical elevator progress requires riding the car — never free-step.
++    if (vertical && isElevatorVerticalStep(state.tower, unit.pos, next)) {
++      beginElevatorWait(state, unit);
++      continue;
++    }
++
+     // One staffer per cell en route; destination workplaces may hold several.
+     if (!enteringWorkplace && isCellOccupiedByOtherStaff(state, next, unit.id)) {
+       continue;
+@@ -457,7 +489,13 @@ export function tickLaborerRepairs(state: GameState, dt: number): void {
+   // Retarget laborers whose job is done or room gone; assign idle ones.
+   for (const unit of state.staff) {
+     if (unit.kind !== 'laborer') continue;
+-    if (unit.status === 'moving') continue;
++    if (
++      unit.status === 'moving' ||
++      unit.status === 'waiting_elevator' ||
++      unit.status === 'riding_elevator'
++    ) {
++      continue;
++    }
+     const room = unit.targetWorkplaceId
+       ? state.tower.rooms.find((r) => r.id === unit.targetWorkplaceId)
+       : undefined;
+diff --git a/src/model/types.ts b/src/model/types.ts
+index 98fa9ea..7684fbc 100644
+--- a/src/model/types.ts
++++ b/src/model/types.ts
+@@ -4,7 +4,7 @@ export interface Modifier { attack?: number; defense?: number; hp?: number }
+ 
+ export type BlueprintCategory = 'structure' | 'infra';
+ 
+-export type InfraKind = 'stair' | 'pipe';
++export type InfraKind = 'stair' | 'pipe' | 'elevator';
+ 
+ export type Fluid = 'water' | 'steam' | 'unassigned';
+ 
+@@ -51,11 +51,17 @@ export interface RoomStats { maxHp: number; attack: number; defense: number }
+ export interface Tower {
+   rooms: Room[];
+   occupancy: Record<string, string>;
+-  /** Per-cell infrastructure overlay (stair or pipe, never both). */
++  /** Per-cell infrastructure overlay (stair, pipe, or elevator — never two). */
+   infra: Record<string, InfraCell>;
+ }
+ 
+-export type StaffStatus = 'idle' | 'moving' | 'stationed' | 'working';
++export type StaffStatus =
++  | 'idle'
++  | 'moving'
++  | 'stationed'
++  | 'working'
++  | 'waiting_elevator'
++  | 'riding_elevator';
+ 
+ export interface StaffUnit {
+   id: string;
+@@ -68,6 +74,37 @@ export interface StaffUnit {
+   pathIndex: number;
+   moveCooldown: number;
+   status: StaffStatus;
++  /** Shaft being waited on / ridden (elevator statuses). */
++  elevatorShaftId?: string;
++  /** Exit row within the shaft for the current ride. */
++  elevatorExitRow?: number;
++  /** Path index of the exit cell once unloaded. */
++  elevatorExitPathIndex?: number;
++  /** Seconds spent waiting for a car (call priority tie-break). */
++  elevatorWaitElapsed?: number;
++}
++
++export type ElevatorDir = 'up' | 'down' | 'idle';
++
++/** Contiguous vertical run of elevator infra in one column. */
++export interface ElevatorShaft {
++  id: string;
++  col: number;
++  minRow: number;
++  maxRow: number;
++}
++
++/** Attack-phase elevator car (one per shaft). */
++export interface ElevatorCar {
++  shaftId: string;
++  col: number;
++  row: number;
++  dir: ElevatorDir;
++  /** Staff ids currently riding. */
++  passengers: string[];
++  moveCooldown: number;
++  /** Floor the car is traveling toward (empty call or next stop). */
++  targetRow: number | null;
+ }
+ 
+ /** @deprecated Prefer StaffUnit. */
+@@ -303,6 +340,8 @@ export interface GameState {
+   boilerRuntime: Record<string, BoilerRuntime>;
+   /** Attack-phase steam turret charge state. */
+   steamTurretRuntime: Record<string, SteamTurretRuntime>;
++  /** Attack-phase elevator cars (one per shaft; cleared at wave end). */
++  elevators: ElevatorCar[];
+   /** Tower + gold at build-phase start; edits commit on wave start. */
+   buildBaseline: BuildBaseline | null;
+ }
+diff --git a/src/static/librarySections.ts b/src/static/librarySections.ts
+index 6318121..f694349 100644
+--- a/src/static/librarySections.ts
++++ b/src/static/librarySections.ts
+@@ -35,6 +35,7 @@ export const BLUEPRINT_LIBRARY_SECTION: Record<string, LibrarySectionId> = {
+ 
+   staircase: 'infrastructure',
+   pipe: 'infrastructure',
++  elevator: 'infrastructure',
+ 
+   turretRoom: 'damagers',
+   slotRoom: 'damagers',
+diff --git a/src/store/selectors.test.ts b/src/store/selectors.test.ts
+index 6a71bb2..57be085 100644
+--- a/src/store/selectors.test.ts
++++ b/src/store/selectors.test.ts
+@@ -40,6 +40,7 @@ describe('selectLibraryBlueprints', () => {
+     expect(items.find((b) => b.id === 'guardroomRoom')?.section).toBe('housing');
+     expect(items.find((b) => b.id === 'manaSpringRoom')?.section).toBe('generators');
+     expect(items.find((b) => b.id === 'staircase')?.section).toBe('infrastructure');
++    expect(items.find((b) => b.id === 'elevator')?.section).toBe('infrastructure');
+     expect(items.find((b) => b.id === 'turretRoom')?.section).toBe('damagers');
+   });
+ });
+diff --git a/src/view/canvas/renderer.ts b/src/view/canvas/renderer.ts
+index b438c78..c57d0d5 100644
+--- a/src/view/canvas/renderer.ts
++++ b/src/view/canvas/renderer.ts
+@@ -280,6 +280,11 @@ export class Renderer {
+       const { x, y } = cellTopLeft(col, row, scrollY, viewportHeight);
+       if (cell.kind === 'pipe') {
+         this.drawPipeCell(tower, col, row, x, y, 1, pipeFluidColor(pipeFluids[key] ?? 'unassigned'));
++      } else if (cell.kind === 'elevator') {
++        const carHere = snapshot.game.elevators.some(
++          (c) => c.col === col && c.row === row,
++        );
++        this.drawElevatorShaft(x, y, 1, undefined, carHere);
+       } else {
+         this.drawStairLine(x, y, 1);
+       }
+@@ -367,6 +372,36 @@ export class Renderer {
+     ctx.restore();
+   }
+ 
++  /** Dual-rail elevator shaft; optional car platform when the car is on this cell. */
++  private drawElevatorShaft(
++    x: number,
++    y: number,
++    alpha: number,
++    strokeOverride?: string,
++    showCar = false,
++  ): void {
++    const { ctx } = this;
++    ctx.save();
++    ctx.globalAlpha = alpha;
++    ctx.lineCap = 'butt';
++    ctx.strokeStyle = strokeOverride ?? colors.infraElevator;
++    ctx.lineWidth = 2;
++    const left = x + CELL_SIZE * 0.28;
++    const right = x + CELL_SIZE * 0.72;
++    ctx.beginPath();
++    ctx.moveTo(left, y + 1);
++    ctx.lineTo(left, y + CELL_SIZE - 1);
++    ctx.moveTo(right, y + 1);
++    ctx.lineTo(right, y + CELL_SIZE - 1);
++    ctx.stroke();
++    if (showCar) {
++      ctx.fillStyle = strokeOverride ?? colors.infraElevator;
++      const pad = CELL_SIZE * 0.08;
++      ctx.fillRect(left + pad, y + CELL_SIZE * 0.55, right - left - pad * 2, CELL_SIZE * 0.28);
++    }
++    ctx.restore();
++  }
++
+   private drawWorkers(snapshot: Snapshot, scrollY: number, viewportHeight: number): void {
+     const { ctx } = this;
+     const byCell = new Map<string, typeof snapshot.game.staff>();
+@@ -442,6 +477,8 @@ export class Renderer {
+             pipeStroke,
+             extra,
+           );
++        } else if (ghost.infraKind === 'elevator') {
++          this.drawElevatorShaft(x, y, 0.75, ghost.valid ? undefined : stroke, false);
+         } else {
+           this.drawStairLine(x, y, 0.75, ghost.valid ? undefined : stroke);
+         }
+-- 
+2.43.0
+
