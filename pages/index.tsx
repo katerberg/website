@@ -1,24 +1,31 @@
 import type { GetStaticProps } from 'next';
 import FollowIcon from '../components/FollowIcon';
+import GoodreadsFeed from '../components/GoodreadsFeed';
 import MastodonFeed from '../components/MastodonFeed';
 import styles from '../styles/AboutMe.module.scss';
 import rssLogo from '../images/logos/rss-logo.svg';
 import githubLogo from '../images/logos/github-logo.svg';
 import mastodonLogo from '../images/logos/mastodon-logo.svg';
 import goodReadsLogo from '../images/logos/good-reads-logo.svg';
+import { getGoodreadsBooks } from '../lib/getGoodreadsBooks';
+import type { GoodreadsBooks } from '../lib/getGoodreadsBooks';
 import { getMastodonPosts } from '../lib/getMastodonPosts';
 import type { MastodonPost } from '../lib/getMastodonPosts';
 
 interface HomePageProps {
+  goodreadsBooks: GoodreadsBooks;
   mastodonPosts: MastodonPost[];
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const mastodonPosts = await getMastodonPosts();
-  return { props: { mastodonPosts } };
+  const [goodreadsBooks, mastodonPosts] = await Promise.all([
+    getGoodreadsBooks(),
+    getMastodonPosts(),
+  ]);
+  return { props: { goodreadsBooks, mastodonPosts } };
 };
 
-const Home = ({ mastodonPosts }: HomePageProps) => {
+const Home = ({ goodreadsBooks, mastodonPosts }: HomePageProps) => {
   return (
     <div>
       <h1>{'About Me'}</h1>
@@ -64,6 +71,7 @@ const Home = ({ mastodonPosts }: HomePageProps) => {
         {' to contact as well.'}
       </p>
       <MastodonFeed initialPosts={mastodonPosts} />
+      <GoodreadsFeed books={goodreadsBooks} />
     </div>
   );
 };
