@@ -22,7 +22,6 @@ const Home = ({ mastodonPosts }: HomePageProps) => {
   return (
     <div>
       <h1>{'About Me'}</h1>
-      <MastodonFeed initialPosts={mastodonPosts} />
       <p>
         {
           'I live in St Louis, Missouri, but like all of us, I really just live on the Internet. You can find me in the following places:'
@@ -64,6 +63,7 @@ const Home = ({ mastodonPosts }: HomePageProps) => {
         <a href="tel:19203456775">{'phone numbers'}</a>
         {' to contact as well.'}
       </p>
+      <MastodonFeed initialPosts={mastodonPosts} />
     </div>
   );
 };
