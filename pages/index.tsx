@@ -1,14 +1,28 @@
+import type { GetStaticProps } from 'next';
 import FollowIcon from '../components/FollowIcon';
+import MastodonFeed from '../components/MastodonFeed';
 import styles from '../styles/AboutMe.module.scss';
 import rssLogo from '../images/logos/rss-logo.svg';
 import githubLogo from '../images/logos/github-logo.svg';
 import mastodonLogo from '../images/logos/mastodon-logo.svg';
 import goodReadsLogo from '../images/logos/good-reads-logo.svg';
+import { getMastodonPosts } from '../lib/getMastodonPosts';
+import type { MastodonPost } from '../lib/getMastodonPosts';
 
-const Home = () => {
+interface HomePageProps {
+  mastodonPosts: MastodonPost[];
+}
+
+export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const mastodonPosts = await getMastodonPosts();
+  return { props: { mastodonPosts } };
+};
+
+const Home = ({ mastodonPosts }: HomePageProps) => {
   return (
     <div>
       <h1>{'About Me'}</h1>
+      <MastodonFeed initialPosts={mastodonPosts} />
       <p>
         {
           'I live in St Louis, Missouri, but like all of us, I really just live on the Internet. You can find me in the following places:'
