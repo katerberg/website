@@ -1,0 +1,59 @@
+.feed {
+  max-width: 600px;
+  margin-bottom: 20px;
+
+  > ul {
+    padding: 0;
+  }
+}
+
+.post {
+  background-color: var(--color-bg-muted);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 12px 16px;
+
+  summary {
+    cursor: pointer;
+    font-style: italic;
+  }
+}
+
+.content {
+  overflow-wrap: anywhere;
+
+  p {
+    margin: 0 0 8px;
+  }
+
+  // Mastodon shortens long links with these classes
+  :global(.invisible) {
+    display: none;
+  }
+
+  :global(.ellipsis)::after {
+    content: '…';
+  }
+}
+
+.media {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-bottom: 8px;
+
+  img,
+  video {
+    border-radius: 4px;
+    display: block;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+.date {
+  font-size: 1.2rem;
+}
