@@ -87,7 +87,7 @@ function MastodonFeed({ initialPosts }: MastodonFeedProperties) {
 
   return (
     <section className={styles.feed}>
-      <h2>{'Recently on Mastodon'}</h2>
+      <h2>{'Recent Posts'}</h2>
       <ul>
         {posts.map((post) => (
           <Post key={post.id} post={post} />

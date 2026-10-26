@@ -70,8 +70,10 @@ const Home = ({ goodreadsBooks, mastodonPosts }: HomePageProps) => {
         <a href="tel:19203456775">{'phone numbers'}</a>
         {' to contact as well.'}
       </p>
-      <MastodonFeed initialPosts={mastodonPosts} />
-      <GoodreadsFeed books={goodreadsBooks} />
+      <div className={styles.feeds}>
+        <MastodonFeed initialPosts={mastodonPosts} />
+        <GoodreadsFeed books={goodreadsBooks} />
+      </div>
     </div>
   );
 };
