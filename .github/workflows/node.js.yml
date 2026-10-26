@@ -10,6 +10,10 @@ name: GitHub Pages deploy
 on:
   push:
     branches: [main]
+  # Daily rebuild picks up new Goodreads activity (Mastodon refreshes live)
+  schedule:
+    - cron: '17 11 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
