@@ -1,0 +1,78 @@
+{
+  "currentlyReading": [
+    {
+      "id": "37584981",
+      "title": "Little Red Rodent Hood (Hamster Princess, #6)",
+      "author": "Ursula Vernon",
+      "url": "https://www.goodreads.com/review/show/8319739275?utm_medium=api&utm_source=rss",
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1527184722l/37584981._SX98_.jpg",
+      "rating": 0,
+      "readAt": null
+    },
+    {
+      "id": "77740",
+      "title": "In Enemy Hands (Honor Harrington, #7)",
+      "author": "David Weber",
+      "url": "https://www.goodreads.com/review/show/8989302321?utm_medium=api&utm_source=rss",
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1321561738l/77740._SX98_.jpg",
+      "rating": 0,
+      "readAt": null
+    },
+    {
+      "id": "7015403",
+      "title": "The Gifts of Imperfection",
+      "author": "Brené Brown",
+      "url": "https://www.goodreads.com/review/show/8929600658?utm_medium=api&utm_source=rss",
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1369092544l/7015403._SX98_.jpg",
+      "rating": 0,
+      "readAt": null
+    }
+  ],
+  "recentlyRead": [
+    {
+      "id": "33395557",
+      "title": "For We Are Many (Bobiverse, #2)",
+      "author": "Dennis E. Taylor",
+      "url": "https://www.goodreads.com/review/show/2260871777?utm_medium=api&utm_source=rss",
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1501817361l/33395557._SX98_.jpg",
+      "rating": 4,
+      "readAt": "2026-10-22T00:00:00.000Z"
+    },
+    {
+      "id": "32109569",
+      "title": "We Are Legion (We Are Bob) (Bobiverse, #1)",
+      "author": "Dennis E. Taylor",
+      "url": "https://www.goodreads.com/review/show/2260871296?utm_medium=api&utm_source=rss",
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1474344826l/32109569._SX98_.jpg",
+      "rating": 4,
+      "readAt": "2026-10-18T00:00:00.000Z"
+    },
+    {
+      "id": "65605",
+      "title": "The Magician’s Nephew (Chronicles of Narnia, #6)",
+      "author": "C.S. Lewis",
+      "url": "https://www.goodreads.com/review/show/8813787966?utm_medium=api&utm_source=rss",
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1308814770l/65605._SX98_.jpg",
+      "rating": 3,
+      "readAt": "2026-10-13T00:00:00.000Z"
+    },
+    {
+      "id": "1129529",
+      "title": "The Next Passage (Alternamorphs, #2)",
+      "author": "K.A. Applegate",
+      "url": "https://www.goodreads.com/review/show/8985575730?utm_medium=api&utm_source=rss",
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1375604644l/1129529._SX98_.jpg",
+      "rating": 2,
+      "readAt": "2026-09-30T00:00:00.000Z"
+    },
+    {
+      "id": "42397849",
+      "title": "Burnout: The Secret to Unlocking the Stress Cycle",
+      "author": "Emily Nagoski",
+      "url": "https://www.goodreads.com/review/show/8930830253?utm_medium=api&utm_source=rss",
+      "coverUrl": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1551216612l/42397849._SX98_.jpg",
+      "rating": 2,
+      "readAt": "2026-09-30T00:00:00.000Z"
+    }
+  ]
+}
