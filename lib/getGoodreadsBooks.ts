@@ -6,7 +6,9 @@ export const GOODREADS_PROFILE_URL =
   'https://www.goodreads.com/user/show/55606019';
 const SHELF_URL = 'https://www.goodreads.com/review/list_rss/55606019';
 const READ_LIMIT = 5;
-const TIMEOUT_MS = 5000;
+// Generous because nobody waits on a build, and Goodreads is sometimes slow
+const TIMEOUT_MS = 15000;
+const ATTEMPTS = 2;
 
 export interface GoodreadsBook {
   id: string;
@@ -52,19 +54,21 @@ function toBook(item: RssItem): GoodreadsBook {
 }
 
 async function getShelf(query: string): Promise<GoodreadsBook[]> {
-  try {
-    const response = await fetch(`${SHELF_URL}?${query}`, {
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-    });
-    if (!response.ok) {
-      return [];
+  for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
+    try {
+      const response = await fetch(`${SHELF_URL}?${query}`, {
+        signal: AbortSignal.timeout(TIMEOUT_MS),
+      });
+      if (response.ok) {
+        const feed = parser.parse(await response.text());
+        const items: RssItem[] = feed?.rss?.channel?.item ?? [];
+        return items.map(toBook);
+      }
+    } catch {
+      // Timed out or network error; try again
     }
-    const feed = parser.parse(await response.text());
-    const items: RssItem[] = feed?.rss?.channel?.item ?? [];
-    return items.map(toBook);
-  } catch {
-    return [];
   }
+  return [];
 }
 
 /** Returns current and recent books; a shelf that can't be fetched is empty. */

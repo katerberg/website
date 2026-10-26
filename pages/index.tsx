@@ -1,4 +1,5 @@
 import type { GetStaticProps } from 'next';
+import FeedColumns from '../components/FeedColumns';
 import FollowIcon from '../components/FollowIcon';
 import GoodreadsFeed from '../components/GoodreadsFeed';
 import MastodonFeed from '../components/MastodonFeed';
@@ -70,10 +71,10 @@ const Home = ({ goodreadsBooks, mastodonPosts }: HomePageProps) => {
         <a href="tel:19203456775">{'phone numbers'}</a>
         {' to contact as well.'}
       </p>
-      <div className={styles.feeds}>
+      <FeedColumns>
         <MastodonFeed initialPosts={mastodonPosts} />
         <GoodreadsFeed books={goodreadsBooks} />
-      </div>
+      </FeedColumns>
     </div>
   );
 };

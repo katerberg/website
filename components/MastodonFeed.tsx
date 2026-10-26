@@ -88,11 +88,13 @@ function MastodonFeed({ initialPosts }: MastodonFeedProperties) {
   return (
     <section className={styles.feed}>
       <h2>{'Recent Posts'}</h2>
-      <ul>
-        {posts.map((post) => (
-          <Post key={post.id} post={post} />
-        ))}
-      </ul>
+      <div data-feed-scroll>
+        <ul>
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </ul>
+      </div>
       <a href={MASTODON_PROFILE_URL}>{'More on Mastodon →'}</a>
     </section>
   );

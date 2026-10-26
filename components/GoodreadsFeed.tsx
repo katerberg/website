@@ -68,8 +68,10 @@ function GoodreadsFeed({ books }: GoodreadsFeedProperties) {
   return (
     <section className={styles.feed}>
       <h2>{'Reading'}</h2>
-      <Shelf title={'Currently reading'} books={books.currentlyReading} />
-      <Shelf title={'Recently finished'} books={books.recentlyRead} />
+      <div data-feed-scroll>
+        <Shelf title={'Currently reading'} books={books.currentlyReading} />
+        <Shelf title={'Recently finished'} books={books.recentlyRead} />
+      </div>
       <a href={GOODREADS_PROFILE_URL}>{'More on Goodreads →'}</a>
     </section>
   );
