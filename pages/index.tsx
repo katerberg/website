@@ -8,7 +8,7 @@ import rssLogo from '../images/logos/rss-logo.svg';
 import githubLogo from '../images/logos/github-logo.svg';
 import mastodonLogo from '../images/logos/mastodon-logo.svg';
 import goodReadsLogo from '../images/logos/good-reads-logo.svg';
-import { getGoodreadsBooks } from '../lib/getGoodreadsBooks';
+import { readGoodreadsBooks } from '../lib/getGoodreadsBooks';
 import type { GoodreadsBooks } from '../lib/getGoodreadsBooks';
 import { getMastodonPosts } from '../lib/getMastodonPosts';
 import type { MastodonPost } from '../lib/getMastodonPosts';
@@ -19,10 +19,8 @@ interface HomePageProps {
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const [goodreadsBooks, mastodonPosts] = await Promise.all([
-    getGoodreadsBooks(),
-    getMastodonPosts(),
-  ]);
+  const goodreadsBooks = readGoodreadsBooks();
+  const mastodonPosts = await getMastodonPosts();
   return { props: { goodreadsBooks, mastodonPosts } };
 };
 

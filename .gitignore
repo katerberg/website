@@ -40,3 +40,4 @@ next-env.d.ts
 
 # Generated
 public/feed.atom
+public/goodreads.json

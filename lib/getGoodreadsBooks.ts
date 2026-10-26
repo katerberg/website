@@ -1,10 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { XMLParser } from 'fast-xml-parser';
 
 // Build time only: Goodreads does not allow cross-origin requests, so the
 // scheduled deploy keeps this fresh instead of a live browser fetch.
-export const GOODREADS_PROFILE_URL =
-  'https://www.goodreads.com/user/show/55606019';
 const SHELF_URL = 'https://www.goodreads.com/review/list_rss/55606019';
+// The last deployed copy, used for any shelf Goodreads fails to return
+const PRODUCTION_COPY_URL = 'https://katerberg.net/goodreads.json';
+export const GOODREADS_FILE = path.join(
+  process.cwd(),
+  'public',
+  'goodreads.json'
+);
 const READ_LIMIT = 5;
 // Generous because nobody waits on a build, and Goodreads is sometimes slow
 const TIMEOUT_MS = 15000;
@@ -24,6 +31,8 @@ export interface GoodreadsBooks {
   currentlyReading: GoodreadsBook[];
   recentlyRead: GoodreadsBook[];
 }
+
+const NO_BOOKS: GoodreadsBooks = { currentlyReading: [], recentlyRead: [] };
 
 interface RssItem {
   title: string;
@@ -53,7 +62,8 @@ function toBook(item: RssItem): GoodreadsBook {
   };
 }
 
-async function getShelf(query: string): Promise<GoodreadsBook[]> {
+/** Returns the shelf's books, or null if Goodreads couldn't be reached. */
+async function getShelf(query: string): Promise<GoodreadsBook[] | null> {
   for (let attempt = 1; attempt <= ATTEMPTS; attempt++) {
     try {
       const response = await fetch(`${SHELF_URL}?${query}`, {
@@ -61,21 +71,68 @@ async function getShelf(query: string): Promise<GoodreadsBook[]> {
       });
       if (response.ok) {
         const feed = parser.parse(await response.text());
-        const items: RssItem[] = feed?.rss?.channel?.item ?? [];
-        return items.map(toBook);
+        if (feed?.rss?.channel) {
+          const items: RssItem[] = feed.rss.channel.item ?? [];
+          return items.map(toBook);
+        }
       }
     } catch {
       // Timed out or network error; try again
     }
   }
-  return [];
+  return null;
 }
 
-/** Returns current and recent books; a shelf that can't be fetched is empty. */
-export async function getGoodreadsBooks(): Promise<GoodreadsBooks> {
+async function getProductionCopy(): Promise<GoodreadsBooks> {
+  try {
+    const response = await fetch(PRODUCTION_COPY_URL, {
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+    if (response.ok) {
+      const books: GoodreadsBooks = await response.json();
+      if (
+        Array.isArray(books.currentlyReading) &&
+        Array.isArray(books.recentlyRead)
+      ) {
+        return books;
+      }
+    }
+  } catch {
+    // No usable copy; fall through
+  }
+  return NO_BOOKS;
+}
+
+/** Fetches both shelves, falling back to the deployed copy for any that fail. */
+export async function fetchGoodreadsBooks(): Promise<{
+  books: GoodreadsBooks;
+  usedFallback: boolean;
+}> {
   const [currentlyReading, read] = await Promise.all([
     getShelf('shelf=currently-reading'),
     getShelf('shelf=read&sort=date_read&order=d'),
   ]);
-  return { currentlyReading, recentlyRead: read.slice(0, READ_LIMIT) };
+  if (currentlyReading && read) {
+    return {
+      books: { currentlyReading, recentlyRead: read.slice(0, READ_LIMIT) },
+      usedFallback: false,
+    };
+  }
+  const fallback = await getProductionCopy();
+  return {
+    books: {
+      currentlyReading: currentlyReading ?? fallback.currentlyReading,
+      recentlyRead: read ? read.slice(0, READ_LIMIT) : fallback.recentlyRead,
+    },
+    usedFallback: true,
+  };
+}
+
+/** Reads the books written by scripts/fetch-goodreads.ts. */
+export function readGoodreadsBooks(): GoodreadsBooks {
+  try {
+    return JSON.parse(fs.readFileSync(GOODREADS_FILE, 'utf8'));
+  } catch {
+    return NO_BOOKS;
+  }
 }
