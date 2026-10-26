@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "npm run generate-feed && next build",
+    "dev": "npm run fetch-goodreads && next dev",
+    "build": "npm run generate-feed && npm run fetch-goodreads && next build",
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "generate-feed": "tsx scripts/generate-feed.ts"
+    "generate-feed": "tsx scripts/generate-feed.ts",
+    "fetch-goodreads": "tsx scripts/fetch-goodreads.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.7",

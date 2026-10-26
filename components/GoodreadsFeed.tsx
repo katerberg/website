@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from '../styles/GoodreadsFeed.module.scss';
-import { GOODREADS_PROFILE_URL } from '../lib/getGoodreadsBooks';
 import type { GoodreadsBook, GoodreadsBooks } from '../lib/getGoodreadsBooks';
+
+const GOODREADS_PROFILE_URL = 'https://www.goodreads.com/user/show/55606019';
 
 // Goodreads stores read dates as UTC midnight, so format in UTC to keep the day.
 const dateFormat = new Intl.DateTimeFormat('en-US', {

@@ -56,3 +56,28 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: public # The branch the action should deploy to.
           FOLDER: out # The folder the action should deploy.
+
+  # GitHub turns off scheduled workflows after 60 days without repo activity.
+  # An empty commit when main has been quiet for 50 days keeps the daily
+  # deploy running. Pushes made with GITHUB_TOKEN don't trigger a deploy.
+  keepalive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Commit if main has been quiet
+        run: |
+          last_commit=$(git log -1 --format=%ct)
+          quiet_days=$(( ($(date +%s) - last_commit) / 86400 ))
+          echo "Last commit was $quiet_days days ago"
+          if [ "$quiet_days" -ge 50 ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit --allow-empty -m 'Keeps scheduled deploys enabled'
+            git push
+          fi
